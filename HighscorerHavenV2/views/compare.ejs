@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="stylesheet" href="css/General.css" />
+    <link rel="stylesheet" href="css/compare.css" />
+    <script
+      defer
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="script/header.js" type="module"></script>
+    <script src="script/compare.js" type="module"></script>
+    <title>HighScore Haven</title>
+  </head>
+  <body>
+    <%- include("partials/navHeader") %>
+
+    <main>
+      <form>
+        <h1>VERGELIJK GAMES</h1>
+        <div class="grid">
+          <div class="flex_column">
+            <label for="game1">Select game 1</label>
+            <input type="search" name="game1" id="game1" autocomplete="off" />
+            <ul class="suggestions" id="suggestions1"></ul>
+          </div>
+          <div class="flex_column">
+            <label for="game2">Select game 2</label>
+            <input type="search" name="game2" id="game2" autocomplete="off" />
+            <ul class="suggestions" id="suggestions2"></ul>
+          </div>
+        </div>
+        <input type="submit" value="Vergelijk ⇄" />
+      </form>
+
+      <section class="grid center compareResult hide">
+        <article class="game_info rounded">
+          <img src="img/image.png" class="rounded" alt="Game 1" />
+          <h3 class="gameName3">***</h3>
+          <p class="gameCategory extraSmall">RPG</p>
+          <div class="platform_div rounded">
+            <p class="smallTxt">PLATFORMS</p>
+            <p class="Category">pc, ps4</p>
+          </div>
+        </article>
+        <article class="game_info rounded">
+          <img src="img/image.png" class="rounded" alt="Game 2" />
+          <h3 class="gameName2">***</h3>
+          <p class="gameCategory extraSmall">RPG</p>
+          <div class="platform_div rounded">
+            <p class="smallTxt">PLATFORMS</p>
+            <p class="Category">pc, ps4</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="container center compareStats hide">
+        <h3>Statistieken Vergelijking</h3>
+        <dl>
+          <div class="row rounded">
+            <dd class="realeseDateGame1"></dd>
+            <dt>📅 Release Datum</dt>
+            <dd class="realeseDateGame2"></dd>
+          </div>
+          <div class="row rounded">
+            <dd class="RAWGBeoordelingGame1"></dd>
+            <dt>RAWG Beoordeling</dt>
+            <dd class="RAWGBeoordelingGame2"></dd>
+          </div>
+          <div class="row rounded">
+            <dd class="AantalBeoordeling1"></dd>
+            <dt>Aantal Beoordelingen</dt>
+            <dd class="AantalBeoordeling2"></dd>
+          </div>
+          <div class="row rounded">
+            <dd class="SpeeltijdGame1"></dd>
+            <dt>Gem. Speeltijd</dt>
+            <dd class="SpeeltijdGame2"></dd>
+          </div>
+        </dl>
+      </section>
+    </main>
+  </body>
+</html>
