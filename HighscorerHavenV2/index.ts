@@ -73,7 +73,12 @@ app.get("/startpage", async (req, res) => {
 
   res.render("startpage", { user });
 });
-
+app.get("/battle", (req, res) => {
+  res.render("index", {
+    title: "Hello World",
+    message: "Hello World",
+  });
+});
 app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));
 });
