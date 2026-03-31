@@ -8,7 +8,7 @@ dotenv.config();
 
 const app : Express = express();
 
-const uri = "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven"
+const uri = "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
 const client = new MongoClient(uri);
 const gamesQuery = client.db("highscorehaven").collection("games");
 const usersQuery = client.db("highscorehaven").collection("users");
