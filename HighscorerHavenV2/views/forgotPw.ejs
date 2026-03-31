@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/General.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>HighScore Haven</title>
+</head>
+<body>
+    <header>
+        <a href="/index" class="logo">H!ghscore Haven</a>
+        <nav>
+            <a href="/index"><button class="backBtn">← Terug</button></a>
+        </nav>
+    </header>
+    <main>
+        <form id="loginForm" action="/forgotPw" method="POST">
+            <fieldset>
+                <h2 class="center">Wachtwoord Herstellen</h2>
+                <label for="email">Geeft u email in: </label>
+                <input type="email" name="email" id="email" required>
+                <input type="submit" value="versturen" id="submit">
+            </fieldset>
+        </form>
+    </main>
+</body>
+</html>
