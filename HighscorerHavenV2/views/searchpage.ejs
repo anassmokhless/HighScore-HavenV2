@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/General.css">
+    <link rel="stylesheet" href="css/search.css">
+    <script src="script/search-logic.js" type="module"></script>
+    <script src="script/header.js" type="module"></script>
+    
+    <title>HighScore Haven</title>
+</head>
+<body>
+    <header>
+        <a href="library.html" class="logo">H!ghscore Haven</a>
+        <nav>
+            <a href="startpage.html"><button class="navBtn">🏠</button></a>
+            <a href="guesser.html"><button class="navBtn">🧩</button></a>
+            <a href="battle.html"><button class="navBtn">⚔️</button></a>
+            <a href="compare.html"><button class="navBtn">↔️</button></a>
+            <a href="library.html"><button class="navBtn">📚</button></a>
+            <a href="search.html"><button class="navBtn">🔍</button></a>
+            <a href="account.html"><img src="img/profiel.png" class="headerImg" alt="Profielfoto"></a>
+        </nav>
+    </header>
+    <main>
+        <h2 class="search-heading">Zoek jouw favoriete games</h2>
+        <label for="search" class="visually-hidden">Zoeken</label>
+        <input type="search" id="search">
+        <button id="toggle-btn-filter">filter ▼</button>
+        <div id="tags-container"></div>
+        <hr>
+        <nav class="zoekresultaten_menu" aria-label="Paginering">
+            <h2 class="zoekresultaten_titel">Populaire Games🔥</h2>
+            <button class="zoekresultaten_btn btn">Volgende ⭢</button>
+            <p class="zoekresultaten_btn">pagina <span class="pagina_current">*</span>/<span class="pagina_totaal">*</span></p>
+            <button class="zoekresultaten_btn btn">⭠ Vorige</button>
+        </nav>
+
+        <section class="grid">
+            <button class="card">
+                <div class="info rounded">
+                    <img src="/img/image.png" class="grid_img" alt="Red Dead Redemption">
+                    <div class="grid_info center">
+                        <h3 class="gameName">Red dead Redemption</h3>
+                        <p class="realeseDate">26 oktober 2018 . <span class="revieuw">xx</span>⭐</p>
+                    </div>
+                </div>
+                <p class="more hide rounded center">Meer gegevens</p>
+            </button>
+            <button class="card">
+                <div class="info">
+                    <img src="/img/image.png" class="grid_img" alt="Red Dead Redemption">
+                    <div class="grid_info center">
+                        <h3 class="gameName">Red dead Redemption</h3>
+                        <p class="realeseDate">26 oktober 2018 . <span class="revieuw">xx</span>⭐</p>
+                    </div>
+                </div>
+                <p class="more hide rounded center">Meer gegevens</p>
+            </button>
+            <button class="card">
+                <div class="info rounded">
+                    <img src="/img/image.png" class="grid_img" alt="Red Dead Redemption">
+                    <div class="grid_info center">
+                        <h3 class="gameName">Red dead Redemption</h3>
+                        <p class="realeseDate">26 oktober 2018 . <span class="revieuw">xx</span>⭐</p>
+                    </div>
+                </div>
+                <p class="more hide rounded center">Meer gegevens</p>
+            </button>
+        </section>
+    </main>
+</body>
+</html>
