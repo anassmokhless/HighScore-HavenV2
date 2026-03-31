@@ -1,14 +1,15 @@
 <header>
-  <a href="library.html" class="logo">H!ghscore Haven</a>
+  <a href="/library" class="logo">H!ghscore Haven</a>
   <nav>
-    <a href="startpage.html"><button class="navBtn">🏠</button></a>
-    <a href="guesser.html"><button class="navBtn">🧩</button></a>
-    <a href="battle.html"><button class="navBtn">⚔️</button></a>
-    <a href="compare.html"><button class="navBtn">↔️</button></a>
-    <a href="library.html"><button class="navBtn">📚</button></a>
-    <a href="search.html"><button class="navBtn">🔍</button></a>
-    <a href="account.html"
-      ><img src="img/profiel.png" class="headerImg" alt="Profielfoto"
+    <a href="/startpage"><button class="navBtn">🏠</button></a>
+    <a href="/guesser"><button class="navBtn">🧩</button></a>
+    <a href="/battle"><button class="navBtn">⚔️</button></a>
+    <a href="/compare"><button class="navBtn">↔️</button></a>
+    <a href="/library"><button class="navBtn">📚</button></a>
+    <a href="/search"><button class="navBtn">🔍</button></a>
+    <a href="/account">
+      <%const loggedInUser="JSON.parse(loggedInUserJSON);"%>
+      <img src="img/<%=headerImg.src%>.png" class="headerImg" alt="Profielfoto"
     /></a>
   </nav>
 </header>
