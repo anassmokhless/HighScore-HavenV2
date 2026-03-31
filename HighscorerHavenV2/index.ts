@@ -13,6 +13,7 @@ import battleRouter from "./routers/battle";
 import { searchPageRouter } from "./routers/searchpage";
 import { detailPageRouter } from "./routers/detail";
 import { libraryRouter } from "./routers/library";
+import { start } from "repl";
 
 dotenv.config();
 
@@ -24,6 +25,11 @@ const uri =
 const client = new MongoClient(uri);
 export const gamesQuery = client.db("HighscoreHaven").collection("Games");
 export const usersQuery = client.db("HighscoreHaven").collection("Users");
+
+const uri = "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven"
+const client = new MongoClient(uri);
+const gamesQuery = client.db("highscorehaven").collection("games");
+const usersQuery = client.db("highscorehaven").collection("users");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
