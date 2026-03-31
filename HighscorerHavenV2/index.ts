@@ -19,6 +19,7 @@ import session from "express-session";
 //routers
 import registerRouter from "./routers/registeren";
 import loginRouter from "./routers/login";
+import { hash } from "crypto";
 
 dotenv.config();
 
