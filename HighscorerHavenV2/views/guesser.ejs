@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/General.css">
+    <link rel="stylesheet" href="/css/guesser.css">
+    <title>HighScore Haven</title>
+</head>
+<body>
+    <%- include("./partials/navHeader.ejs") %>
+
+    <main>
+        <section class="center chooseGameInfoDiv">
+            <h2>RAAD DE GAME</h2>
+            <p class="smallTxt">Welke game zie je op deze geblurde screenshot?</p>
+        </section>
+
+        <figure class="center">
+            <img
+                src="<%= correctGame.background_image %>"
+                class="guesssGameImg rounded <%= result ? '' : 'blurred' %>"
+                alt="Geblurde game screenshot"
+            >
+        </figure>
+
+        <% if (!result) { %>
+            <form class="chooseGameDiv center rounded" action="/guesser/result" method="POST">
+                <label for="gameKeuze" class="largeTxt">Kies de juiste game</label>
+                <select id="gameKeuze" name="gekozenNaam" class="rounded">
+                    <option>-- Kies een optie --</option>
+                    <% for (let game of gameOptions) { %>
+                        <option value="<%= game.name %>"><%= game.name %></option>
+                    <% } %>
+                </select>
+                <input type="hidden" name="correctAnswer" value="<%= correctGame.name %>">
+                <button type="submit" class="checkBtn rounded">Controleer</button>
+            </form>
+        <% } %>
+
+        <% if (result) { %>
+            <section class="guessResult center rounded <%= result === 'correct' ? 'correct-result' : 'fout-result' %>">
+                <h3><span class="guessResultTitle"><%= result === 'correct' ? 'JUIST! 🎉' : 'FOUT! ❌' %></span></h3>
+                <p>
+                    <% if (result === 'correct') { %>
+                        De game was inderdaad <strong><%= correctGame.name %></strong>!
+                    <% } else { %>
+                        Jij koos: <strong><%= gekozenNaam %></strong> — het was <strong><%= correctGame.name %></strong>
+                    <% } %>
+                </p>
+                <% if (result === 'correct') { %>
+                    <p class="earnXPGuess">Je hebt +50 XP verdiend</p>
+                <% } %>
+                <a href="/guesser"><button type="button" class="rounded nextGame">Volgende game</button></a>
+            </section>
+        <% } %>
+
+        <section class="gameStatistics rounded">
+            <h3>Jouw statistieken</h3>
+            <dl class="statsGrid">
+                <div class="statCard">
+                    <dt class="smallTxt">CORRECT</dt>
+                    <dd class="largeTxt correct"><span class="correctVal"><%= correct %></span></dd>
+                </div>
+                <div class="statCard">
+                    <dt class="smallTxt">FOUT</dt>
+                    <dd class="largeTxt fout"><span class="foutVal"><%= fout %></span></dd>
+                </div>
+                <div class="statCard">
+                    <dt class="smallTxt">GAMES GERADEN</dt>
+                    <dd class="largeTxt"><span class="totalGameVal"><%= total %></span></dd>
+                </div>
+                <div class="statCard">
+                    <dt class="smallTxt">NAUWKEURIGHEID</dt>
+                    <dd class="largeTxt accuracy"><span class="accuracyVal"><%= accuracy %></span>%</dd>
+                </div>
+                <div class="statCard statCardWide">
+                    <dt class="smallTxt">TOTAAL XP VERDIEND</dt>
+                    <dd class="largeTxt totalXP"><span class="totalXPVal"><%= xp %></span> XP</dd>
+                </div>
+            </dl>
+        </section>
+    </main>
+</body>
+</html>
