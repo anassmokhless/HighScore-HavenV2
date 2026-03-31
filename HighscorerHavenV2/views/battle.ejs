@@ -18,18 +18,29 @@
           Laat twee games tegen elkaar strijden op basis van hun stats!
         </p>
       </section>
+      <% let rndGame = []; %>
+       <% while (rndGame.length < 6) {%>
+        <% const randomIndex = Math.floor(Math.random() * games.length);%>
+        <% const randomGame = games[randomIndex];%>
+        <% if (!rndGame.includes(randomGame)) {%>
+        <%     rndGame.push(randomGame);%>
+        <% }}%>
+    
+
       <form class="center chooseGameDiv rounded">
         <p class="largeTxt">Kies je games</p>
         <label for="playerGame">Jouw game</label>
         <select name="playerGame" id="playerGame" class="rounded">
           <option>--Please choose an option--</option>
+        <%for (let i = 1; i < rndGame.length; i++) {%>
+        <option value="<%= rndGame[i].name %>"><%= rndGame[i].name %></option>
+        <% } %>
+        <% document.querySelector(".playerGameName").addEventListener("change", select); %>
         </select>
         <button type="button" class="StartBattle rounded">Start Battle!</button>
       </form>
       
-        //</select>
-       // <button type="button" class="StartBattle rounded">Start Battle!</button>
-     // </form>
+
       
       <section class="battle">
         <div class="playerChooseGame center rounded">
@@ -38,27 +49,28 @@
             class="playerGameImg rounded"
             alt="Jouw game"
           />
-          <p class="gamename"><span class="playerGameName"></span></p>
+          <% let index = playerGame.selectedIndex; %>
+          <p class="gamename"><span class="playerGameName"><%= rndGame[index].name %></span></p>
           <p class="gameRating rounded hide">
-            <span class="playerGameRating"></span>⭐
+            <span class="playerGameRating"><%= rndGame[index].rating %></span>⭐
           </p>
           <p class="gameAverageTime rounded hide">
-            <span class="playerAverageTime"></span> hours
+            <span class="playerAverageTime"><%= rndGame[index].playtime %></span> hours
           </p>
         </div>
         <h2 class="center">VS</h2>
         <div class="systeemChooseGame center rounded">
           <img
-            src="img/image.png"
+            src="<%= rndGame[i].src %>"
             class="systeemGameImg rounded"
             alt="Systeem game"
           />
-          <p class="gamename"><span class="systeemGameName">**</span></p>
+          <p class="gamename"><span class="systeemGameName"><%= rndGame[0].rating %></span></p>
           <p class="gameRating rounded hide">
-            <span class="systeemGameRating">*</span>⭐
+            <span class="systeemGameRating"><%= rndGame[0].rating %></span>⭐
           </p>
           <p class="gameAverageTime rounded hide">
-            <span class="systeemAverageTime">*</span> hours
+            <span class="systeemAverageTime"><%= rndGame[0].playtime %></span> hours
           </p>
         </div>
       </section>

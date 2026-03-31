@@ -99,6 +99,12 @@ app.get("/battle", (req, res) => {
     message: "Hello World",
   });
 });
+app.get("/battle", (req, res) => {
+  res.render("index", {
+    title: "Hello World",
+    message: "Hello World",
+  });
+});
 
 app.use(
   session({
