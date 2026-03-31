@@ -53,10 +53,8 @@
         </li>
       </ul>
     </main>
-    <footer>
-      <hr />
-      <p>© 2025 AML Inc. Alle rechten voorbehouden</p>
-    </footer>
+    <%- include("partials/header") %> <%= message %> <%- include("partials/footer")
+%>
   </body>
   <script>
     const buttons = document.querySelectorAll(".notActive");
@@ -80,3 +78,4 @@
     }
   </script>
 </html>
+
