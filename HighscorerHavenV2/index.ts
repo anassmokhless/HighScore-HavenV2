@@ -2,7 +2,6 @@ import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
 import { MongoClient } from "mongodb";
-import { start } from "repl";
 
 dotenv.config();
 
