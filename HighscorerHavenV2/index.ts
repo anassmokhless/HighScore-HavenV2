@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { MongoClient } from "mongodb";
 import { hash } from "crypto";
+import bcrypt from 'bcrypt';
 
 dotenv.config();
 
@@ -10,8 +11,8 @@ const app : Express = express();
 
 const uri = "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
 const client = new MongoClient(uri);
-const gamesQuery = client.db("highscorehaven").collection("games");
-const usersQuery = client.db("highscorehaven").collection("users");
+const gamesQuery = client.db("highscorehaven").collection("Games");
+const usersQuery = client.db("highscorehaven").collection("Users");
 
 app.set("view engine", "ejs");
 app.use(express.json());
