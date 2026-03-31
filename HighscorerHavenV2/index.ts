@@ -3,37 +3,32 @@ import dotenv from "dotenv";
 import path from "path";
 import { MongoClient } from "mongodb";
 import { hash } from "crypto";
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 
 dotenv.config();
 
-const app : Express = express();
+const app: Express = express();
 
 const uri = "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
 const client = new MongoClient(uri);
-const gamesQuery = client.db("highscorehaven").collection("Games");
-const usersQuery = client.db("highscorehaven").collection("Users");
+const gamesQuery = client.db("HighscoreHaven").collection("Games");
+const usersQuery = client.db("HighscoreHaven").collection("Users");
 
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-app.set('views', path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 
 app.set("port", process.env.PORT || 3000);
 
 app.get("/", (req, res) => {
-    res.render("index", {
-        title: "Hello World",
-        message: "Hello World"
-    })
+  res.render("index", {
+    title: "Hello World",
+    message: "Hello World",
+  });
 });
-
 
 app.listen(app.get("port"), () => {
-    console.log("Server started on http://localhost:" + app.get('port'));
+  console.log("Server started on http://localhost:" + app.get("port"));
 });
-
-async function main(){
-
-}
