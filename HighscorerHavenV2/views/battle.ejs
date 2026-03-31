@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/General.css" />
+    <link rel="stylesheet" href="css/battle.css" />
+    <script src="script/header.js" type="module"></script>
+    <script src="script/battle.js" type="module"></script>
+    <title>HighScore Haven</title>
+  </head>
+  <body>
+    <%- include("partials/navHeader") %>
+    <main>
+      <section class="center chooseGameInfoDiv">
+        <h2>GAME BATTLE</h2>
+        <p class="smallTxt">
+          Laat twee games tegen elkaar strijden op basis van hun stats!
+        </p>
+      </section>
+      <form class="center chooseGameDiv rounded">
+        <p class="largeTxt">Kies je games</p>
+        <label for="playerGame">Jouw game</label>
+        <select name="playerGame" id="playerGame" class="rounded">
+          <option>--Please choose an option--</option>
+        </select>
+        <button type="button" class="StartBattle rounded">Start Battle!</button>
+      </form>
+      <section class="battle">
+        <div class="playerChooseGame center rounded">
+          <img
+            src="img/image.png"
+            class="playerGameImg rounded"
+            alt="Jouw game"
+          />
+          <p class="gamename"><span class="playerGameName"></span></p>
+          <p class="gameRating rounded hide">
+            <span class="playerGameRating"></span>⭐
+          </p>
+          <p class="gameAverageTime rounded hide">
+            <span class="playerAverageTime"></span> hours
+          </p>
+        </div>
+        <h2 class="center">VS</h2>
+        <div class="systeemChooseGame center rounded">
+          <img
+            src="img/image.png"
+            class="systeemGameImg rounded"
+            alt="Systeem game"
+          />
+          <p class="gamename"><span class="systeemGameName">**</span></p>
+          <p class="gameRating rounded hide">
+            <span class="systeemGameRating">*</span>⭐
+          </p>
+          <p class="gameAverageTime rounded hide">
+            <span class="systeemAverageTime">*</span> hours
+          </p>
+        </div>
+      </section>
+      <section class="battleResult center rounded hide">
+        <h3><span class="gameResult"></span></h3>
+        <p>
+          <span class="gameResult2"></span> op basis van Rating (<span
+            class="resultPlayerGameRating"
+          ></span
+          >⭐ vs <span class="resultSysteemGameRating"></span>⭐)!
+        </p>
+        <p class="hide earnXP">Je hebt +100 XP verdiend</p>
+        <button
+          type="button"
+          class="rounded newBattle"
+          onClick="window.location.reload()"
+        >
+          Nieuwe battle
+        </button>
+      </section>
+
+      <section class="gameStatistics rounded">
+        <h3>Jouw statistieken</h3>
+        <dl class="statsGrid">
+          <div class="statCard">
+            <dt class="smallTxt">GEWONNEN</dt>
+            <dd class="largeTxt correct"><span class="winsVal">0</span></dd>
+          </div>
+          <div class="statCard">
+            <dt class="smallTxt">VERLOREN</dt>
+            <dd class="largeTxt fout"><span class="lossesVal">0</span></dd>
+          </div>
+          <div class="statCard">
+            <dt class="smallTxt">BATTLES GESPEELD</dt>
+            <dd class="largeTxt"><span class="totalBattleVal">0</span></dd>
+          </div>
+          <div class="statCard">
+            <dt class="smallTxt">WINPERCENTAGE</dt>
+            <dd class="largeTxt accuracy">
+              <span class="winRateVal">0</span>%
+            </dd>
+          </div>
+          <div class="statCard statCardWide">
+            <dt class="smallTxt">TOTAAL XP VERDIEND</dt>
+            <dd class="largeTxt totalXP">
+              <span class="totalXPVal">0</span> XP
+            </dd>
+          </div>
+        </dl>
+      </section>
+    </main>
+  </body>
+</html>
