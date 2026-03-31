@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/General.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <script src="script/login.js" type="module"></script>
+    <title>HighScore Haven</title>
+  </head>
+  <body>
+    <header>
+      <a href="index.html" class="logo">H!ghscore Haven</a>
+      <nav>
+        <a href="index.html"><button class="backBtn">← Terug</button></a>
+      </nav>
+    </header>
+    <main>
+      <form id="loginForm">
+        <fieldset>
+          <h1>Inloggen</h1>
+          <label for="username">Gebruikersnaam</label>
+          <input type="text" name="username" id="username" required />
+          <label for="password">Wachtwoord</label>
+          <input type="password" name="password" id="password" required />
+          <a href="forgotPw.html" class="resetPw">Wachtwoord vergeten?</a>
+          <input type="submit" value="Inloggen" id="submit" />
+          <div class="dev">
+            <hr />
+            <span>of</span>
+            <hr />
+          </div>
+          <p>Nog geen account?</p>
+          <p><a href="registeren.html" class="newAcc">Registreer</a></p>
+        </fieldset>
+      </form>
+    </main>
+  </body>
+</html>
