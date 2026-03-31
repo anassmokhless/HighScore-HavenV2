@@ -12,7 +12,7 @@ import session from "express-session";
 import registerRouter from "./routers/registeren";
 import loginRouter from "./routers/login";
 import { hash } from "crypto";
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 
 dotenv.config();
 
@@ -30,6 +30,11 @@ export const gamesQuery = client.db("HighscoreHaven").collection("Games");
 export const usersQuery = client.db("HighscoreHaven").collection("Users");
 const gamesQuery = client.db("highscorehaven").collection("Games");
 const usersQuery = client.db("highscorehaven").collection("Users");
+
+const uri = "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
+const client = new MongoClient(uri);
+const gamesQuery = client.db("HighscoreHaven").collection("Games");
+const usersQuery = client.db("HighscoreHaven").collection("Users");
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -71,8 +76,10 @@ app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));
 });
 
+});
+
 app.listen(app.get("port"), () => {
-    console.log("Server started on http://localhost:" + app.get('port'));
+  console.log("Server started on http://localhost:" + app.get("port"));
 });
 
 async function main(){
