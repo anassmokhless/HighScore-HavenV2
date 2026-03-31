@@ -1,0 +1,64 @@
+a{
+    text-decoration: none;
+}
+.container{
+    display: grid;
+    grid-template-columns:repeat(3, 1fr);
+    width: 90%;
+    border-left: 5%;
+    margin: auto;
+}
+p{    
+    margin-top: 2%;
+}
+.card {
+  width: auto;
+  margin: 0.5rem;
+  transition: transform 0.3s ease;
+  border-radius: 15px;
+}
+.card:hover{
+    border:solid 3px var(--primair-purple);
+}
+.card img {
+  width: 100%;
+  height: 60%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.infoCard {
+  width: auto;
+  padding: 3%;
+  transform: translateY(-1rem);
+  background-color: var(--medium-grey);
+}
+
+.infoCard h3 {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text);
+  margin-top: 5%;
+}
+button{
+    width: 100%;
+    padding: 3%;    
+    border-radius: 10px;
+    border: none ;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+button{
+    background-color:var(--dark-purple) ;
+    color: var(--white);
+    cursor: pointer;
+}
+
+footer{
+    margin-top: 3%;
+    text-align: center;
+}
+hr{
+    margin-bottom: 1%;
+}

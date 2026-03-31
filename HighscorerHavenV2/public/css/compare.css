@@ -1,0 +1,105 @@
+input, label {
+    font-family: 'Inter', sans-serif;
+}
+
+.container{
+    margin: 0 10%;
+}
+.row{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 1.5%;
+    margin: 2%;
+    background-color: var(--light-grey);
+}
+.container h3{
+    margin: 3%;
+}
+.game_info img {
+    width: 50%;
+}
+.game_info{
+    background-color: var(--light-grey);
+    padding: 5% 0.5%;
+    margin: 3%;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 1% 5%;
+    gap: 5%;
+}
+.platform_div{
+    background-color: var(--medium-grey);
+    margin: 3% 3% 0 3%;
+    padding: 2%;
+}
+.flex_column{
+    display: flex;
+    flex-direction: column;
+}
+label{
+    margin: 2.5% 0%;
+}
+input[type="search"]{
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+input[type="submit"]{
+    border-radius: 10px;
+    padding: 0.5%;
+    text-align: center;
+    margin-left: 45%;
+    width: 10%;
+    background-color: var(--dark-purple);
+    color: var(--white);
+    border: none;
+}
+.gameCategory{
+    color: var(--dark-purple);
+    background-color: var(--medium-grey);
+    padding: 1% 5%;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.hide {
+    display: none;
+}
+
+.suggestions:empty {
+    display: none;
+}
+
+.suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0 0;
+    border: 1px solid var(--txt-grey);
+    border-radius: 10px;
+    background-color: var(--white);
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.suggestions li {
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.suggestions li:hover {
+    background-color: var(--medium-grey);
+}
+
+.winner {
+    color: var(--btn-good);
+    font-weight: 700;
+}
+
+.loser {
+    color: var(--warning);
+}
