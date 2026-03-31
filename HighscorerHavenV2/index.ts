@@ -20,6 +20,7 @@ import session from "express-session";
 import registerRouter from "./routers/registeren";
 import loginRouter from "./routers/login";
 import { hash } from "crypto";
+import bcrypt from 'bcrypt';
 
 dotenv.config();
 
@@ -36,6 +37,8 @@ const uri = "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.m
 const client = new MongoClient(uri);
 export const gamesQuery = client.db("HighscoreHaven").collection("Games");
 export const usersQuery = client.db("HighscoreHaven").collection("Users");
+const gamesQuery = client.db("highscorehaven").collection("Games");
+const usersQuery = client.db("highscorehaven").collection("Users");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
