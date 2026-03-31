@@ -1,4 +1,5 @@
 import {Router} from "express";
+import {client} from "index";
 
 
 
@@ -6,7 +7,7 @@ import {Router} from "express";
 export function searchPageRouter(){
 const router = Router();
 
-const respone = await fetch 
+const respone = await let games : Game[] = await client.db("HighscoreHaven").collection("games").find<game>({}).toArray(); 
 
 
 
