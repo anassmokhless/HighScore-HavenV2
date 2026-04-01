@@ -1,10 +1,17 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
+import { MongoClient } from "mongodb";
 
 dotenv.config();
 
 const app: Express = express();
+
+const uri =
+  "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
+const client = new MongoClient(uri);
+const gamesQuery = client.db("highscorehaven").collection("games");
+const usersQuery = client.db("highscorehaven").collection("users");
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -26,6 +33,9 @@ app.get("/battle", (req, res) => {
     message: "Hello World",
   });
 });
+
 app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));
 });
+
+async function main() {}
