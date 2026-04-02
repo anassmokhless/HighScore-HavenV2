@@ -11,7 +11,6 @@ router.get("/registeren", (req, res) => {
 router.post("/registeren", async (req, res) => {
   const { name, famName, email, username, password, conPass, avatar } =
     req.body;
-
   if (!name || !famName || !email || !username || !password) {
     return res.send("Vul alle velden in");
   }
@@ -19,18 +18,20 @@ router.post("/registeren", async (req, res) => {
   if (password !== conPass) {
     return res.send("Wachtwoorden komen niet overeen");
   }
+
   // check die username of email al in gebruikt
   const existingUser = await usersCollection.findOne({ username });
   if (existingUser) {
-    return res.send("Gebruikersnaam bestaat al");
+    return res.redirect("/login?error=Gebruikersnaam+is+al+in+gebruik");
   }
   const existingEmail = await usersCollection.findOne({ email });
   if (existingEmail) {
-    return res.send("E-mailadres is al in gebruik");
+    return res.redirect("/login?error=E-mailadres+is+al+in+gebruik");
   }
-
+  //hash pw
   const hashedPassword = await bcrypt.hash(password, 12);
 
+  //Naar mongodb sturen
   await usersCollection.insertOne({
     name: `${name} ${famName}`,
     username,
