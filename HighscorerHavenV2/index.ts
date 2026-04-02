@@ -2,21 +2,19 @@ import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
 import { MongoClient } from "mongodb";
-import { searchPageRouter } from "./routers/searchpage";
-import { detailPageRouter } from "./routers/detail";
-import { libraryRouter } from "./routers/library";
-import { start } from "repl";
-import session from "express-session";
-
-//routers
-import registerRouter from "./routers/registeren";
-import loginRouter from "./routers/login";
-import { hash } from "crypto";
-import bcrypt from "bcrypt";
 
 dotenv.config();
 
 const app: Express = express();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+const uri = "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
+const client = new MongoClient(uri);
+const gamesQuery = client.db("highscorehaven").collection("games");
+const usersQuery = client.db("highscorehaven").collection("users");
+>>>>>>> 18b96e3 (login en registeren (express-session enbcrypt))
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -42,6 +40,7 @@ app.get("/battle", (req, res) => {
     message: "Hello World",
   });
 });
+<<<<<<< HEAD
 app.get("/battle", (req, res) => {
   res.render("index", {
     title: "Hello World",
@@ -59,6 +58,8 @@ app.use(
 );
 app.use(registerRouter);
 app.use(loginRouter);
+=======
+>>>>>>> 18b96e3 (login en registeren (express-session enbcrypt))
 
 app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));
