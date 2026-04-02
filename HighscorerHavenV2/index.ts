@@ -10,35 +10,24 @@ import loginRouter from "./routers/login";
 import compareRouter from "./routers/compare";
 import battleRouter from "./routers/battle";
 
+import { hash } from "crypto";
+import bcrypt from "bcrypt";
 import { searchPageRouter } from "./routers/searchpage";
 import { detailPageRouter } from "./routers/detail";
 import { libraryRouter } from "./routers/library";
 import { start } from "repl";
-import session from "express-session";
 
-//routers
-import registerRouter from "./routers/registeren";
-import loginRouter from "./routers/login";
-import { hash } from "crypto";
-import bcrypt from "bcrypt";
+
+
 
 dotenv.config();
 
 const app: Express = express();
 
-const uri =
-  "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
 
-const client = new MongoClient(uri);
-export const gamesQuery = client.db("HighscoreHaven").collection("Games");
-export const usersQuery = client.db("HighscoreHaven").collection("Users");
 
-const uri = "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
-const client = new MongoClient(uri);
-export const gamesQuery = client.db("HighscoreHaven").collection("Games");
-export const usersQuery = client.db("HighscoreHaven").collection("Users");
-const gamesQuery = client.db("highscorehaven").collection("Games");
-const usersQuery = client.db("highscorehaven").collection("Users");
+
+
 
 const uri = "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
 const client = new MongoClient(uri);
@@ -93,12 +82,7 @@ app.get("/startpage", async (req, res) => {
 
   res.render("startpage", { user });
 });
-app.get("/battle", (req, res) => {
-  res.render("index", {
-    title: "Hello World",
-    message: "Hello World",
-  });
-});
+
 app.get("/battle", (req, res) => {
   res.render("index", {
     title: "Hello World",
