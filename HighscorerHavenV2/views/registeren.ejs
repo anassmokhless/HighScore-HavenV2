@@ -18,77 +18,58 @@
         <p>Word lid van H!ghscore Haven en track je gaming progress</p>
       </section>
 
-      <form id="registerForm" action="/" method="post">
+      <form id="registerForm" action="/registeren" method="post">
         <fieldset>
-          <p>Kies je avatar</p>
+          <p>Kies je avantar</p>
           <img
-            src="../public/img/profiel.png"
+            src="/img/profiel.png"
             class="chosenAvantar rounded"
-            alt="Gekozen avatar"
+            alt="Gekozen avantar"
           />
-
+          <input
+            type="hidden"
+            id="avatarInput"
+            name="avatar"
+            value="/img/profiel.png"
+          />
           <div class="choiseAvantar">
             <button type="button" class="rounded avantar">
-              <img
-                src="../public/img/avantar1.jpg"
-                class="rounded"
-                alt="Avatar 1"
-              />
+              <img src="/img/avantar1.jpg" class="rounded" alt="Avantar 1" />
             </button>
             <button type="button" class="rounded avantar">
-              <img
-                src="../public/img/avantar2.png"
-                class="rounded"
-                alt="Avatar 2"
-              />
+              <img src="/img/avantar2.png" class="rounded" alt="Avantar 2" />
             </button>
             <button type="button" class="rounded avantar">
-              <img
-                src="../public/img/avantar3.png"
-                class="rounded"
-                alt="Avatar 3"
-              />
+              <img src="/img/avantar3.png" class="rounded" alt="Avantar 3" />
             </button>
             <button type="button" class="rounded avantar">
-              <img
-                src="../public/img/avantar4.png"
-                class="rounded"
-                alt="Avatar 4"
-              />
+              <img src="/img/avantar4.png" class="rounded" alt="Avantar 4" />
             </button>
             <button type="button" class="rounded avantar">
-              <img
-                src="../public/img/avantar5.png"
-                class="rounded"
-                alt="Avatar 5"
-              />
+              <img src="/img/avantar5.png" class="rounded" alt="Avantar 5" />
             </button>
             <button type="button" class="rounded avantar">
-              <img
-                src="../public/img/avantar6.png"
-                class="rounded"
-                alt="Avatar 6"
-              />
+              <img src="/img/avantar6.png" class="rounded" alt="Avantar 6" />
             </button>
           </div>
 
           <label for="name">Voornaam</label>
-          <input type="text" id="name" required />
+          <input type="text" id="name" name="name" required />
 
           <label for="famName">Achternaam</label>
-          <input type="text" id="famName" required />
+          <input type="text" id="famName" name="famName" required />
 
           <label for="email">E-mailadres</label>
-          <input type="email" id="email" required />
+          <input type="email" id="email" name="email" required />
 
           <label for="username">Gebruikersnaam</label>
-          <input type="text" id="username" required />
+          <input type="text" id="username" name="username" required />
 
           <label for="password">Wachtwoord</label>
-          <input type="password" id="password" required />
+          <input type="password" id="password" name="password" required />
 
           <label for="conPass">Bevestig Wachtwoord</label>
-          <input type="password" id="conPass" required />
+          <input type="password" id="conPass" name="conPass" required />
 
           <input type="submit" value="Account aanmaken" />
 
@@ -97,5 +78,16 @@
         </fieldset>
       </form>
     </main>
+    <script>
+      const avantar = document.querySelectorAll(".avantar");
+      const chosenAvantar = document.querySelector(".chosenAvantar");
+      avantar.forEach((button) => {
+        button.addEventListener("click", () => {
+          const imgSrc = button.querySelector("img").src;
+          chosenAvantar.src = imgSrc;
+          document.getElementById("avatarInput").value = imgSrc;
+        });
+      });
+    </script>
   </body>
 </html>

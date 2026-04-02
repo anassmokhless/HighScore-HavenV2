@@ -10,20 +10,21 @@
   </head>
   <body>
     <header>
-      <a href="index.html" class="logo">H!ghscore Haven</a>
+      <a href="/index" class="logo">H!ghscore Haven</a>
       <nav>
-        <a href="index.html"><button class="backBtn">← Terug</button></a>
+        <a href="/index"><button class="backBtn">← Terug</button></a>
       </nav>
     </header>
     <main>
-      <form id="loginForm" action="/" method="post">
+      <form id="loginForm" action="/login" method="post">
         <fieldset>
           <h1>Inloggen</h1>
           <label for="username">Gebruikersnaam</label>
           <input type="text" name="username" id="username" required />
           <label for="password">Wachtwoord</label>
           <input type="password" name="password" id="password" required />
-          <a href="forgotPw.html" class="resetPw">Wachtwoord vergeten?</a>
+          <a href="/forgotPw" class="resetPw">Wachtwoord vergeten?</a>
+          <p id="errorMsg" style="color: red"></p>
           <input type="submit" value="Inloggen" id="submit" />
           <div class="dev">
             <hr />
@@ -31,9 +32,16 @@
             <hr />
           </div>
           <p>Nog geen account?</p>
-          <p><a href="registeren.html" class="newAcc">Registreer</a></p>
+          <p><a href="/registeren" class="newAcc">Registreer</a></p>
         </fieldset>
       </form>
     </main>
   </body>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get("error");
+    if (error) {
+      document.getElementById("errorMsg").textContent = error;
+    }
+  </script>
 </html>
