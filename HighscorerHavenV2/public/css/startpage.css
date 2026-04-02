@@ -1,134 +1,134 @@
 .welcome {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--dark-bg);
-    color: var(--white);
-    padding: 3% 5%;
-    margin-bottom: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--dark-bg);
+  color: var(--white);
+  padding: 3% 5%;
+  margin-bottom: 2%;
 }
 
 .welcome h1 {
-    color: var(--white);
-    text-align: left;
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+  color: var(--white);
+  text-align: left;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .welcome h1 .username {
-    color: var(--primair-purple);
+  color: var(--primair-purple);
 }
 
 .subtext {
-    color: var(--txt-grey);
-    font-size: 1rem;
+  color: var(--txt-grey);
+  font-size: 1rem;
 }
 
-.welcome_avatar {
-    height: 7rem;
-    border-radius: 100%;
-    border: 3px solid var(--primair-purple);
+.welcome_avantar {
+  height: 7rem;
+  border-radius: 100%;
+  border: 3px solid var(--primair-purple);
 }
 
 .startpage_grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1.5rem;
-    margin: 0 5% 3%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  margin: 0 5% 3%;
 }
 
 .dash_card {
-    background-color: var(--light-grey);
-    border-radius: 15px;
-    padding: 8% 5%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
+  background-color: var(--light-grey);
+  border-radius: 15px;
+  padding: 8% 5%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .card_icon {
-    font-size: 2.5rem;
-    margin: 0;
+  font-size: 2.5rem;
+  margin: 0;
 }
 
 .dash_card h3 {
-    color: var(--dark-purple);
-    font-size: 1.1rem;
+  color: var(--dark-purple);
+  font-size: 1.1rem;
 }
 
 .card_stat {
-    color: var(--txt-grey);
-    font-size: 0.9rem;
+  color: var(--txt-grey);
+  font-size: 0.9rem;
 }
 
 .dash_card button {
-    margin-top: 0.5rem;
-    background-color: var(--dark-purple);
-    color: var(--white);
-    border: none;
-    border-radius: 10px;
-    padding: 0.4rem 1.2rem;
-    font-size: 0.9rem;
+  margin-top: 0.5rem;
+  background-color: var(--dark-purple);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.9rem;
 }
 
 .dash_card button:hover {
-    background-color: var(--primair-purple);
+  background-color: var(--primair-purple);
 }
 
 .recent_section {
-    margin: 0 5% 3%;
+  margin: 0 5% 3%;
 }
 
 .recent_section h2 {
-    color: var(--dark-purple);
-    margin-bottom: 1rem;
+  color: var(--dark-purple);
+  margin-bottom: 1rem;
 }
 
 .recent_list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .recent_item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background-color: var(--light-grey);
-    border-radius: 10px;
-    padding: 1.5rem 1.5rem;
-    cursor: pointer;
-    overflow: hidden;
-    box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--light-grey);
+  border-radius: 10px;
+  padding: 1.5rem 1.5rem;
+  cursor: pointer;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .recent_item:hover {
-    background-color: var(--medium-grey);
+  background-color: var(--medium-grey);
 }
 
 .recent_item img {
-    width: 120px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-    flex-shrink: 0;
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
 }
 
 .recent_item h4 {
-    color: var(--text);
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
 }
 
 .recent_item .status_badge {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.9rem;
-    border-radius: 10px;
-    background-color: var(--medium-grey);
-    color: var(--dark-purple);
-    display: inline-block;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 10px;
+  background-color: var(--medium-grey);
+  color: var(--dark-purple);
+  display: inline-block;
 }
