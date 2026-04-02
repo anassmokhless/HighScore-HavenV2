@@ -10,13 +10,13 @@
   </head>
   <body>
     <header>
-      <a href="/" class="logo">H!ghscore Haven</a>
+      <a href="/index" class="logo">H!ghscore Haven</a>
       <nav>
-        <a href="/"><button class="backBtn">← Terug</button></a>
+        <a href="/index"><button class="backBtn">← Terug</button></a>
       </nav>
     </header>
     <main>
-      <form id="loginForm" action="/" method="post">
+      <form id="loginForm" action="/login" method="post">
         <fieldset>
           <h1>Inloggen</h1>
           <label for="username">Gebruikersnaam</label>
@@ -38,10 +38,17 @@
     </main>
   </body>
   <script>
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("error") == "true") {
-      document.getElementById("errorMsg").textContent =
-        "Gebruikersnaam of waachtwoord klopt niet";
+
+
+    //const params = new URLSearchParams(window.location.search);
+    //if (params.get("error") == "true") {
+     // document.getElementById("errorMsg").textContent =
+     //   "Gebruikersnaam of waachtwoord klopt niet";
+
+
+    const error = params.get("error");
+    if (error) {
+      document.getElementById("errorMsg").textContent = error;
     }
   </script>
 </html>
