@@ -22,6 +22,7 @@ const app: Express = express();
 
 const uri =
   "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
+<<<<<<< HEAD
 =======
 
 const uri =
@@ -32,20 +33,30 @@ const client = new MongoClient(uri);
 const gamesQuery = client.db("highscorehaven").collection("games");
 const usersQuery = client.db("highscorehaven").collection("users");
 >>>>>>> 18b96e3 (login en registeren (express-session enbcrypt))
+=======
+
+const client = new MongoClient(uri);
+export const gamesQuery = client.db("HighscoreHaven").collection("Games");
+export const usersQuery = client.db("HighscoreHaven").collection("Users");
+>>>>>>> 3dfcda9 (update session en compair)
 
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 
 app.set("port", process.env.PORT || 3000);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 app.use("/searchpage", searchPageRouter());
 app.use("/detail", detailPageRouter());
 app.use("/library", libraryRouter());
 =======
+=======
+>>>>>>> 3dfcda9 (update session en compair)
 app.use(
   session({
     secret: process.env.SESSION_SECRET ?? "my-super-secret-secret",
@@ -58,7 +69,10 @@ app.use(
 app.use(registerRouter);
 app.use(loginRouter);
 app.use(compareRouter);
+<<<<<<< HEAD
 >>>>>>> 74a50ab (compair not done)
+=======
+>>>>>>> 3dfcda9 (update session en compair)
 
 app.get("/", (req, res) => {
   res.render("index", {
@@ -99,6 +113,7 @@ app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));
 });
 
+<<<<<<< HEAD
 });
 
 app.listen(app.get("port"), () => {
@@ -116,3 +131,6 @@ async function main(){
 }
 
 }
+=======
+async function main() {}
+>>>>>>> 3dfcda9 (update session en compair)
