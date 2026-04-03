@@ -11,7 +11,10 @@ import loginRouter from "./routers/login";
 dotenv.config();
 
 const app: Express = express();
+const app: Express = express();
 
+const uri =
+  "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
 const uri =
   "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
 const client = new MongoClient(uri);
@@ -23,10 +26,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 
 app.set("port", process.env.PORT || 3000);
 
 app.get("/", (req, res) => {
+  res.render("index", {
+    title: "Hello World",
+    message: "Hello World",
+  });
+});
+
+app.get("/battle", (req, res) => {
+  res.render("index", {
+    title: "Hello World",
+    message: "Hello World",
+  });
   res.render("index", {
     title: "Hello World",
     message: "Hello World",
@@ -45,6 +60,7 @@ app.use(registerRouter);
 app.use(loginRouter);
 
 app.listen(app.get("port"), () => {
+  console.log("Server started on http://localhost:" + app.get("port"));
   console.log("Server started on http://localhost:" + app.get("port"));
 });
 

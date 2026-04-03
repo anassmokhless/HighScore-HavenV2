@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/General.css">
+    <link rel="stylesheet" href="/css/account.css">
+    <title>HighScore Haven - Mijn Account</title>
+</head>
+<body>
+  <%- include("./partials/navHeader.ejs") %>
+
+  <main class="accountContainer">
+        <h2 class="pageTitle center">Mijn Account</h2>
+
+        <section class="topSection">
+
+            <div class="card accountInfo rounded">
+                <h3>Account Gegevens</h3>
+                <hr>
+                <div class="info">
+                    <span class="smallTxt">Naam</span>
+                    <span class="playerName"><%= "Jan Jansens" %></span>
+                </div>
+                <hr>
+                <div class="info">
+                    <span class="smallTxt">Gebruikersnaam</span>
+                    <span class="playerUserName"><%= "JanGamer123" %></span>
+                </div>
+                <hr>
+                <div class="info">
+                    <span class="smallTxt">E-mailadres</span>
+                    <span class="playerMail"><%= "jan.jansens@email.com" %></span>
+                </div>
+                <hr>
+                <div class="info">
+                    <span class="smallTxt">Lid sinds</span>
+                    <span class="playerDate"><%= "15/01/2025" %></span>
+                </div>
+                <div class="btnRow center">
+                    <button class="changeInfo rounded">Gegevens Wijzigen</button>
+                    <a href="/changePw">
+                        <button class="changePassword rounded">Wachtwoord Wijzigen</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card statsInfo rounded">
+                <h3>Game Statistieken</h3>
+                <hr>
+                <dl>
+                    <div class="stats">
+                        <dt class="smallTxt">🎮 Games in Collectie</dt>
+                        <dd class="gameCollection"><%= "3" %> games</dd>
+                    </div>
+                    <hr>
+                    <div class="stats">
+                        <dt class="smallTxt">⭐ Games Voltooid</dt>
+                        <dd class="finshGame"><%= "1" %> games</dd>
+                    </div>
+                    <hr>
+                    <div class="stats">
+                        <dt class="smallTxt">🧩 Guesses Voltooid</dt>
+                        <dd class="finshGuessGame"><%= "11" %> gespeeld</dd>
+                    </div>
+                    <hr>
+                    <div class="stats">
+                        <dt class="smallTxt">🎯 Guess Nauwkeurigheid</dt>
+                        <dd class="guessAccuracy"><%= "73" %>%</dd>
+                    </div>
+                    <hr>
+                    <div class="stats">
+                        <dt class="smallTxt">⚔️ Battles Voltooid</dt>
+                        <dd class="finshBattleGame"><%= "7" %> gespeeld</dd>
+                    </div>
+                    <hr>
+                    <div class="stats">
+                        <dt class="smallTxt">🏆 Battle Winpercentage</dt>
+                        <dd class="winRate"><%= "71" %>%</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="xpSection center rounded">
+            <h2><span class="playerRank"><%= "Level 5" %></span></h2>
+            <label for="xpbar">
+                <span class="earnedXp extraSmall"><%= "320" %> xp</span>
+                <span class="xpForLvlUp extraSmall"><%= "89" %> XP tot volgend level</span>
+            </label>
+            <progress id="xpbar" class="rounded" value="<%= '320' %>" max="<%= '409' %>"></progress>
+        </section>
+
+        <section class="xpHistoreSection rounded">
+            <h3>XP Geschiedenis</h3>
+            <hr>
+            <ol>
+                <%for(let entry of xpHistory) { %>
+                    <li class="xpHistoreItem rounded">
+                        <strong class="earnXpDiv rounded <%= entry.cssClass %>">
+                            <span class="earnXp"><%= entry.xpLabel %></span>
+                        </strong>
+                        <p class="earnXpInfoDiv">
+                            <span class="earnXpAction"><%= entry.actie %></span>
+                            <time class="earnXpTime smallTxt"><%= entry.datum %></time>
+                        </p>
+                    </li>
+                <% } %>
+            </ol>
+        </section>
+
+        <form action="/logout" method="POST">
+            <button type="submit" class="logout rounded">Uitloggen</button>
+        </form>
+
+    </main>
+</body>
+</html>
