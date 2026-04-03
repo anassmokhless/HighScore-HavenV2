@@ -7,10 +7,14 @@ dotenv.config();
 
 const app: Express = express();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4b38ea3 (.)
 
-const uri = "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
+const uri =
+  "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
 const client = new MongoClient(uri);
 const gamesQuery = client.db("highscorehaven").collection("games");
 const usersQuery = client.db("highscorehaven").collection("users");
@@ -34,6 +38,7 @@ app.get("/", (req, res) => {
     message: "Hello World",
   });
 });
+
 app.get("/battle", (req, res) => {
   res.render("index", {
     title: "Hello World",
