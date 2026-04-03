@@ -3,89 +3,124 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-    />
     <link rel="stylesheet" href="css/General.css" />
     <link rel="stylesheet" href="css/compare.css" />
-    <script
-      defer
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/toastify-js"
-    ></script>
-    <script src="script/header.js" type="module"></script>
-    <script src="script/compare.js" type="module"></script>
     <title>HighScore Haven</title>
   </head>
   <body>
-    <%- include("partials/navHeader") %>
-
+    <header>
+      <a href="/library" class="logo">H!ghscore Haven</a>
+      <%- include("./partials/navHeader.ejs") %>
+    </header>
     <main>
-      <form>
+      <form action="/compare" method="POST">
         <h1>VERGELIJK GAMES</h1>
         <div class="grid">
           <div class="flex_column">
-            <label for="game1">Select game 1</label>
-            <input type="search" name="game1" id="game1" autocomplete="off" />
+            <label for="game1Name">Select game 1</label>
+            <input type="search" name="game1Name" id="game1Name" autocomplete="off" value="<%= game1 ? game1.name : '' %>" />
             <ul class="suggestions" id="suggestions1"></ul>
           </div>
           <div class="flex_column">
-            <label for="game2">Select game 2</label>
-            <input type="search" name="game2" id="game2" autocomplete="off" />
+            <label for="game2Name">Select game 2</label>
+            <input type="search" name="game2Name" id="game2Name" autocomplete="off" value="<%= game2 ? game2.name : '' %>" />
             <ul class="suggestions" id="suggestions2"></ul>
           </div>
         </div>
         <input type="submit" value="Vergelijk ⇄" />
       </form>
 
-      <section class="grid center compareResult hide">
-        <article class="game_info rounded">
-          <img src="img/image.png" class="rounded" alt="Game 1" />
-          <h3 class="gameName3">***</h3>
-          <p class="gameCategory extraSmall">RPG</p>
-          <div class="platform_div rounded">
-            <p class="smallTxt">PLATFORMS</p>
-            <p class="Category">pc, ps4</p>
-          </div>
-        </article>
-        <article class="game_info rounded">
-          <img src="img/image.png" class="rounded" alt="Game 2" />
-          <h3 class="gameName2">***</h3>
-          <p class="gameCategory extraSmall">RPG</p>
-          <div class="platform_div rounded">
-            <p class="smallTxt">PLATFORMS</p>
-            <p class="Category">pc, ps4</p>
-          </div>
-        </article>
-      </section>
+      <% if (game1 && game2) { %>
+        <section class="grid center compareResult">
+          <article class="game_info rounded">
+            <img src="<%= game1.background_image %>" class="rounded" alt="<%= game1.name %>" />
+            <h3><%= game1.name %></h3>
+            <p class="gameCategory extraSmall"><%= game1.genres?.map(g => g.name).join(', ') %></p>
+            <div class="platform_div rounded">
+              <p class="smallTxt">PLATFORMS</p>
+              <p class="Category"><%= game1.platforms?.map(p => p.platform.name).join(', ') %></p>
+            </div>
+          </article>
+          <article class="game_info rounded">
+            <img src="<%= game2.background_image %>" class="rounded" alt="<%= game2.name %>" />
+            <h3><%= game2.name %></h3>
+            <p class="gameCategory extraSmall"><%= game2.genres?.map(g => g.name).join(', ') %></p>
+            <div class="platform_div rounded">
+              <p class="smallTxt">PLATFORMS</p>
+              <p class="Category"><%= game2.platforms?.map(p => p.platform.name).join(', ') %></p>
+            </div>
+          </article>
+        </section>
 
-      <section class="container center compareStats hide">
-        <h3>Statistieken Vergelijking</h3>
-        <dl>
-          <div class="row rounded">
-            <dd class="realeseDateGame1"></dd>
-            <dt>📅 Release Datum</dt>
-            <dd class="realeseDateGame2"></dd>
-          </div>
-          <div class="row rounded">
-            <dd class="RAWGBeoordelingGame1"></dd>
-            <dt>RAWG Beoordeling</dt>
-            <dd class="RAWGBeoordelingGame2"></dd>
-          </div>
-          <div class="row rounded">
-            <dd class="AantalBeoordeling1"></dd>
-            <dt>Aantal Beoordelingen</dt>
-            <dd class="AantalBeoordeling2"></dd>
-          </div>
-          <div class="row rounded">
-            <dd class="SpeeltijdGame1"></dd>
-            <dt>Gem. Speeltijd</dt>
-            <dd class="SpeeltijdGame2"></dd>
-          </div>
-        </dl>
-      </section>
+        <section class="container center compareStats">
+          <h3>Statistieken Vergelijking</h3>
+          <dl>
+            <div class="row rounded">
+              <dd><%= game1.released %></dd>
+              <dt>📅 Release Datum</dt>
+              <dd><%= game2.released %></dd>
+            </div>
+            <div class="row rounded">
+              <dd class="<%= game1.rating > game2.rating ? 'winner' : 'loser' %>"><%= game1.rating %> ⭐</dd>
+              <dt>RAWG Beoordeling</dt>
+              <dd class="<%= game2.rating > game1.rating ? 'winner' : 'loser' %>"><%= game2.rating %> ⭐</dd>
+            </div>
+            <div class="row rounded">
+              <dd class="<%= game1.ratings_count > game2.ratings_count ? 'winner' : 'loser' %>"><%= game1.ratings_count?.toLocaleString() %></dd>
+              <dt>Aantal Beoordelingen</dt>
+              <dd class="<%= game2.ratings_count > game1.ratings_count ? 'winner' : 'loser' %>"><%= game2.ratings_count?.toLocaleString() %></dd>
+            </div>
+            <div class="row rounded">
+              <dd class="<%= game1.playtime > game2.playtime ? 'winner' : 'loser' %>"><%= game1.playtime %> uur</dd>
+              <dt>Gem. Speeltijd</dt>
+              <dd class="<%= game2.playtime > game1.playtime ? 'winner' : 'loser' %>"><%= game2.playtime %> uur</dd>
+            </div>
+          </dl>
+        </section>
+      <% } %>
+
     </main>
+
+    <!-- Alleen nog voor autocomplete -->
+    <script>
+      const setupAutocomplete = (inputId, suggestionsId) => {
+        const input = document.getElementById(inputId);
+        const suggestions = document.getElementById(suggestionsId);
+
+        input.addEventListener('input', async () => {
+          const query = input.value;
+          suggestions.innerHTML = '';
+
+          if (query.length < 2) {
+            suggestions.classList.add('hide');
+            return;
+          }
+
+          const games = await fetch(`/compare/search?q=${encodeURIComponent(query)}`).then(r => r.json());
+
+          if (games.length > 0) {
+            games.forEach(game => {
+              const li = document.createElement('li');
+              li.textContent = game.name;
+              li.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                input.value = game.name;
+                suggestions.innerHTML = '';
+                suggestions.classList.add('hide');
+              });
+              suggestions.appendChild(li);
+            });
+            suggestions.classList.remove('hide');
+          } else {
+            suggestions.classList.add('hide');
+          }
+        });
+
+        input.addEventListener('blur', () => suggestions.classList.add('hide'));
+      };
+
+      setupAutocomplete('game1Name', 'suggestions1');
+      setupAutocomplete('game2Name', 'suggestions2');
+    </script>
   </body>
 </html>
