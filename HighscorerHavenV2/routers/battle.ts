@@ -63,3 +63,13 @@ router.post("/battle", async (req, res) => {
 });
 
 export default router;
+
+
+
+// Compare pagina tonen
+router.get("/battle", async (req, res) => {
+  if (!req.session || !(req.session as any).user) {
+    return res.redirect("/login");
+  }
+  res.render("battle");
+});

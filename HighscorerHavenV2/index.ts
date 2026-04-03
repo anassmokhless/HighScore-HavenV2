@@ -27,6 +27,7 @@ const app: Express = express();
 
 const uri =
   "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
+
 const client = new MongoClient(uri);
 const gamesQuery = client.db("HighscoreHaven").collection("Games");
 const usersQuery = client.db("HighscoreHaven").collection("Users");
@@ -48,6 +49,7 @@ app.use(
   }),
 );
 
+
 // Routers
 app.use(registerRouter);
 app.use(loginRouter);
@@ -56,6 +58,15 @@ app.use(battleRouter);
 app.use("/searchpage", searchPageRouter());
 app.use("/detail", detailPageRouter());
 app.use("/library", libraryRouter());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET ?? "my-super-secret-secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+  }),
+);
+
 
 // Pagina's
 app.get("/", (req, res) => {
@@ -64,6 +75,7 @@ app.get("/", (req, res) => {
 app.get("/login", (req, res) => {
   res.render("login");
 });
+
 
 app.get("/startpage", async (req, res) => {
   if (!(req.session as any).user) {
@@ -78,7 +90,7 @@ app.get("/startpage", async (req, res) => {
   }
 
   res.render("startpage", { user });
-});
+
 
 app.get("/battle", (req, res) => {
   res.render("index", {
@@ -102,4 +114,8 @@ app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));
 });
 
+
 async function main() {}
+
+});
+
