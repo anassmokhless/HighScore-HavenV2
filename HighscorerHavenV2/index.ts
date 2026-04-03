@@ -6,9 +6,9 @@ import { MongoClient } from "mongodb";
 dotenv.config();
 
 const app: Express = express();
-<<<<<<< HEAD
 
-const uri = "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
+const uri =
+  "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
 const client = new MongoClient(uri);
 const gamesQuery = client.db("highscorehaven").collection("games");
 const usersQuery = client.db("highscorehaven").collection("users");
@@ -26,9 +26,8 @@ app.get("/", (req, res) => {
     title: "Hello World",
     message: "Hello World",
   });
-<<<<<<< HEAD
-=======
 });
+
 app.get("/battle", (req, res) => {
   res.render("index", {
     title: "Hello World",
