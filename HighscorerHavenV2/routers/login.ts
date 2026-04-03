@@ -34,7 +34,7 @@ router.post("/login", async (req, res) => {
     avatar: user.avatar,
   };
 
-  res.redirect("/index");
+  res.redirect("/startpage");
 });
 
 export default router;

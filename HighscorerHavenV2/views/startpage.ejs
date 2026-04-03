@@ -1,58 +1,66 @@
 <!DOCTYPE html>
 <html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/General.css">
-    <link rel="stylesheet" href="/css/startpage.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/General.css" />
+    <link rel="stylesheet" href="/css/startpage.css" />
     <title>HighScore Haven</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        <section class="welcome">
-            <hgroup class="welcome_text">
-                <h1>Welkom terug, <span class="username"><%= "Jan Jansens" %></span>!</h1>
-                <p class="subtext">Wat ga je vandaag spelen?</p>
-            </hgroup>
-            <a href="/account">
-                <img class="welcome_avatar" src="<%= '/img/avantar1.jpg' %>" alt="Avatar">
-            </a>
-        </section>
+      <section class="welcome">
+        <hgroup class="welcome_text">
+          <h1>
+            Welkom terug, <span class="username"><%= user.username %></span>!
+          </h1>
+          <p class="subtext">Wat ga je vandaag spelen?</p>
+        </hgroup>
+        <a href="/account">
+          <img class="welcome_avatar" src="<%= user.avatar %>" alt="Avatar" />
+        </a>
+      </section>
 
-        <section class="startpage_grid">
-            <article class="dash_card" id="libraryCard">
-                <p class="card_icon">📚</p>
-                <h3>Mijn Library</h3>
-                <p class="card_stat library_count"><%= "3" %> games</p>
-                <a href="/library"><button>Bekijken</button></a>
-            </article>
-            <article class="dash_card" id="guesserCard">
-                <p class="card_icon">🧩</p>
-                <h3>Guesser</h3>
-                <p class="card_stat"><span class="guesser_xp"><%= "700" %></span> XP verdiend</p>
-                <a href="/guesser"><button>Spelen</button></a>
-            </article>
-            <article class="dash_card" id="battleCard">
-                <p class="card_icon">⚔️</p>
-                <h3>Battle</h3>
-                <p class="card_stat"><span class="battle_xp"><%= "250" %></span> XP verdiend</p>
-                <a href="/battle"><button>Spelen</button></a>
-            </article>
-            <article class="dash_card" id="compareCard">
-                <p class="card_icon">↔️</p>
-                <h3>Vergelijk</h3>
-                <p class="card_stat">Vergelijk twee games</p>
-                <a href="/compare"><button>Vergelijken</button></a>
-            </article>
-            <article class="dash_card" id="searchCard">
-                <p class="card_icon">🔍</p>
-                <h3>Zoeken</h3>
-                <p class="card_stat">Zoek je favoriete spel op</p>
-                <a href="/search"><button>Zoeken</button></a>
-            </article>
-        </section>
-
-        <section class="recent_section">
+      <section class="startpage_grid">
+        <article class="dash_card" id="libraryCard">
+          <p class="card_icon">📚</p>
+          <h3>Mijn Library</h3>
+          <p class="card_stat library_count">
+            <%= user.library.length %> games
+          </p>
+          <a href="/library"><button>Bekijken</button></a>
+        </article>
+        <article class="dash_card" id="guesserCard">
+          <p class="card_icon">🧩</p>
+          <h3>Guesser</h3>
+          <p class="card_stat">
+            <span class="guesser_xp"><%= user.stats.guesser.xp %></span> XP
+            verdiend
+          </p>
+          <a href="/guesser"><button>Spelen</button></a>
+        </article>
+        <article class="dash_card" id="battleCard">
+          <p class="card_icon">⚔️</p>
+          <h3>Battle</h3>
+          <p class="card_stat">
+            <span class="battle_xp"><%= user.stats.battle.xp %></span> XP
+            verdiend
+          </p>
+          <a href="/battle"><button>Spelen</button></a>
+        </article>
+        <article class="dash_card" id="compareCard">
+          <p class="card_icon">↔️</p>
+          <h3>Vergelijk</h3>
+          <p class="card_stat">Vergelijk twee games</p>
+          <a href="/compare"><button>Vergelijken</button></a>
+        </article>
+        <article class="dash_card" id="searchCard">
+          <p class="card_icon">🔍</p>
+          <h3>Zoeken</h3>
+          <p class="card_stat">Zoek je favoriete spel op</p>
+          <a href="/search"><button>Zoeken</button></a>
+        </article>
+                <section class="recent_section">
             <h2>Recente games</h2>
             <ul class="recent_list">
                 <% if (recentGames.length === 0) { %>
@@ -70,6 +78,7 @@
                 <% } %>
             </ul>
         </section>
+      </section>
     </main>
-</body>
+  </body>
 </html>

@@ -36,13 +36,9 @@ const client = new MongoClient(uri);
 const gamesQuery = client.db("HighscoreHaven").collection("Games");
 const usersQuery = client.db("HighscoreHaven").collection("Users");
 
-const gamesQuery = client.db("highscorehaven").collection("games");
-const usersQuery = client.db("highscorehaven").collection("users");
 
 
-const client = new MongoClient(uri);
-export const gamesQuery = client.db("HighscoreHaven").collection("Games");
-export const usersQuery = client.db("HighscoreHaven").collection("Users");
+
 
 
 app.set("view engine", "ejs");
@@ -52,11 +48,6 @@ app.set("port", process.env.PORT || 3000);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-
-app.set("views", path.join(__dirname, "views"));
-app.set("views", path.join(__dirname, "views"));
-
-app.set("port", process.env.PORT || 3000);
 
 
 app.use("/searchpage", searchPageRouter());
@@ -71,7 +62,6 @@ app.use(
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
   }),
 );
-
 
 // Routers
 app.use(registerRouter);
@@ -94,10 +84,17 @@ app.use(
 app.get("/", (req, res) => {
   res.render("index");
 });
+// Pagina's
 app.get("/login", (req, res) => {
   res.render("login");
 });
 
+
+app.get("/battle", (req, res) => {
+  res.render("index", {
+    title: "Hello World",
+    message: "Hello World",
+  });
 
 app.get("/startpage", async (req, res) => {
   if (!(req.session as any).user) {
@@ -113,6 +110,7 @@ app.get("/startpage", async (req, res) => {
 
   res.render("startpage", { user });
 
+});
 
 app.get("/battle", (req, res) => {
   res.render("index", {
@@ -133,12 +131,13 @@ app.use(registerRouter);
 app.use(loginRouter);
 
 app.listen(app.get("port"), () => {
-  console.log("Server started on http://localhost:" + app.get("port"));
+  console.log(
+    "Server started on http://localhost:" + app.get("port") + "/login",
+  );
 });
+
 
 
 
 async function main() {}
-
-});
 
