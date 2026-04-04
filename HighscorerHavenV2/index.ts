@@ -78,6 +78,9 @@ app.use(compareRouter);
 >>>>>>> 3dfcda9 (update session en compair)
 
 // Pagina's
+app.get("/", (req, res) => {
+  res.render("index");
+});
 app.get("/login", (req, res) => {
   res.render("login");
 });
@@ -127,9 +130,7 @@ app.use(loginRouter);
 >>>>>>> 18b96e3 (login en registeren (express-session enbcrypt))
 
 app.listen(app.get("port"), () => {
-  console.log(
-    "Server started on http://localhost:" + app.get("port") + "/login",
-  );
+  console.log("Server started on http://localhost:" + app.get("port"));
 });
 <<<<<<< HEAD
 
