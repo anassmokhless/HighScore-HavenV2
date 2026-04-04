@@ -3,7 +3,7 @@ import { gamesQuery as gamesCollection } from "../index";
 
 const router = express.Router();
 
-// Compare pagina tonen
+// eerst inloggen
 router.get("/compare", (req, res) => {
   if (!(req.session as any).user) {
     return res.redirect("/login");
