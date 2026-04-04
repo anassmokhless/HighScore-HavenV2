@@ -18,14 +18,10 @@ router.post("/login", async (req, res) => {
   }
 
   const user = await usersCollection.findOne({ username });
-  if (!user) {
-    return res.redirect("/login?error=Gebruikersnaam+of+wachtwoord+klopt+niet");
-  }
+  if (!user) return res.redirect("/login?error=true");
 
   const isCorrect = await bcrypt.compare(password, user.password);
-  if (!isCorrect) {
-    return res.redirect("/login?error=Gebruikersnaam+of+wachtwoord+klopt+niet");
-  }
+  if (!isCorrect) return res.redirect("/login?error=true");
 
   // Sessie aanmaken
   (req.session as any).user = {

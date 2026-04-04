@@ -15,19 +15,22 @@ router.post("/registeren", async (req, res) => {
     return res.send("Vul alle velden in");
   }
 
-  if (password !== conPass) {
-    return res.send("Wachtwoorden komen niet overeen");
-  }
-
-  // check die username of email al in gebruikt
+  // check errors 1: cant find user 2: cant find mail 3:pw<6 4:niet overeen
   const existingUser = await usersCollection.findOne({ username });
   if (existingUser) {
-    return res.redirect("/login?error=Gebruikersnaam+is+al+in+gebruik");
+    return res.redirect("/registeren?error=1");
   }
   const existingEmail = await usersCollection.findOne({ email });
   if (existingEmail) {
-    return res.redirect("/login?error=E-mailadres+is+al+in+gebruik");
+    return res.redirect("/registeren?error=2");
   }
+  if (password.length < 6) {
+    return res.redirect("/registeren?error=3");
+  }
+  if (password !== conPass) {
+    return res.redirect("/registeren?error=4");
+  }
+
   //hash pw
   const hashedPassword = await bcrypt.hash(password, 12);
 
