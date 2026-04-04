@@ -42,6 +42,9 @@ app.use(loginRouter);
 app.use(compareRouter);
 
 // Pagina's
+app.get("/", (req, res) => {
+  res.render("index");
+});
 app.get("/login", (req, res) => {
   res.render("login");
 });
@@ -62,7 +65,5 @@ app.get("/startpage", async (req, res) => {
 });
 
 app.listen(app.get("port"), () => {
-  console.log(
-    "Server started on http://localhost:" + app.get("port") + "/login",
-  );
+  console.log("Server started on http://localhost:" + app.get("port"));
 });
