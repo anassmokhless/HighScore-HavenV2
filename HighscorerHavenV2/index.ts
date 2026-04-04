@@ -85,6 +85,9 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 // Pagina's
+app.get("/", (req, res) => {
+  res.render("index");
+});
 app.get("/login", (req, res) => {
   res.render("login");
 });
@@ -131,9 +134,7 @@ app.use(registerRouter);
 app.use(loginRouter);
 
 app.listen(app.get("port"), () => {
-  console.log(
-    "Server started on http://localhost:" + app.get("port") + "/login",
-  );
+  console.log("Server started on http://localhost:" + app.get("port"));
 });
 
 
