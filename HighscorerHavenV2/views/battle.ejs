@@ -59,7 +59,7 @@
         <h2 class="center">VS</h2>
         <div class="systeemChooseGame center rounded">
           <img
-            src="<%= rndGame[i].src %>"
+            src="<%= rndGame[0].src %>"
             class="systeemGameImg rounded"
             alt="Systeem game"
           />
@@ -91,34 +91,37 @@
       </section>
 
       <section class="gameStatistics rounded">
-        <h3>Jouw statistieken</h3>
-        <dl class="statsGrid">
-          <div class="statCard">
-            <dt class="smallTxt">GEWONNEN</dt>
-            <dd class="largeTxt correct"><span class="winsVal">0</span></dd>
-          </div>
-          <div class="statCard">
-            <dt class="smallTxt">VERLOREN</dt>
-            <dd class="largeTxt fout"><span class="lossesVal">0</span></dd>
-          </div>
-          <div class="statCard">
-            <dt class="smallTxt">BATTLES GESPEELD</dt>
-            <dd class="largeTxt"><span class="totalBattleVal">0</span></dd>
-          </div>
-          <div class="statCard">
-            <dt class="smallTxt">WINPERCENTAGE</dt>
-            <dd class="largeTxt accuracy">
-              <span class="winRateVal">0</span>%
-            </dd>
-          </div>
-          <div class="statCard statCardWide">
-            <dt class="smallTxt">TOTAAL XP VERDIEND</dt>
-            <dd class="largeTxt totalXP">
-              <span class="totalXPVal">0</span> XP
-            </dd>
-          </div>
-        </dl>
-      </section>
+  <h3>Jouw statistieken</h3>
+  <dl class="statsGrid">
+    <div class="statCard">
+      <dt class="smallTxt">GEWONNEN</dt>
+      <dd class="largeTxt correct"><%= user.stats.battle.wins %></dd>
+    </div>
+    <div class="statCard">
+      <dt class="smallTxt">VERLOREN</dt>
+      <dd class="largeTxt fout"><%= user.stats.battle.losses %></dd>
+    </div>
+    <div class="statCard">
+      <dt class="smallTxt">BATTLES GESPEELD</dt>
+      <dd class="largeTxt"><%= (user.stats.battle.wins) + (user.stats.battle.losses) %></dd>
+    </div>
+    <div class="statCard">
+      <dt class="smallTxt">WINPERCENTAGE</dt>
+      <dd class="largeTxt accuracy">
+        <%
+          const wins = user.stats.battle.wins;
+          const total = wins + (user.stats.battle.losses);
+          const winRate = total > 0  Math.round((wins / total) * 100) : 0;
+        %>
+        <%= winRate %>%
+      </dd>
+    </div>
+    <div class="statCard statCardWide">
+      <dt class="smallTxt">TOTAAL XP VERDIEND</dt>
+      <dd class="largeTxt totalXP"><%= user.stats.battle.xp  0 %> XP</dd>
+    </div>
+  </dl>
+</section>
     </main>
   </body>
 </html>
