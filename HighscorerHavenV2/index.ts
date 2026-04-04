@@ -1,10 +1,10 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import session from "express-session";
 
-//routers
+// Routers
 import registerRouter from "./routers/registeren";
 import loginRouter from "./routers/login";
 import compareRouter from "./routers/compare";
@@ -21,13 +21,12 @@ export const gamesQuery = client.db("HighscoreHaven").collection("Games");
 export const usersQuery = client.db("HighscoreHaven").collection("Users");
 
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.set("port", process.env.PORT || 3000);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-app.set("views", path.join(__dirname, "views"));
-app.set("views", path.join(__dirname, "views"));
-
-app.set("port", process.env.PORT || 3000);
 
 app.use(
   session({
@@ -38,26 +37,35 @@ app.use(
   }),
 );
 
+// Routers
 app.use(registerRouter);
 app.use(loginRouter);
 app.use(compareRouter);
 
-app.get("/", (req, res) => {
-  res.render("index", {
-    title: "Hello World",
-    message: "Hello World",
-  });
+// Pagina's
+app.get("/login", (req, res) => {
+  res.render("login");
 });
 
-app.get("/battle", (req, res) => {
-  res.render("index", {
-    title: "Hello World",
-    message: "Hello World",
-  });
+app.get("/startpage", async (req, res) => {
+  if (!(req.session as any).user) {
+    return res.redirect("/login");
+  }
+
+  const sessionUser = (req.session as any).user;
+  const user = await usersQuery.findOne({ _id: new ObjectId(sessionUser.id) });
+
+  if (!user) {
+    return res.redirect("/login");
+  }
+
+  res.render("startpage", { user });
 });
 
 app.listen(app.get("port"), () => {
-  console.log("Server started on http://localhost:" + app.get("port"));
+  console.log(
+    "Server started on http://localhost:" + app.get("port") + "/login",
+  );
 });
 
 async function main() {}
