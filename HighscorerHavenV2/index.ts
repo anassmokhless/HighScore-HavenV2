@@ -17,19 +17,20 @@ import { searchPageRouter } from "./routers/searchpage";
 import { detailPageRouter } from "./routers/detail";
 import { libraryRouter } from "./routers/library";
 import { start } from "repl";
+import { User } from "./types";
 
 dotenv.config();
 
 const app: Express = express();
 
 const MONGO_URI = process.env.MONGO_URI || ""
-const DB_NAME = process.env.DB_NAME || ""
+
 
 
 
 export const client = new MongoClient(MONGO_URI);
-export const gamesQuery = client.db("DB_NAME").collection("Games");
-export const usersQuery = client.db("DB_NAME").collection("Users");
+export const gamesQuery = client.db("HighscoreHaven").collection("Games");
+export const usersQuery = client.db("HighscoreHaven").collection("Users");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
