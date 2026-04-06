@@ -4,6 +4,7 @@ import path from "path";
 import session from "express-session";
 import { MongoClient, ObjectId } from "mongodb";
 
+
 // Routers
 import registerRouter from "./routers/registeren";
 import loginRouter from "./routers/login";
@@ -21,12 +22,14 @@ dotenv.config();
 
 const app: Express = express();
 
-const uri =
-  "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
+const MONGO_URI = process.env.MONGO_URI || ""
+const DB_NAME = process.env.DB_NAME || ""
 
-export const client = new MongoClient(uri);
-export const gamesQuery = client.db("HighscoreHaven").collection("Games");
-export const usersQuery = client.db("HighscoreHaven").collection("Users");
+
+
+export const client = new MongoClient(MONGO_URI);
+export const gamesQuery = client.db("DB_NAME").collection("Games");
+export const usersQuery = client.db("DB_NAME").collection("Users");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -36,14 +39,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET ?? "my-super-secret-secret",
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 },
-  }),
-);
+
 
 // Routers
 app.get("/", (req, res) => {
@@ -83,16 +79,6 @@ app.get("/startpage", async (req, res) => {
 
   res.render("startpage", { user });
 });
-
-app.use(
-  session({
-    secret: "jouw-geheime-sleutel",
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 dag
-  }),
-);
-
 app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));
 });
