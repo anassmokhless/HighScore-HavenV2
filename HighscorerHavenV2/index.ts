@@ -10,6 +10,10 @@ import loginRouter from "./routers/login";
 import compareRouter from "./routers/compare";
 import battleRouter from "./routers/battle";
 
+import { searchPageRouter } from "./routers/searchpage";
+import { detailPageRouter } from "./routers/detail";
+import { libraryRouter } from "./routers/library";
+
 dotenv.config();
 
 const app: Express = express();
@@ -43,6 +47,9 @@ app.use(registerRouter);
 app.use(loginRouter);
 app.use(compareRouter);
 app.use(battleRouter);
+app.use("/searchpage", searchPageRouter());
+app.use("/detail", detailPageRouter());
+app.use("/library", libraryRouter());
 
 // Pagina's
 app.get("/", (req, res) => {

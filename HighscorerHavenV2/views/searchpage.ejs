@@ -30,49 +30,43 @@
         <button id="toggle-btn-filter">filter ▼</button>
         <div id="tags-container"></div>
         <hr>
-        <nav class="zoekresultaten_menu" aria-label="Paginering">
-            <h2 class="zoekresultaten_titel">Populaire Games🔥</h2>
-            <button class="zoekresultaten_btn btn">Volgende ⭢</button>
-            <p class="zoekresultaten_btn">pagina <span class="pagina_current">*</span>/<span class="pagina_totaal">*</span></p>
-            <button class="zoekresultaten_btn btn">⭠ Vorige</button>
-        </nav>
+  <nav class="zoekresultaten_menu" aria-label="Paginering">
+  <h2 class="zoekresultaten_titel">Populaire Games🔥</h2>
+
+  <% if (currentPage < totalPages) { %>
+    <a href="/searchpage?page=<%= currentPage + 1 %>">
+      <button class="zoekresultaten_btn btn">Volgende ⭢</button>
+    </a>
+  <% } %>
+
+  <p class="zoekresultaten_btn">
+    pagina <span class="pagina_current"><%= currentPage %></span>/<span class="pagina_totaal"><%= totalPages %></span>
+  </p>
+
+  <% if (currentPage > 1) { %>
+    <a href="/searchpage?page=<%= currentPage - 1 %>">
+      <button class="zoekresultaten_btn btn">⭠ Vorige</button>
+    </a>
+  <% } %>
+</nav>
 
         <section class="grid">
+<% for (let game of games) { %>
+  <a href="/detail/<%= game.id %>">
+    <button class="card">
+      <div class="info rounded">
+        <img src="<%= game.background_image %>" class="grid_img" alt="<%= game.name %>">
+        <div class="grid_info center">
+          <h3 class="gameName"><%= game.name %></h3>
+          <p class="realeseDate"><%= game.released %> . <span class="revieuw"><%= game.rating %></span>⭐</p>
+        </div>
+      </div>
+      <p class="more hide rounded center">Meer gegevens</p>
+    </button>
+  </a>
+<% } %>
+</section>
 
-            <%= for (let game of games) %>
-            <button class="card">
-                <div class="info rounded">
-                    <img src="/img/image.png" class="grid_img" alt="Red Dead Redemption">
-                    <div class="grid_info center">
-                        <h3 class="gameName">Red dead Redemption</h3>
-                        <p class="realeseDate">26 oktober 2018 . <span class="revieuw">xx</span>⭐</p>
-                    </div>
-                </div>
-                <p class="more hide rounded center">Meer gegevens</p>
-            </button>
-
-
-            <button class="card">
-                <div class="info">
-                    <img src="/img/image.png" class="grid_img" alt="Red Dead Redemption">
-                    <div class="grid_info center">
-                        <h3 class="gameName">Red dead Redemption</h3>
-                        <p class="realeseDate">26 oktober 2018 . <span class="revieuw">xx</span>⭐</p>
-                    </div>
-                </div>
-                <p class="more hide rounded center">Meer gegevens</p>
-            </button>
-            <button class="card">
-                <div class="info rounded">
-                    <img src="/img/image.png" class="grid_img" alt="Red Dead Redemption">
-                    <div class="grid_info center">
-                        <h3 class="gameName">Red dead Redemption</h3>
-                        <p class="realeseDate">26 oktober 2018 . <span class="revieuw">xx</span>⭐</p>
-                    </div>
-                </div>
-                <p class="more hide rounded center">Meer gegevens</p>
-            </button>
-        </section>
     </main>
 </body>
 </html>
