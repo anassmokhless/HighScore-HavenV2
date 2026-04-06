@@ -61,7 +61,7 @@ interface Platforms {
   released_at: string;
   requirements_en: Requirements_en;
 }
-<<<<<<< HEAD
+
 interface Parent_platforms {
   pPlatform: PPlatform;
 }
@@ -135,9 +135,6 @@ interface Publisher {
   game_count: number;
   image_background: string;
 }
-=======
->>>>>>> f02888f (user types added)
-
 // users
 export interface User {
   name: string;
