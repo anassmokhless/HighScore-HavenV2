@@ -1,7 +1,6 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
-import { MongoClient, ObjectId } from "mongodb";
 import session from "express-session";
 
 // Routers
@@ -24,21 +23,12 @@ dotenv.config();
 
 const app: Express = express();
 
-
-
-
-
 const uri =
   "mongodb+srv://havenhighscore_db_user:haven@highscorehaven.tjuwhvt.mongodb.net/?appName=Highscorehaven";
 
 const client = new MongoClient(uri);
-
-const gamesQuery = client.db("HighscoreHaven").collection("Games");
-const usersQuery = client.db("HighscoreHaven").collection("Users");
-
-
-
-
+export const gamesQuery = client.db("HighscoreHaven").collection("Games");
+export const usersQuery = client.db("HighscoreHaven").collection("Users");
 
 
 app.set("view engine", "ejs");
@@ -49,10 +39,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-
-app.use("/searchpage", searchPageRouter());
-app.use("/detail", detailPageRouter());
-app.use("/library", libraryRouter());
 
 app.use(
   session({
@@ -114,7 +100,6 @@ app.get("/startpage", async (req, res) => {
   res.render("startpage", { user });
 
 });
-
 app.get("/battle", (req, res) => {
   res.render("index", {
     title: "Hello World",
