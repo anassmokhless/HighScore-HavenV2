@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/General.css" />
     <link rel="stylesheet" href="css/battle.css" />
-    <script src="script/header.js" type="module"></script>
-    <script src="script/battle.js" type="module"></script>
+    <script src="js/battle.js" type="module"></script>
     <title>HighScore Haven</title>
   </head>
   <body>
@@ -18,8 +17,8 @@
           Laat twee games tegen elkaar strijden op basis van hun stats!
         </p>
       </section>
-      <% let rndGame = []; %>
-       <% while (rndGame.length < 6) {%>
+        <% let rndGame = []; %>
+        <% while (rndGame.length < 6) {%>
         <% const randomIndex = Math.floor(Math.random() * games.length);%>
         <% const randomGame = games[randomIndex];%>
         <% if (!rndGame.includes(randomGame)) {%>

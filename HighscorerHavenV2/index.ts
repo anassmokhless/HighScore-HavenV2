@@ -5,10 +5,10 @@ import session from "express-session";
 import { MongoClient, ObjectId } from "mongodb";
 
 // Routers
-import registerRouter from "./routers/registeren";
-import loginRouter from "./routers/login";
-import compareRouter from "./routers/compare";
-import battleRouter from "./routers/battle";
+import { registerRouter } from "./routers/registeren";
+import { loginRouter } from "./routers/login";
+import { compareRouter } from "./routers/compare";
+import { battleRouter } from "./routers/battle";
 
 import { hash } from "crypto";
 import bcrypt from "bcrypt";
@@ -38,10 +38,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.render("index");
 });
-app.use(registerRouter);
-app.use(loginRouter);
-app.use(compareRouter);
-app.use(battleRouter);
+app.use("/registeren", registerRouter());
+app.use("/login", loginRouter());
+app.use("/compare", compareRouter());
+app.use("/battle", battleRouter());
 app.use("/searchpage", searchPageRouter());
 app.use("/detail", detailPageRouter());
 app.use("/library", libraryRouter());
