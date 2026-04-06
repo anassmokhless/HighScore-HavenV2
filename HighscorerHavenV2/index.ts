@@ -4,7 +4,6 @@ import path from "path";
 import session from "express-session";
 import { MongoClient, ObjectId } from "mongodb";
 
-
 // Routers
 import registerRouter from "./routers/registeren";
 import loginRouter from "./routers/login";
@@ -23,12 +22,7 @@ dotenv.config();
 
 const app: Express = express();
 
-const MONGO_URI = process.env.MONGO_URI || ""
-
-
-
-
-export const client = new MongoClient(MONGO_URI);
+export const client = new MongoClient(process.env.MONGO_URI!);
 export const gamesQuery = client.db("HighscoreHaven").collection("Games");
 export const usersQuery = client.db("HighscoreHaven").collection("Users");
 
@@ -39,8 +33,6 @@ app.set("port", process.env.PORT || 3000);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-
-
 
 // Routers
 app.get("/", (req, res) => {
