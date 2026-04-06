@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { client } from "../index";
+import {client} from "../index"
 import { game } from "../types";
 
 export function searchPageRouter() {
