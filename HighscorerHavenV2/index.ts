@@ -9,12 +9,13 @@ import { registerRouter } from "./routers/registeren";
 import { loginRouter } from "./routers/login";
 import { compareRouter } from "./routers/compare";
 import { battleRouter } from "./routers/battle";
-
-import { hash } from "crypto";
-import bcrypt from "bcrypt";
+import { startpageRouter } from "./routers/startpage";
 import { searchPageRouter } from "./routers/searchpage";
 import { detailPageRouter } from "./routers/detail";
 import { libraryRouter } from "./routers/library";
+
+import { hash } from "crypto";
+import bcrypt from "bcrypt";
 import { start } from "repl";
 import { User } from "./types";
 
@@ -45,6 +46,7 @@ app.use("/battle", battleRouter());
 app.use("/searchpage", searchPageRouter());
 app.use("/detail", detailPageRouter());
 app.use("/library", libraryRouter());
+app.use("/startpage", startpageRouter());
 app.use(
   session({
     secret: process.env.SESSION_SECRET ?? "my-super-secret-secret",
@@ -54,24 +56,6 @@ app.use(
   }),
 );
 
-// Pagina's
-
-app.get("/startpage", async (req, res) => {
-  if (!(req.session as any).user) {
-    return res.redirect("/login");
-  }
-
-  const sessionUser = (req.session as any).user;
-  const user = await usersQuery.findOne({
-    _id: new ObjectId(sessionUser.id),
-  });
-
-  if (!user) {
-    return res.redirect("/login");
-  }
-
-  res.render("startpage", { user });
-});
 app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));
 });
