@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/General.css">
+    <link rel="stylesheet" href="/css/details.css">
+    <title>HighScore Haven</title>
+</head>
+<body>
+    <header>
+        <a href="/searchpage" class="logo">H!ghscore Haven</a>
+        <nav>
+            <a href="/"><button class="navBtn">🏠</button></a>
+            <a href="/searchpage"><button class="navBtn">🔍</button></a>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <div class="detail-header">
+                <div class="title-group">
+                    <h2 class="game-name"><%= game.name %></h2>
+                    <p class="game-meta">
+                        <span class="release-date"><%= game.released %></span>
+                        <br>
+                        <span class="game-rating"><%= game.rating %></span>⭐
+                    </p>
+                </div>
+                <div class="action-buttons">
+                    <button aria-label="Menu">☰</button>
+                    <button aria-label="Spelen">▶</button>
+                    <button aria-label="Favoriet">☆</button>
+                </div>
+            </div>
+
+            <div class="game-body">
+                <div class="game-cover">
+                    <img src="<%= game.background_image %>" alt="<%= game.name %>">
+                </div>
+
+                <section class="info-section">
+                    <h3>Game Informatie</h3>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Genres</td>
+                                <td class="table-value">
+                                    <% game.genres.forEach(g => { %>
+                                        <span><%= g.name %></span>
+                                    <% }) %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Platform</td>
+                                <td class="table-value">
+                                    <% game.platforms.forEach(p => { %>
+                                        <span><%= p.platform.name %></span>
+                                    <% }) %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Speeltijd</td>
+                                <td class="table-value"><%= game.playtime %> uur</td>
+                            </tr>
+                            <tr>
+                                <td>Beoordelingen</td>
+                                <td class="table-value"><%= game.ratings_count %></td>
+                            </tr>
+                            <tr>
+                                <td>Beschikbaar op</td>
+                                <td class="table-value">
+                                    <% game.stores.forEach(s => { %>
+                                        <span><%= s.store.name %></span>
+                                    <% }) %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Ontwikkelaar</td>
+                                <td class="table-value">
+                                    <% game.developers.forEach(d => { %>
+                                        <span><%= d.name %></span>
+                                    <% }) %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Website</td>
+                                <td class="table-value">
+                                    <% if (game.website) { %>
+                                        <a href="<%= game.website %>" target="_blank"><%= game.website %></a>
+                                    <% } else { %>
+                                        <span>Niet beschikbaar</span>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+
+            <section class="info-section description-section">
+                <h3>Beschrijving</h3>
+                <p class="description"><%- game.description %></p>
+            </section>
+
+            <section class="info-section tags-section">
+                <h3>Tags</h3>
+                <div class="tags-list">
+                    <% game.tags.forEach(tag => { %>
+                        <span class="tag"><%= tag.name %></span>
+                    <% }) %>
+                </div>
+            </section>
+        </article>
+    </main>
+</body>
+</html>

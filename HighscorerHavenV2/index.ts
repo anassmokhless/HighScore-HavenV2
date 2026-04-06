@@ -2,7 +2,9 @@ import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
 import { MongoClient } from "mongodb";
-import { searchpagerouter } from "routers/searchpage";
+import { searchPageRouter } from "./routers/searchpage";
+import { detailPageRouter } from "./routers/detail";
+import { libraryRouter } from "./routers/library";
 
 dotenv.config();
 
@@ -22,7 +24,9 @@ app.set("views", path.join(__dirname, "views"));
 
 app.set("port", process.env.PORT || 3000);
 
-app.use("/searchpage", searchpagerouter(searchPage));
+app.use("/searchpage", searchPageRouter());
+app.use("/detail", detailPageRouter());
+app.use("/library", libraryRouter());
 
 app.get("/", (req, res) => {
   res.render("index", {

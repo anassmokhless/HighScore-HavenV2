@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/General.css">
+    <link rel="stylesheet" href="/css/library.css">
+    <title>HighScore Haven</title>
+</head>
+<body>
+    <header>
+        <a href="/library" class="logo">H!ghscore Haven</a>
+        <nav>
+            <a href="/"><button class="navBtn">🏠</button></a>
+            <a href="/searchpage"><button class="navBtn">🔍</button></a>
+            <a href="/library"><button class="navBtn">📚</button></a>
+        </nav>
+    </header>
+    <main>
+        <% if (games.length === 0) { %>
+            <h1>Je library is leeg...</h1>
+        <% } else { %>
+            <ul class="library">
+                <% for (let i = 0; i < games.length; i++) { %>
+                    <% const entry = libraryEntries[i] %>
+                    <li class="library_game">
+                        <img src="<%= games[i].background_image %>" alt="<%= games[i].name %>">
+                        <div class="infocard">
+                            <h3 class="gameName"><%= games[i].name %></h3>
+                            <p class="gameSituation"><%= entry.status %></p>
+                            <p>Speeltijd: <span class="gamePlaytime"><%= games[i].playtime %></span>u</p>
+                            <div>
+                                <a href="/detailpage/<%= games[i].id %>">
+                                    <button class="bekijkenBtn">Bekijken</button>
+                                </a>
+                                <form method="POST" action="/library/delete/<%= entry.gameId %>">
+                                    <button class="deleteBtn" type="submit">🗑️</button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
+        <% } %>
+    </main>
+</body>
+</html>
