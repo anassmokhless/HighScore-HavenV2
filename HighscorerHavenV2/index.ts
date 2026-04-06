@@ -2,6 +2,7 @@ import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
 import session from "express-session";
+import { MongoClient, ObjectId } from "mongodb";
 
 // Routers
 import registerRouter from "./routers/registeren";
@@ -80,6 +81,7 @@ app.get("/battle", (req, res) => {
     title: "Hello World",
     message: "Hello World",
   });
+});
 
   app.get("/startpage", async (req, res) => {
     if (!(req.session as any).user) {
