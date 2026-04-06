@@ -7,6 +7,7 @@ import { ObjectId } from "mongodb";
 
 const router = express.Router();
 
+// GET battle page
 router.get("/battle", async (req, res) => {
   if (!(req.session as any).user) {
     return res.redirect("/login");
@@ -19,9 +20,16 @@ router.get("/battle", async (req, res) => {
     gamesCollection.aggregate([{ $sample: { size: 6 } }]).toArray(),
   ]);
 
-  res.render("battle", { games, playerGame: null, user });
+  res.render("battle", {
+    games,
+    playerGame: null,
+    systemGame: null,
+    won: null,
+    user,
+  });
 });
 
+// POST battle result
 router.post("/battle", async (req, res) => {
   if (!(req.session as any).user) {
     return res.redirect("/login");
@@ -40,7 +48,6 @@ router.post("/battle", async (req, res) => {
     return res.redirect("/battle");
   }
 
-  // games[0] is de systeemgame
   const systemGame = games[0];
   const won = playerGame.rating > systemGame.rating;
 
@@ -59,7 +66,13 @@ router.post("/battle", async (req, res) => {
     _id: new ObjectId(sessionUser.id),
   });
 
-  res.render("battle", { games, playerGame, user: updatedUser });
+  res.render("battle", {
+    games,
+    playerGame,
+    systemGame,
+    won,
+    user: updatedUser,
+  });
 });
 
 export default router;

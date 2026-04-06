@@ -17,9 +17,6 @@ import { detailPageRouter } from "./routers/detail";
 import { libraryRouter } from "./routers/library";
 import { start } from "repl";
 
-
-
-
 dotenv.config();
 
 const app: Express = express();
@@ -49,9 +46,13 @@ app.use(
 );
 
 // Routers
+app.get("/", (req, res) => {
+  res.render("index");
+});
 app.use(registerRouter);
 app.use(loginRouter);
 app.use(compareRouter);
+app.use(battleRouter);
 app.use("/searchpage", searchPageRouter());
 app.use("/detail", detailPageRouter());
 app.use("/library", libraryRouter());
@@ -65,62 +66,35 @@ app.use(
 );
 
 // Pagina's
-app.get("/", (req, res) => {
-  res.render("index");
-});
-// Pagina's
-app.get("/", (req, res) => {
-  res.render("index");
-});
-app.get("/login", (req, res) => {
-  res.render("login");
-});
 
-app.get("/battle", (req, res) => {
-  res.render("index", {
-    title: "Hello World",
-    message: "Hello World",
-  });
-});
+app.get("/startpage", async (req, res) => {
+  if (!(req.session as any).user) {
+    return res.redirect("/login");
+  }
 
-  app.get("/startpage", async (req, res) => {
-    if (!(req.session as any).user) {
-      return res.redirect("/login");
-    }
-
-    const sessionUser = (req.session as any).user;
-    const user = await usersQuery.findOne({
-      _id: new ObjectId(sessionUser.id),
-    });
-
-    if (!user) {
-      return res.redirect("/login");
-    }
-
-    res.render("startpage", { user });
-  });
-  app.get("/battle", (req, res) => {
-    res.render("index", {
-      title: "Hello World",
-      message: "Hello World",
-    });
+  const sessionUser = (req.session as any).user;
+  const user = await usersQuery.findOne({
+    _id: new ObjectId(sessionUser.id),
   });
 
-  app.use(
-    session({
-      secret: "jouw-geheime-sleutel",
-      resave: false,
-      saveUninitialized: false,
-      cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 dag
-    }),
-  );
-  app.use(registerRouter);
-  app.use(loginRouter);
+  if (!user) {
+    return res.redirect("/login");
+  }
 
+  res.render("startpage", { user });
+});
+
+app.use(
+  session({
+    secret: "jouw-geheime-sleutel",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 dag
+  }),
+);
 
 app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));
 });
 
 async function main() {}
-

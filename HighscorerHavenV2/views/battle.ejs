@@ -3,127 +3,139 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/General.css" />
-    <link rel="stylesheet" href="css/battle.css" />
-    <script src="script/header.js" type="module"></script>
-    <script src="script/battle.js" type="module"></script>
-    <title>HighScore Haven</title>
+    <link rel="stylesheet" href="/css/General.css" />
+    <link rel="stylesheet" href="/css/battle.css" />
+    <title>HighScore Haven - Battle</title>
   </head>
+
   <body>
     <%- include("partials/navHeader") %>
+
     <main>
+      <!-- INFO -->
       <section class="center chooseGameInfoDiv">
         <h2>GAME BATTLE</h2>
         <p class="smallTxt">
           Laat twee games tegen elkaar strijden op basis van hun stats!
         </p>
       </section>
-      <% let rndGame = []; %>
-       <% while (rndGame.length < 6) {%>
-        <% const randomIndex = Math.floor(Math.random() * games.length);%>
-        <% const randomGame = games[randomIndex];%>
-        <% if (!rndGame.includes(randomGame)) {%>
-        <%     rndGame.push(randomGame);%>
-        <% }}%>
-    
 
-      <form class="center chooseGameDiv rounded">
-        <p class="largeTxt">Kies je games</p>
+      <!-- FORM -->
+      <form method="POST" action="/battle" class="center chooseGameDiv rounded">
+        <p class="largeTxt">Kies je game</p>
+
         <label for="playerGame">Jouw game</label>
         <select name="playerGame" id="playerGame" class="rounded">
-          <option>--Please choose an option--</option>
-        <%for (let i = 1; i < rndGame.length; i++) {%>
-        <option value="<%= rndGame[i].name %>"><%= rndGame[i].name %></option>
-        <% } %>
-        <% document.querySelector(".playerGameName").addEventListener("change", select); %>
+          <% for (let i = 1; i < games.length; i++) { %>
+            <option value="<%= games[i].id %>">
+              <%= games[i].name %>
+            </option>
+          <% } %>
         </select>
-        <button type="button" class="StartBattle rounded">Start Battle!</button>
-      </form>
-      
 
-      
+        <button type="submit" class="StartBattle rounded">
+          Start Battle!
+        </button>
+      </form>
+
+      <!-- BATTLE RESULT -->
+      <% if (playerGame && systemGame) { %>
       <section class="battle">
+        <!-- Player Game -->
         <div class="playerChooseGame center rounded">
           <img
-            src="img/image.png"
+            src="<%= playerGame.src %>"
             class="playerGameImg rounded"
             alt="Jouw game"
           />
-          <% let index = playerGame.selectedIndex; %>
-          <p class="gamename"><span class="playerGameName"><%= rndGame[index].name %></span></p>
-          <p class="gameRating rounded hide">
-            <span class="playerGameRating"><%= rndGame[index].rating %></span>⭐
-          </p>
-          <p class="gameAverageTime rounded hide">
-            <span class="playerAverageTime"><%= rndGame[index].playtime %></span> hours
-          </p>
+          <p class="gamename"><%= playerGame.name %></p>
+          <p class="gameRating"><%= playerGame.rating %> ⭐</p>
+          <p class="gameAverageTime"><%= playerGame.playtime %> hours</p>
         </div>
+
         <h2 class="center">VS</h2>
+
+        <!-- System Game -->
         <div class="systeemChooseGame center rounded">
           <img
-            src="<%= rndGame[0].src %>"
+            src="<%= systemGame.src %>"
             class="systeemGameImg rounded"
             alt="Systeem game"
           />
-          <p class="gamename"><span class="systeemGameName"><%= rndGame[0].rating %></span></p>
-          <p class="gameRating rounded hide">
-            <span class="systeemGameRating"><%= rndGame[0].rating %></span>⭐
-          </p>
-          <p class="gameAverageTime rounded hide">
-            <span class="systeemAverageTime"><%= rndGame[0].playtime %></span> hours
-          </p>
+          <p class="gamename"><%= systemGame.name %></p>
+          <p class="gameRating"><%= systemGame.rating %> ⭐</p>
+          <p class="gameAverageTime"><%= systemGame.playtime %> hours</p>
         </div>
       </section>
-      <section class="battleResult center rounded hide">
-        <h3><span class="gameResult"></span></h3>
+
+      <!-- RESULT -->
+      <section class="battleResult center rounded">
+        <h3>
+          <% if (won) { %>
+            Jij hebt gewonnen!
+          <% } else { %>
+            Je hebt verloren!
+          <% } %>
+        </h3>
+
         <p>
-          <span class="gameResult2"></span> op basis van Rating (<span
-            class="resultPlayerGameRating"
-          ></span
-          >⭐ vs <span class="resultSysteemGameRating"></span>⭐)!
+          Resultaat op basis van rating
+          (<%= playerGame.rating %>⭐ vs <%= systemGame.rating %>⭐)
         </p>
-        <p class="hide earnXP">Je hebt +100 XP verdiend</p>
+
+        <% if (won) { %>
+          <p class="earnXP">Je hebt +100 XP verdiend</p>
+        <% } %>
+
         <button
           type="button"
           class="rounded newBattle"
-          onClick="window.location.reload()"
+          onclick="window.location='/battle'"
         >
           Nieuwe battle
         </button>
       </section>
+      <% } %>
 
+      <!-- STATISTICS -->
       <section class="gameStatistics rounded">
-  <h3>Jouw statistieken</h3>
-  <dl class="statsGrid">
-    <div class="statCard">
-      <dt class="smallTxt">GEWONNEN</dt>
-      <dd class="largeTxt correct"><%= user.stats.battle.wins %></dd>
-    </div>
-    <div class="statCard">
-      <dt class="smallTxt">VERLOREN</dt>
-      <dd class="largeTxt fout"><%= user.stats.battle.losses %></dd>
-    </div>
-    <div class="statCard">
-      <dt class="smallTxt">BATTLES GESPEELD</dt>
-      <dd class="largeTxt"><%= (user.stats.battle.wins) + (user.stats.battle.losses) %></dd>
-    </div>
-    <div class="statCard">
-      <dt class="smallTxt">WINPERCENTAGE</dt>
-      <dd class="largeTxt accuracy">
+        <h3>Jouw statistieken</h3>
+
         <%
-          const wins = user.stats.battle.wins;
-          const total = wins + (user.stats.battle.losses);
-          const winRate = total > 0  Math.round((wins / total) * 100) : 0;
+          const wins = user.stats.battle.wins || 0;
+          const losses = user.stats.battle.losses || 0;
+          const xp = user.stats.battle.xp || 0;
+          const total = wins + losses;
+          const winRate = total > 0 ? Math.round((wins / total) * 100) : 0;
         %>
-        <%= winRate %>%
-      </dd>
-    </div>
-    <div class="statCard statCardWide">
-      <dt class="smallTxt">TOTAAL XP VERDIEND</dt>
-      <dd class="largeTxt totalXP"><%= user.stats.battle.xp  0 %> XP</dd>
-    </div>
-  </dl>
-</section>
+
+        <dl class="statsGrid">
+          <div class="statCard">
+            <dt class="smallTxt">GEWONNEN</dt>
+            <dd class="largeTxt correct"><%= wins %></dd>
+          </div>
+
+          <div class="statCard">
+            <dt class="smallTxt">VERLOREN</dt>
+            <dd class="largeTxt fout"><%= losses %></dd>
+          </div>
+
+          <div class="statCard">
+            <dt class="smallTxt">BATTLES GESPEELD</dt>
+            <dd class="largeTxt"><%= total %></dd>
+          </div>
+
+          <div class="statCard">
+            <dt class="smallTxt">WINPERCENTAGE</dt>
+            <dd class="largeTxt accuracy"><%= winRate %>%</dd>
+          </div>
+
+          <div class="statCard statCardWide">
+            <dt class="smallTxt">TOTAAL XP VERDIEND</dt>
+            <dd class="largeTxt totalXP"><%= xp %> XP</dd>
+          </div>
+        </dl>
+      </section>
     </main>
   </body>
 </html>
