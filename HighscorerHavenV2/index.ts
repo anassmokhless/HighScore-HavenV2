@@ -8,6 +8,7 @@ import session from "express-session";
 import registerRouter from "./routers/registeren";
 import loginRouter from "./routers/login";
 import compareRouter from "./routers/compare";
+import battleRouter from "./routers/battle";
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ app.use(
 app.use(registerRouter);
 app.use(loginRouter);
 app.use(compareRouter);
+app.use(battleRouter);
 
 // Pagina's
 app.get("/", (req, res) => {
