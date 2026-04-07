@@ -1,5 +1,5 @@
 import express from "express";
-import { gamesQuery as gamesCollection } from "../index";
+import { gamesCollection } from "../database";
 
 export function compareRouter() {
   const router = express.Router();

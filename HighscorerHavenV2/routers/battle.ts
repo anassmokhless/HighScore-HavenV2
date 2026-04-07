@@ -1,8 +1,5 @@
 import express from "express";
-import {
-  gamesQuery as gamesCollection,
-  usersQuery as usersCollection,
-} from "../index";
+import { gamesCollection, userCollection } from "../database";
 import { ObjectId } from "mongodb";
 
 export function battleRouter() {
@@ -17,7 +14,7 @@ export function battleRouter() {
     const sessionUser = (req.session as any).user;
 
     const [user, games] = await Promise.all([
-      usersCollection.findOne({ _id: new ObjectId(sessionUser.id) }),
+      userCollection.findOne({ _id: new ObjectId(sessionUser.id) }),
       gamesCollection.aggregate([{ $sample: { size: 6 } }]).toArray(),
     ]);
 
@@ -40,7 +37,7 @@ export function battleRouter() {
     const playerGameId = parseInt(req.body.playerGame);
 
     const [user, games, playerGame] = await Promise.all([
-      usersCollection.findOne({ _id: new ObjectId(sessionUser.id) }),
+      userCollection.findOne({ _id: new ObjectId(sessionUser.id) }),
       gamesCollection.aggregate([{ $sample: { size: 6 } }]).toArray(),
       gamesCollection.findOne({ id: playerGameId }),
     ]);
@@ -52,7 +49,7 @@ export function battleRouter() {
     const systemGame = games[0];
     const won = playerGame.rating > systemGame.rating;
 
-    await usersCollection.updateOne(
+    await userCollection.updateOne(
       { _id: new ObjectId(sessionUser.id) },
       {
         $inc: {
@@ -63,7 +60,7 @@ export function battleRouter() {
       },
     );
 
-    const updatedUser = await usersCollection.findOne({
+    const updatedUser = await userCollection.findOne({
       _id: new ObjectId(sessionUser.id),
     });
 

@@ -1,6 +1,6 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import { usersQuery as usersCollection } from "../index";
+import { userCollection } from "../database";
 
 export function registerRouter() {
   const router = express.Router();
@@ -16,11 +16,11 @@ export function registerRouter() {
     }
 
     // check errors 1: cant find user 2: cant find mail 3:pw<6 4:niet overeen
-    const existingUser = await usersCollection.findOne({ username });
+    const existingUser = await userCollection.findOne({ username });
     if (existingUser) {
       return res.redirect("/registeren?error=1");
     }
-    const existingEmail = await usersCollection.findOne({ email });
+    const existingEmail = await userCollection.findOne({ email });
     if (existingEmail) {
       return res.redirect("/registeren?error=2");
     }
@@ -35,7 +35,7 @@ export function registerRouter() {
     const hashedPassword = await bcrypt.hash(password, 12);
 
     //Naar mongodb sturen
-    await usersCollection.insertOne({
+    await userCollection.insertOne({
       name: `${name} ${famName}`,
       username,
       email,

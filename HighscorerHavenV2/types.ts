@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 export interface game {
   id: number;
   slug: string;
@@ -142,7 +143,7 @@ export interface User {
   email: string;
   startDate: string;
   password: string;
-  avantar: string;
+  avatar: string;
   library: LibraryEntry[];
   stats: UserStats;
   xpHistory: XpHistoryEntry[];
@@ -174,4 +175,10 @@ export interface XpHistoryEntry {
   actie: string;
   xp: number;
   datum: string;
+}
+
+export interface LogedInUser {
+  _id?: ObjectId;
+  username: string;
+  avatar: string;
 }

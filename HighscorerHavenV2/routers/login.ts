@@ -1,6 +1,6 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import { usersQuery as usersCollection } from "../index";
+import { userCollection } from "../database";
 
 export function loginRouter() {
   const router = express.Router();
@@ -17,7 +17,7 @@ export function loginRouter() {
       return res.redirect("/login?error=Vul+alle+velden+in");
     }
 
-    const user = await usersCollection.findOne({ username });
+    const user = await userCollection.findOne({ username });
     if (!user) return res.redirect("/login?error=true");
 
     const isCorrect = await bcrypt.compare(password, user.password);
