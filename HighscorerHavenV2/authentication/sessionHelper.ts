@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { LogedInUser } from "../types";
+import { LoggedInUser } from "../types";
 
-export function createUserSession(req: Request, user: LogedInUser): void {
+export function createUserSession(req: Request, user: LoggedInUser): void {
   (req.session as any).user = {
     id: user._id,
     username: user.username,

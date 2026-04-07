@@ -177,7 +177,7 @@ export interface XpHistoryEntry {
   datum: string;
 }
 
-export interface LogedInUser {
+export interface LoggedInUser {
   _id?: ObjectId;
   username: string;
   avatar: string;
