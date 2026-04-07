@@ -16,3 +16,12 @@ export function requireAuth(req: Request, res: Response, next: NextFunction): vo
     res.redirect("/login?error=NotLoggedIn");
   }
 }
+
+export function stopSession(req: Request, res: Response): void {
+  req.session.destroy((e) => {
+    if (e) {
+      console.log(e);
+    }
+    res.redirect("/login");
+  });
+}
