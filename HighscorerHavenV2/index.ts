@@ -1,5 +1,6 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
+dotenv.config();
 import path from "path";
 import session from "express-session";
 import { MongoClient, ObjectId } from "mongodb";
@@ -18,8 +19,7 @@ import { hash } from "crypto";
 import bcrypt from "bcrypt";
 import { start } from "repl";
 import { User } from "./types";
-
-dotenv.config();
+import { accountrouter } from "./routers/account";
 
 const app: Express = express();
 
@@ -52,6 +52,8 @@ app.use("/battle", battleRouter());
 app.use("/searchpage", searchPageRouter());
 app.use("/detail", detailPageRouter());
 app.use("/library", libraryRouter());
+
+app.use("/account", accountrouter());
 
 app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));

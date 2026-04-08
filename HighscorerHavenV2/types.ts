@@ -178,7 +178,7 @@ export interface XpHistoryEntry {
 }
 
 export interface LoggedInUser {
-  _id?: ObjectId;
+  id: ObjectId;
   username: string;
   avatar: string;
 }

@@ -3,7 +3,7 @@ import { LoggedInUser } from "../types";
 
 export function createUserSession(req: Request, user: LoggedInUser): void {
   (req.session as any).user = {
-    id: user._id,
+    id: user.id,
     username: user.username,
     avatar: user.avatar,
   };
