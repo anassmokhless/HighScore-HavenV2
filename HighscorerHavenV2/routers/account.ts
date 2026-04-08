@@ -54,5 +54,7 @@ export function accountrouter() {
     });
   });
 
+  router.post("/logout", stopSession);
+  
   return router;
 }
