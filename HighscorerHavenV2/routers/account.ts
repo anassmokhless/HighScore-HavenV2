@@ -27,34 +27,39 @@ export function accountrouter() {
   const router = express.Router();
 
   router.get("/", requireAuth, async (req, res) => {
-    const sessionUser: LoggedInUser = (req.session as any).user as LoggedInUser;
-    const user: User | null = await userCollection.findOne<User>({
-      _id: new ObjectId(sessionUser.id),
-    });
+    try {
+      const sessionUser: LoggedInUser = (req.session as any)
+        .user as LoggedInUser;
+      const user: User | null = await userCollection.findOne<User>({
+        _id: new ObjectId(sessionUser.id),
+      });
 
-    if (!user) {
+      if (!user) {
+        res.redirect("/login");
+        return;
+      }
+
+      const xpHistory: XpHistoryEntry[] = [...user.xpHistory]
+        .reverse()
+        .slice(0, 10);
+
+      const totalXP: number = user.stats.battle.xp + user.stats.guesser.xp;
+      const xpInfo = getLevelInfo(totalXP);
+      const xpToNextLevel: number = xpInfo.xpCurrentLevel - xpInfo.xpIntoLevel;
+
+      res.render("account", {
+        user: user,
+        xpHistory: xpHistory,
+        totalXp: totalXP,
+        xpInfo: xpInfo,
+        xpToNextLevel: xpToNextLevel,
+      });
+    } catch (e) {
+      console.error(e);
       res.redirect("/login");
-      return;
     }
-
-    const xpHistory: XpHistoryEntry[] = [...user.xpHistory]
-      .reverse()
-      .slice(0, 10);
-
-    const totalXP: number = user.stats.battle.xp + user.stats.guesser.xp;
-    const xpInfo = getLevelInfo(totalXP);
-    const xpToNextLevel: number = xpInfo.xpCurrentLevel - xpInfo.xpIntoLevel;
-
-    res.render("account", {
-      user: user,
-      xpHistory: xpHistory,
-      totalXp: totalXP,
-      xpInfo: xpInfo,
-      xpToNextLevel: xpToNextLevel,
-    });
   });
 
   router.post("/logout", stopSession);
-  
   return router;
 }
