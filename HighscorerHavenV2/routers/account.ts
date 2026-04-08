@@ -23,6 +23,15 @@ function getLevelInfo(totalXp: number) {
   return { level, xpIntoLevel, xpCurrentLevel };
 }
 
+const avatars = [
+  "/img/avantar1.jpg",
+  "/img/avantar2.png",
+  "/img/avantar3.png",
+  "/img/avantar4.png",
+  "/img/avantar5.png",
+  "/img/avantar6.png",
+];
+
 export function accountrouter() {
   const router = express.Router();
 
@@ -78,6 +87,7 @@ export function accountrouter() {
       res.render("editAccount", {
         user: user,
         error: null,
+        avatars: avatars,
       });
     } catch (e) {
       console.error(e);
@@ -92,6 +102,7 @@ export function accountrouter() {
       const name: string = req.body.name;
       const username: string = req.body.username;
       const email: string = req.body.email;
+      const avatar: string = req.body.avatar;
       const userId: ObjectId = new ObjectId(sessionUser.id);
       const user: User | null = await userCollection.findOne<User>({
         _id: userId,
@@ -119,6 +130,7 @@ export function accountrouter() {
           res.render("editAccount", {
             user: user,
             error: error,
+            avatars: avatars
           });
         } else {
           await userCollection.updateOne(
@@ -128,10 +140,12 @@ export function accountrouter() {
                 name: name.trim(),
                 username: username.trim(),
                 email: email.trim(),
+                avatar: avatar
               },
             },
           );
           (req.session as any).user.username = username.trim();
+          (req.session as any).user.avatar = avatar;
           res.redirect("/account");
         }
       }

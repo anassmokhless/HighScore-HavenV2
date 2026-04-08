@@ -1,160 +1,216 @@
 h2 {
-  padding: 3%;
+    padding: 3%;
 }
+
 .topSection {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 0 20%;
-  gap: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 20%;
+    gap: 5%;
 }
+
 .card > h3 {
-  margin: 1%;
-  padding: 2% 0;
-}
-.info,
-.stats {
-  display: flex;
-  justify-content: space-between;
-  padding: 1% 0;
-  border-bottom: 1px solid #f0f0f0;
-  margin: 2%;
-}
-.card {
-  padding: 2%;
-  margin: 0 2%;
-  border: 2px solid var(--light-grey);
-}
-hr {
-  width: 90%;
-  margin: auto;
-  border-top: 1px solid var(--light-grey);
-}
-.btnRow {
-  display: flex;
-  gap: 5%;
-  margin-top: 5%;
+    margin: 1%;
+    padding: 2% 0;
 }
 
-.btnRow > button,
-.btnRow > a {
-  flex: 1;
-}
-
-.btnRow > a {
-  display: flex;
-}
-
-.btnRow > a > button {
-  flex: 1;
-  padding: 2%;
-}
-
-.btnRow > button {
-  padding: 2%;
-}
-.changeInfo,
-.changePassword {
-  background-color: var(--primair-purple);
-  color: var(--white);
-  border: none;
-}
-.xpSection {
-  background-color: var(--primair-purple);
-  margin: 5% 20%;
-}
-.xpSection > h2 {
-  color: var(--white);
-}
-progress {
-  width: 80%;
-  margin: 0 5% 5% 5%;
-  height: 0.5em;
-}
-progress::-webkit-progress-value {
-  background-color: var(--white);
-}
-label {
-  display: flex;
-  justify-content: space-between;
-  margin: 1% 10%;
-  color: var(--white);
-}
-.xpHistoreSection {
-  background-color: var(--light-grey);
-  margin: 5% 20%;
-  padding: 1%;
-}
-.xpHistoreItem {
-  display: flex;
-  flex-direction: row;
-  background-color: var(--medium-grey);
-  margin: 2%;
-}
-.earnXpDiv {
-  background-color: var(--primair-purple);
-  color: var(--white);
-  padding: 2% 1.5%;
-  margin: 2%;
-  min-width: 80px;
-  text-align: center;
-}
-.earnXpInfoDiv {
-  display: flex;
-  flex-direction: column;
-  margin: 2%;
-  gap: 20%;
-}
-.logout {
-  padding: 0.5% 0.8%;
-  margin-bottom: 100px;
-  color: var(--white);
-  background-color: var(--warning);
-  border: none;
-  width: 20%;
-  margin-left: 40%;
-}
-.xpHistoreSection ol {
-  list-style: none;
-  padding: 0;
-}
-.editInput {
-  border: 1px solid var(--dark-purple);
-  border-radius: 8px;
-  padding: 0.3rem 0.6rem;
-  font-size: 1rem;
-  width: 100%;
-  box-sizing: border-box;
-  background-color: var(--white);
-}
-
-.editInput:focus {
-  border: 2px solid var(--primair-purple);
-}
-.earnXpNeg {
-  background-color: var(--warning);
-}
-
-.errorMsg {
-  color: var(--warning);
-  margin: 2%;
-  font-size: 0.9rem;
-}
-
-.saveInfo {
-  background-color: green;
-  color: var(--white);
-  border: none;
-  padding: 2%;
-  flex: 1;
-}
-
-.cancelInfo {
-  background-color: var(--light-grey);
-  border: none;
-  padding: 2%;
-  flex: 1;
+.info, .stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 0;
+    margin: 2%;
 }
 
 .info label {
     min-width: 120px;
+}
+
+.card {
+    padding: 2%;
+    margin: 0 2%;
+    border: 2px solid var(--light-grey);
+}
+
+hr {
+    width: 90%;
+    margin: auto;
+    border-top: 1px solid var(--light-grey);
+}
+
+.btnRow {
+    display: flex;
+    gap: 5%;
+    margin-top: 5%;
+}
+
+.btnRow > button,
+.btnRow > a {
+    flex: 1;
+}
+
+.btnRow > a {
+    display: flex;
+}
+
+.btnRow > a > button {
+    flex: 1;
+    padding: 2%;
+}
+
+.btnRow > button {
+    padding: 2%;
+}
+
+.changeInfo,
+.changePassword {
+    background-color: var(--primair-purple);
+    color: var(--white);
+    border: none;
+}
+
+.saveInfo {
+    background-color: green;
+    color: var(--white);
+    border: none;
+    padding: 2%;
+    flex: 1;
+}
+
+.cancelInfo {
+    background-color: var(--light-grey);
+    border: none;
+    padding: 2%;
+    flex: 1;
+}
+
+.errorMsg {
+    color: var(--warning);
+    margin: 2%;
+    font-size: 0.9rem;
+}
+
+.xpSection {
+    background-color: var(--primair-purple);
+    margin: 5% 20%;
+}
+
+.xpSection > h2 {
+    color: var(--white);
+}
+
+.xpSection label {
+    display: flex;
+    justify-content: space-between;
+    margin: 1% 10%;
+    color: var(--white);
+}
+
+progress {
+    width: 80%;
+    margin: 0 5% 5% 5%;
+    height: 0.5em;
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--white);
+}
+
+.xpHistoreSection {
+    background-color: var(--light-grey);
+    margin: 5% 20%;
+    padding: 1%;
+}
+
+.xpHistoreSection ol {
+    list-style: none;
+    padding: 0;
+}
+
+.xpHistoreItem {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--medium-grey);
+    margin: 2%;
+}
+
+.earnXpDiv {
+    background-color: var(--primair-purple);
+    color: var(--white);
+    padding: 2% 1.5%;
+    margin: 2%;
+    min-width: 80px;
+    text-align: center;
+}
+
+.earnXpNeg {
+    background-color: var(--warning);
+}
+
+.earnXpInfoDiv {
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
+    gap: 20%;
+}
+
+.logout {
+    padding: 0.5% 0.8%;
+    margin-bottom: 100px;
+    color: var(--white);
+    background-color: var(--warning);
+    border: none;
+    width: 20%;
+    margin-left: 40%;
+}
+
+.editInput {
+    border: 1px solid var(--dark-purple);
+    border-radius: 8px;
+    padding: 0.3rem 0.6rem;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--white);
+}
+
+.editInput:focus {
+    border: 2px solid var(--primair-purple);
+}
+
+.avatarPicker {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 3% 2%;
+}
+
+.avatarOption input[type="radio"] {
+    display: none;
+}
+
+.avatarImg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid transparent;
+    object-fit: cover;
+}
+
+.avatarOption input[type="radio"]:checked + .avatarImg {
+    border: 3px solid var(--primair-purple);
+}
+
+.currentAvatar {
+    padding: 5% 0;
+}
+
+.currentAvatarImg {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primair-purple);
+    margin-bottom: 5px;
 }

@@ -13,35 +13,58 @@
     <main class="accountContainer">
         <h2 class="pageTitle center">Gegevens Wijzigen</h2>
 
-        <div class="card accountInfo rounded" style="margin: 0 20%;">
-            <% if (error) { %>
-                <p class="errorMsg"><%= error %></p>
-            <% } %>
+        <form action="/account/edit" method="POST">
+            <section class="topSection">
 
-            <form action="/account/edit" method="POST">
-                <div class="info">
-                    <label class="smallTxt" for="name">Naam</label>
-                    <input class="editInput" type="text" id="name" name="name" value="<%= user.name %>" required>
+                <div class="card rounded">
+                    <h3>Account Gegevens</h3>
+                    <hr>
+                    <% if (error) { %>
+                        <p class="errorMsg"><%= error %></p>
+                    <% } %>
+                    <div class="info">
+                        <label class="smallTxt" for="name">Naam</label>
+                        <input class="editInput" type="text" id="name" name="name" value="<%= user.name %>" required>
+                    </div>
+                    <hr>
+                    <div class="info">
+                        <label class="smallTxt" for="username">Gebruikersnaam</label>
+                        <input class="editInput" type="text" id="username" name="username" value="<%= user.username %>" pattern="[a-zA-Z0-9_]{3,}" title="Min. 3 tekens, enkel letters, cijfers en underscores." required>
+                    </div>
+                    <hr>
+                    <div class="info">
+                        <label class="smallTxt" for="email">E-mailadres</label>
+                        <input class="editInput" type="email" id="email" name="email" value="<%= user.email %>" required>
+                    </div>
+                    <hr>
+                    <div class="btnRow center">
+                        <button type="submit" class="saveInfo rounded">Opslaan</button>
+                        <a href="/account">
+                            <button type="button" class="cancelInfo rounded">Annuleren</button>
+                        </a>
+                    </div>
                 </div>
-                <hr>
-                <div class="info">
-                    <label class="smallTxt" for="username">Gebruikersnaam</label>
-                    <input class="editInput" type="text" id="username" name="username" value="<%= user.username %>" pattern="[a-zA-Z0-9_]{3,}" title="Min. 3 tekens, enkel letters, cijfers en underscores." required>
+
+                <div class="card rounded">
+                    <h3>Kies je Avatar</h3>
+                    <hr>
+                    <div class="currentAvatar center">
+                        <img src="<%= user.avatar %>" class="currentAvatarImg" alt="Huidige avatar">
+                        <p class="smallTxt">Huidige avatar</p>
+                    </div>
+                    <hr>
+                    <div class="avatarPicker">
+                        <% for (let av of avatars) { %>
+                            <label class="avatarOption">
+                                <input type="radio" name="avatar" value="<%= av %>" <%= user.avatar === av ? 'checked' : '' %>>
+                                <img src="<%= av %>" class="avatarImg">
+                            </label>
+                        <% } %>
+                    </div>
                 </div>
-                <hr>
-                <div class="info">
-                    <label class="smallTxt" for="email">E-mailadres</label>
-                    <input class="editInput" type="email" id="email" name="email" value="<%= user.email %>" required>
-                </div>
-                <hr>
-                <div class="btnRow center">
-                    <button type="submit" class="saveInfo rounded">Opslaan</button>
-                    <a href="/account">
-                        <button type="button" class="cancelInfo rounded">Annuleren</button>
-                    </a>
-                </div>
-            </form>
-        </div>
+
+            </section>
+        </form>
     </main>
 </body>
 </html>

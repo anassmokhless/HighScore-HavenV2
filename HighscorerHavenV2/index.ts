@@ -41,9 +41,8 @@ app.use(
 );
 
 app.use((req, res, next) => {
-    res.locals.sessionUser = (req.session as any).user ?? null;
-    console.log(res.locals.sessionUser);
-    next();
+  res.locals.sessionUser = (req.session as any).user ?? null;
+  next();
 });
 
 // Routers
