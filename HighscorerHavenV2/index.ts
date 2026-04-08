@@ -20,6 +20,7 @@ import bcrypt from "bcrypt";
 import { start } from "repl";
 import { User } from "./types";
 import { accountrouter } from "./routers/account";
+import { changePwRouter } from "./routers/changePw";
 
 const app: Express = express();
 
@@ -59,6 +60,7 @@ app.use("/detail", detailPageRouter());
 app.use("/library", libraryRouter());
 
 app.use("/account", accountrouter());
+app.use("/changePw", changePwRouter());
 
 app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));

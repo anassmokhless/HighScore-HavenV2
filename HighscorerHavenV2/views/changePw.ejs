@@ -1,26 +1,49 @@
 <!DOCTYPE html>
 <html lang="nl">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/General.css" />
     <link rel="stylesheet" href="/css/changePw.css" />
-    <title>HighScore Haven</title>
-  </head>
-  <body>
+    <title>HighScore Haven - Wachtwoord Wijzigen</title>
+</head>
+<body>
     <%- include("./partials/navHeader.ejs") %>
+
     <main>
-      <form action="/changePw" method="POST">
-        <fieldset class="rounded">
-          <label for="oldPw">Geef uw oude wachtwoord in</label>
-          <input type="password" name="oldPw" id="oldPw" />
-          <label for="newPw">Geef uw nieuwe wachtwoord in</label>
-          <input type="password" name="newPw" id="newPw" />
-          <label for="repeatPw">Geef uw wachtwoord nog een keer in</label>
-          <input type="password" name="repeatPw" id="repeatPw" />
-          <input type="submit" name="versturen" id="submit" class="rounded" />
-        </fieldset>
-      </form>
+        <h2 class="pageTitle center">Wachtwoord Wijzigen</h2>
+
+        <div class="card rounded changePwCard">
+            <% if (error) { %>
+                <p class="errorMsg"><%= error %></p>
+            <% } %>
+            <% if (success) { %>
+                <p class="successMsg"><%= success %></p>
+            <% } %>
+
+            <form action="/changePw" method="POST">
+                <div class="pwField">
+                    <label class="smallTxt" for="oldPw">Huidig wachtwoord</label>
+                    <input class="pwInput rounded" type="password" name="oldPw" id="oldPw" required/>
+                </div>
+                <hr>
+                <div class="pwField">
+                    <label class="smallTxt" for="newPw">Nieuw wachtwoord</label>
+                    <input class="pwInput rounded" type="password" name="newPw" id="newPw" required minlength="6"/>
+                </div>
+                <hr>
+                <div class="pwField">
+                    <label class="smallTxt" for="repeatPw">Herhaal nieuw wachtwoord</label>
+                    <input class="pwInput rounded" type="password" name="repeatPw" id="repeatPw" required/>
+                </div>
+                <div class="btnRow">
+                    <button type="submit" class="saveInfo rounded">Opslaan</button>
+                    <a href="/account">
+                        <button type="button" class="cancelInfo rounded">Annuleren</button>
+                    </a>
+                </div>
+            </form>
+        </div>
     </main>
-  </body>
+</body>
 </html>

@@ -70,7 +70,7 @@ hr {
 }
 
 .saveInfo {
-    background-color: green;
+    background-color: var(--primair-purple);
     color: var(--white);
     border: none;
     padding: 2%;
