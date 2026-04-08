@@ -133,3 +133,28 @@ label {
 .earnXpNeg {
   background-color: var(--warning);
 }
+
+.errorMsg {
+  color: var(--warning);
+  margin: 2%;
+  font-size: 0.9rem;
+}
+
+.saveInfo {
+  background-color: green;
+  color: var(--white);
+  border: none;
+  padding: 2%;
+  flex: 1;
+}
+
+.cancelInfo {
+  background-color: var(--light-grey);
+  border: none;
+  padding: 2%;
+  flex: 1;
+}
+
+.info label {
+    min-width: 120px;
+}

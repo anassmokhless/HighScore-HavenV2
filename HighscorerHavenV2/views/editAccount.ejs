@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/General.css">
+    <link rel="stylesheet" href="/css/account.css">
+    <title>HighScore Haven - Gegevens Wijzigen</title>
+</head>
+<body>
+    <%- include("./partials/navHeader.ejs") %>
+
+    <main class="accountContainer">
+        <h2 class="pageTitle center">Gegevens Wijzigen</h2>
+
+        <div class="card accountInfo rounded" style="margin: 0 20%;">
+            <% if (error) { %>
+                <p class="errorMsg"><%= error %></p>
+            <% } %>
+
+            <form action="/account/edit" method="POST">
+                <div class="info">
+                    <label class="smallTxt" for="name">Naam</label>
+                    <input class="editInput" type="text" id="name" name="name" value="<%= user.name %>" required>
+                </div>
+                <hr>
+                <div class="info">
+                    <label class="smallTxt" for="username">Gebruikersnaam</label>
+                    <input class="editInput" type="text" id="username" name="username" value="<%= user.username %>" pattern="[a-zA-Z0-9_]{3,}" title="Min. 3 tekens, enkel letters, cijfers en underscores." required>
+                </div>
+                <hr>
+                <div class="info">
+                    <label class="smallTxt" for="email">E-mailadres</label>
+                    <input class="editInput" type="email" id="email" name="email" value="<%= user.email %>" required>
+                </div>
+                <hr>
+                <div class="btnRow center">
+                    <button type="submit" class="saveInfo rounded">Opslaan</button>
+                    <a href="/account">
+                        <button type="button" class="cancelInfo rounded">Annuleren</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
