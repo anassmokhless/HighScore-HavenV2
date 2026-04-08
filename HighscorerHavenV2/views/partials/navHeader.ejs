@@ -7,8 +7,12 @@
     <a href="/compare"><button class="navBtn">↔️</button></a>
     <a href="/library"><button class="navBtn">📚</button></a>
     <a href="/searchpage"><button class="navBtn">🔍</button></a>
-    <a href="/account"
-      ><img src="img/profiel.png" class="headerImg" alt="Profielfoto"
-    /></a>
+    <a href="/account">
+      <img
+        src="<%= sessionUser?.avatar ?? '/img/profiel.png' %>"
+        class="headerImg"
+        alt="Profielfoto"
+      />
+    </a>
   </nav>
 </header>
