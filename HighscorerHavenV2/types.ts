@@ -1,5 +1,6 @@
 import { ObjectId } from "mongodb";
 export interface game {
+  _id: ObjectId;
   id: number;
   slug: string;
   name: string;
