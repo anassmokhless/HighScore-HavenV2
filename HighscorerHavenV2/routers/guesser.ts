@@ -16,7 +16,7 @@ export function guesserRouter() {
             });
 
             if (!user) {
-                res.redirect("login");
+                res.redirect("/login");
                 return;
             }
 

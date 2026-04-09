@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 dotenv.config();
 import path from "path";
 import session from "express-session";
-import { MongoClient, ObjectId } from "mongodb";
 import { initialisation } from "./database";
 
 // Routers
@@ -15,10 +14,6 @@ import { searchPageRouter } from "./routers/searchpage";
 import { detailPageRouter } from "./routers/detail";
 import { libraryRouter } from "./routers/library";
 
-import { hash } from "crypto";
-import bcrypt from "bcrypt";
-import { start } from "repl";
-import { User } from "./types";
 import { accountrouter } from "./routers/account";
 import { changePwRouter } from "./routers/changePw";
 import { startpageRouter } from "./routers/startpage";
