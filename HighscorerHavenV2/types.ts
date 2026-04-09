@@ -25,7 +25,7 @@ export interface game {
   short_screenshots: Short_screenshots;
   description: string;
   website: string;
-  developers: Developers;
+  developers: Developer[];
   publishers: Publishers;
 }
 

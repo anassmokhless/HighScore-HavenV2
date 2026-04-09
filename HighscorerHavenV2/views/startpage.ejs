@@ -8,6 +8,7 @@
     <title>HighScore Haven</title>
   </head>
   <body>
+
     <main>
       <section class="welcome">
         <hgroup class="welcome_text">
@@ -34,8 +35,7 @@
           <p class="card_icon">🧩</p>
           <h3>Guesser</h3>
           <p class="card_stat">
-            <span class="guesser_xp"><%= user.stats.guesser.xp %></span> XP
-            verdiend
+            <span class="guesser_xp"><%= user.stats.guesser.xp %></span> XP verdiend
           </p>
           <a href="/guesser"><button>Spelen</button></a>
         </article>
@@ -43,8 +43,7 @@
           <p class="card_icon">⚔️</p>
           <h3>Battle</h3>
           <p class="card_stat">
-            <span class="battle_xp"><%= user.stats.battle.xp %></span> XP
-            verdiend
+            <span class="battle_xp"><%= user.stats.battle.xp %></span> XP verdiend
           </p>
           <a href="/battle"><button>Spelen</button></a>
         </article>
@@ -60,24 +59,24 @@
           <p class="card_stat">Zoek je favoriete spel op</p>
           <a href="/search"><button>Zoeken</button></a>
         </article>
-                <section class="recent_section">
-            <h2>Recente games</h2>
-            <ul class="recent_list">
-                <% if (games.length === 0) { %>
-                    <p style="color: var(--txt-grey)">Je library is nog leeg.</p>
-                <% } else { %>
-                    <% for (let game of games) { %>
-                        <li class="recent_item" onclick="window.location.href='/details/<%= game.id %>'">
-                            <img src="<%= game.background_image %>" alt="<%= game.name %>">
-                            <div>
-                                <h4><%= game.name %></h4>
-                                <span class="status_badge"><%= game.status %></span>
-                                <span><%= game.developers.name %></span>
-                            </div>
-                        </li>
-                    <% } %>
-                <% } %>
-            </ul>
+        <section class="recent_section">
+          <h2>Recente games</h2>
+          <ul class="recent_list">
+            <% if (games.length === 0) { %>
+              <p style="color: var(--txt-grey)">Je library is nog leeg.</p>
+            <% } else { %>
+              <% for (let game of games) { %>
+                <li class="recent_item" onclick="window.location.href='/details/<%= game.id %>'">
+                  <img src="<%= game.background_image %>" alt="<%= game.name %>">
+                  <div>
+                    <h4><%= game.name %></h4>
+                    <span class="status_badge"><%= game.status %></span>
+                    <span><%= game.developers[0].name %></span>
+                  </div>
+                </li>
+              <% } %>
+            <% } %>
+          </ul>
         </section>
       </section>
     </main>
