@@ -148,6 +148,8 @@ export interface User {
   library: LibraryEntry[];
   stats: UserStats;
   xpHistory: XpHistoryEntry[];
+  resetToken?: string;
+  resetTokenExpiry?: string;
 }
 
 export interface LibraryEntry {
