@@ -4,7 +4,7 @@ import { gamesCollection, userCollection } from "../database";
 import { requireAuth } from "../authentication/sessionHelper";
 import { game, LoggedInUser, User } from "../types";
 
-export function geusserRouter() {
+export function guesserRouter() {
     const router = Router();
 
     router.get("/", requireAuth, async (req, res) => {

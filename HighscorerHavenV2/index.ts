@@ -22,7 +22,7 @@ import { User } from "./types";
 import { accountrouter } from "./routers/account";
 import { changePwRouter } from "./routers/changePw";
 import { startpageRouter } from "./routers/startpage";
-import { geusserRouter } from "./routers/guesser";
+import { guesserRouter } from "./routers/guesser";
 
 const app: Express = express();
 
@@ -64,7 +64,7 @@ app.use("/library", libraryRouter());
 app.use("/account", accountrouter());
 app.use("/changePw", changePwRouter());
 app.use("/startpage", startpageRouter());
-app.use("/guesser", geusserRouter());
+app.use("/guesser", guesserRouter());
 
 app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));
