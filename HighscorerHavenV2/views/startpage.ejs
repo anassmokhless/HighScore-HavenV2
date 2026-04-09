@@ -63,15 +63,16 @@
                 <section class="recent_section">
             <h2>Recente games</h2>
             <ul class="recent_list">
-                <% if (recentGames.length === 0) { %>
+                <% if (games.length === 0) { %>
                     <p style="color: var(--txt-grey)">Je library is nog leeg.</p>
                 <% } else { %>
-                    <% for (let game of recentGames) { %>
+                    <% for (let game of games) { %>
                         <li class="recent_item" onclick="window.location.href='/details/<%= game.id %>'">
                             <img src="<%= game.background_image %>" alt="<%= game.name %>">
                             <div>
                                 <h4><%= game.name %></h4>
                                 <span class="status_badge"><%= game.status %></span>
+                                <span><%= game.developers.name %></span>
                             </div>
                         </li>
                     <% } %>

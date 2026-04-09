@@ -24,7 +24,7 @@
   font-size: 1rem;
 }
 
-.welcome_avantar {
+.welcome_avatar {
   height: 7rem;
   border-radius: 100%;
   border: 3px solid var(--primair-purple);
@@ -131,4 +131,9 @@
   background-color: var(--medium-grey);
   color: var(--dark-purple);
   display: inline-block;
+}
+
+.recent_section {
+  grid-column: 1 / -1;
+  margin: 0;
 }

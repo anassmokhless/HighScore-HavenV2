@@ -21,6 +21,7 @@ import { start } from "repl";
 import { User } from "./types";
 import { accountrouter } from "./routers/account";
 import { changePwRouter } from "./routers/changePw";
+import { startpageRouter } from "./routers/startpage";
 
 const app: Express = express();
 
@@ -61,6 +62,7 @@ app.use("/library", libraryRouter());
 
 app.use("/account", accountrouter());
 app.use("/changePw", changePwRouter());
+app.use("/startpage", startpageRouter());
 
 app.listen(app.get("port"), () => {
   console.log("Server started on http://localhost:" + app.get("port"));
