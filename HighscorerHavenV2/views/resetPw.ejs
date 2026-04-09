@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/General.css" />
+    <link rel="stylesheet" href="/css/changePw.css" />
+    <title>HighScore Haven - Wachtwoord Herstellen</title>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">H!ghscore Haven</a>
+        <nav>
+            <a href="/login"><button class="backBtn">← Terug naar login</button></a>
+        </nav>
+    </header>
+
+    <main>
+        <h2 class="pageTitle center">Wachtwoord Herstellen</h2>
+
+        <div class="card rounded changePwCard">
+            <% if (error) { %>
+                <p class="errorMsg"><%= error %></p>
+            <% } %>
+            <% if (success) { %>
+                <p class="successMsg"><%= success %></p>
+            <% } %>
+
+            <% if (!success && token) { %>
+                <form action="/resetPw" method="POST">
+                    <input type="hidden" name="token" value="<%= token %>">
+                    <div class="pwField">
+                        <label class="smallTxt" for="newPw">Nieuw wachtwoord</label>
+                        <input class="pwInput rounded" type="password" name="newPw" id="newPw" required minlength="6"/>
+                    </div>
+                    <hr>
+                    <div class="pwField">
+                        <label class="smallTxt" for="repeatPw">Herhaal nieuw wachtwoord</label>
+                        <input class="pwInput rounded" type="password" name="repeatPw" id="repeatPw" required/>
+                    </div>
+                    <div class="btnRow">
+                        <button type="submit" class="saveInfo rounded">Opslaan</button>
+                        <a href="/login">
+                            <button type="button" class="cancelInfo rounded">Annuleren</button>
+                        </a>
+                    </div>
+                </form>
+            <% } %>
+
+            <% if (success) { %>
+                <a href="/login"><button class="saveInfo rounded">Naar login</button></a>
+            <% } %>
+        </div>
+    </main>
+</body>
+</html>
