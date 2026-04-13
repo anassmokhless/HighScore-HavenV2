@@ -5,22 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/General.css">
     <link rel="stylesheet" href="css/search.css">
-    <script src="script/search-logic.js" type="module"></script>
+    <script src="script/search.js" type="module"></script>
     <script src="script/header.js" type="module"></script>
     
     <title>HighScore Haven</title>
 </head>
 <body>
    <%- include("./partials/navHeader.ejs") %>
-    <main>
-        <h2 class="search-heading">Zoek jouw favoriete games</h2>
-        <label for="search" class="visually-hidden">Zoeken</label>
-        <input type="search" id="search">
+   <main>
+    <h2 class="search-heading">Zoek jouw favoriete games</h2>
+    
+    <form method="GET" action="/searchpage">
+        <div class="search-wrapper">
+            <label for="search" class="visually-hidden">Zoeken</label>
+            <input type="search" id="search" name="search" value="<%= search %>" placeholder="Zoek een game..." autocomplete="off">
+            <ul id="suggestions" class="suggestions-dropdown"></ul>
+        </div>
         <button id="toggle-btn-filter">filter ▼</button>
-        <div id="tags-container"></div>
-        <hr>
-  <nav class="zoekresultaten_menu" aria-label="Paginering">
-  <h2 class="zoekresultaten_titel">Populaire Games🔥</h2>
+    </form>
+
+    <div id="tags-container"></div>
+    <hr>
+
+    <nav class="zoekresultaten_menu" aria-label="Paginering">
+        <h2 class="zoekresultaten_titel">Populaire Games🔥</h2>
 
   <% if (currentPage < totalPages) { %>
     <a href="/searchpage?page=<%= currentPage + 1 %>">
