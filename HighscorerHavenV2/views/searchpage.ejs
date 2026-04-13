@@ -3,67 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/General.css">
-    <link rel="stylesheet" href="css/search.css">
-    <script src="script/search.js" type="module"></script>
-    <script src="script/header.js" type="module"></script>
-    
+    <link rel="stylesheet" href="/css/General.css">
+    <link rel="stylesheet" href="/css/search.css">
+    <script src="/js/search.js" defer></script>
+    <script src="/js/header.js" defer></script>
     <title>HighScore Haven</title>
 </head>
 <body>
    <%- include("./partials/navHeader.ejs") %>
    <main>
     <h2 class="search-heading">Zoek jouw favoriete games</h2>
-    
-    <form method="GET" action="/searchpage">
-        <div class="search-wrapper">
-            <label for="search" class="visually-hidden">Zoeken</label>
-            <input type="search" id="search" name="search" value="<%= search %>" placeholder="Zoek een game..." autocomplete="off">
-            <ul id="suggestions" class="suggestions-dropdown"></ul>
-        </div>
-        <button id="toggle-btn-filter">filter ▼</button>
-    </form>
 
-    <div id="tags-container"></div>
+    <div class="search-wrapper">
+      <form method="GET" action="/searchpage" id="search-form">
+        <label for="search" class="visually-hidden">Zoeken</label>
+        <input type="text" id="search" name="search" value="<%= search %>" placeholder="Zoek een game..." autocomplete="off">
+        <input type="hidden" name="tags" id="tags-hidden" value="<%= selectedTags.join(',') %>">
+        <button id="toggle-btn-filter" type="button">filter ▼</button>
+        <button type="submit" class="search-submit">🔍</button>
+      </form>
+      <ul id="suggestions" class="suggestions-dropdown"></ul>
+    </div>
+
+    <div id="tags-container">
+      <% tags.forEach(tag => { %>
+        <label>
+          <input type="checkbox" name="tags" value="<%= tag %>"
+            <%= selectedTags.includes(tag) ? 'checked' : '' %>>
+          <%= tagTranslations[tag] %>
+        </label>
+      <% }) %>
+    </div>
+
     <hr>
 
     <nav class="zoekresultaten_menu" aria-label="Paginering">
-        <h2 class="zoekresultaten_titel">Populaire Games🔥</h2>
+      <h2 class="zoekresultaten_titel">Populaire Games🔥</h2>
 
-  <% if (currentPage < totalPages) { %>
-    <a href="/searchpage?page=<%= currentPage + 1 %>">
-      <button class="zoekresultaten_btn btn">Volgende ⭢</button>
-    </a>
+      <% if (currentPage < totalPages) { %>
+        <a href="/searchpage?page=<%= currentPage + 1 %>&search=<%= search %>&tags=<%= selectedTags.join(',') %>">
+          <button class="zoekresultaten_btn btn">Volgende ⭢</button>
+        </a>
+      <% } %>
+
+      <p class="zoekresultaten_btn">
+        pagina <span class="pagina_current"><%= currentPage %></span>/<span class="pagina_totaal"><%= totalPages %></span>
+      </p>
+
+      <% if (currentPage > 1) { %>
+        <a href="/searchpage?page=<%= currentPage - 1 %>&search=<%= search %>&tags=<%= selectedTags.join(',') %>">
+          <button class="zoekresultaten_btn btn">⭠ Vorige</button>
+        </a>
+      <% } %>
+    </nav>
+
+    <section class="grid">
+  <% if (games.length === 0) { %>
+    <div class="no-results">
+      <p>😕</p>
+      <p>Geen games gevonden voor "<%= search %>"</p>
+    </div>
+  <% } else { %>
+    <% for (let game of games) { %>
+      <a href="/detail/<%= game.id %>">
+        <button class="card">
+          <div class="info rounded">
+            <img src="<%= game.background_image %>" class="grid_img" alt="<%= game.name %>">
+            <div class="grid_info center">
+              <h3 class="gameName"><%= game.name %></h3>
+              <p class="realeseDate"><%= game.released %> . <span class="revieuw"><%= game.rating %></span>⭐</p>
+            </div>
+          </div>
+          <p class="more hide rounded center">Meer gegevens</p>
+        </button>
+      </a>
+    <% } %>
   <% } %>
-
-  <p class="zoekresultaten_btn">
-    pagina <span class="pagina_current"><%= currentPage %></span>/<span class="pagina_totaal"><%= totalPages %></span>
-  </p>
-
-  <% if (currentPage > 1) { %>
-    <a href="/searchpage?page=<%= currentPage - 1 %>">
-      <button class="zoekresultaten_btn btn">⭠ Vorige</button>
-    </a>
-  <% } %>
-</nav>
-
-        <section class="grid">
-<% for (let game of games) { %>
-  <a href="/detail/<%= game.id %>">
-    <button class="card">
-      <div class="info rounded">
-        <img src="<%= game.background_image %>" class="grid_img" alt="<%= game.name %>">
-        <div class="grid_info center">
-          <h3 class="gameName"><%= game.name %></h3>
-          <p class="realeseDate"><%= game.released %> . <span class="revieuw"><%= game.rating %></span>⭐</p>
-        </div>
-      </div>
-      <p class="more hide rounded center">Meer gegevens</p>
-    </button>
-  </a>
-<% } %>
 </section>
 
-    </main>
+  </main>
 </body>
 </html>
