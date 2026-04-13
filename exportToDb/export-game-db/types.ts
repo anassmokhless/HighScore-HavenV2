@@ -15,17 +15,17 @@ export interface game {
   suggestions_count: number;
   updated: string;
   revieuws_count: number;
-  platforms: Platforms;
-  parent_platforms: Parent_platforms;
-  genres: Gernes;
-  stores: stores;
-  tags: Tags;
+  platforms: Platform[];
+  parent_platforms: PPlatform[];
+  genres: Genre[];
+  stores: Store[];
+  tags: Tag[];
   esrb_rating: Esrb_rating;
-  short_screenshots: Short_screenshots;
+  short_screenshots: Short_Screenshot[];
   description: string;
   website: string;
-  developers: Developers;
-  publishers: Publishers;
+  developers: Developer[];
+  publishers: Publisher[];
 }
 
 interface Ratings {
@@ -51,37 +51,25 @@ interface Platform {
   Year_start: number | null;
   games_count: number;
   image_background: string;
+  released_at: string;
+  requirements_en: Requirements_en;
 }
 interface Requirements_en {
   minimum: string | null;
   recommended: string | null;
 }
-interface Platforms {
-  platform: Platform;
-  released_at: string;
-  requirements_en: Requirements_en;
-}
-interface Parent_platforms {
-  pPlatform: PPlatform;
-}
+
 interface PPlatform {
   id: number;
   name: string;
   slug: string;
 }
-interface Gernes {
-  gerne: Gerne;
-}
-interface Gerne {
+interface Genre {
   id: number;
   name: string;
   slug: number;
   games_count: number;
   image_background: string;
-}
-interface stores {
-  id: number;
-  store: Store;
 }
 interface Store {
   id: number;
@@ -91,9 +79,7 @@ interface Store {
   games_count: number;
   image_background: string;
 }
-interface Tags {
-  tag: Tag;
-}
+
 interface Tag {
   id: number;
   name: string;
@@ -107,15 +93,10 @@ interface Esrb_rating {
   name: string;
   slug: string;
 }
-interface Short_screenshots {
-  screenshot: Screenshot;
-}
-interface Screenshot {
+
+interface Short_Screenshot {
   id: number;
   image: string;
-}
-interface Developers {
-  develepor: Developer;
 }
 interface Developer {
   id: number;
@@ -123,9 +104,6 @@ interface Developer {
   slug: string;
   game_count: number;
   image_background: string;
-}
-interface Publishers {
-  publisher: Publisher;
 }
 interface Publisher {
   id: number;
