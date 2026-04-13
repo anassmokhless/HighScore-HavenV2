@@ -1,34 +1,33 @@
 import express from "express";
 import { gamesCollection } from "../database";
+import { requireAuth } from "../authentication/sessionHelper";
+import { game } from "../types";
 
 export function compareRouter() {
   const router = express.Router();
 
-  router.get("/compare", (req, res) => {
-    if (!(req.session as any).user) {
-      return res.redirect("/login");
-    }
+  router.get("/", requireAuth, (req, res) => {
     res.render("compare", { game1: null, game2: null });
   });
 
   // Compare form verwerken
-  router.post("/compare", async (req, res) => {
-    if (!(req.session as any).user) {
-      return res.redirect("/login");
-    }
-
+  router.post("/", requireAuth, async (req, res) => {
     const { game1Name, game2Name } = req.body;
 
     const [game1, game2] = await Promise.all([
-      gamesCollection.findOne({ name: { $regex: game1Name, $options: "i" } }),
-      gamesCollection.findOne({ name: { $regex: game2Name, $options: "i" } }),
+      gamesCollection.findOne<game>({
+        name: { $regex: game1Name, $options: "i" },
+      }),
+      gamesCollection.findOne<game>({
+        name: { $regex: game2Name, $options: "i" },
+      }),
     ]);
 
     res.render("compare", { game1, game2 });
   });
 
   // Autocomplete
-  router.get("/compare/search", async (req, res) => {
+  router.get("/search", requireAuth, async (req, res) => {
     const query = req.query.q as string;
 
     if (!query || query.length < 2) {

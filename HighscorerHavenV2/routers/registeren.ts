@@ -4,32 +4,28 @@ import { userCollection } from "../database";
 
 export function registerRouter() {
   const router = express.Router();
+
   router.get("/", (req, res) => {
-    res.render("registeren");
+    if ((req.session as any).user) {
+      return res.redirect("/startpage");
+    }
+    res.render("registeren", { query: req.query });
   });
 
   router.post("/", async (req, res) => {
     const { name, famName, email, username, password, conPass, avatar } =
       req.body;
-    if (!name || !famName || !email || !username || !password) {
-      return res.send("Vul alle velden in");
-    }
 
     // check errors 1: cant find user 2: cant find mail 3:pw<6 4:niet overeen
     const existingUser = await userCollection.findOne({ username });
-    if (existingUser) {
-      return res.redirect("/registeren?error=1");
-    }
+    if (existingUser) return res.redirect("/registeren?error=1");
+
     const existingEmail = await userCollection.findOne({ email });
-    if (existingEmail) {
-      return res.redirect("/registeren?error=2");
-    }
-    if (password.length < 6) {
-      return res.redirect("/registeren?error=3");
-    }
-    if (password !== conPass) {
-      return res.redirect("/registeren?error=4");
-    }
+    if (existingEmail) return res.redirect("/registeren?error=2");
+
+    if (password.length < 6) return res.redirect("/registeren?error=3");
+
+    if (password !== conPass) return res.redirect("/registeren?error=4");
 
     //hash pw
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -52,5 +48,6 @@ export function registerRouter() {
 
     res.redirect("/login");
   });
+
   return router;
 }

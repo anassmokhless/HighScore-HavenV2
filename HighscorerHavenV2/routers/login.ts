@@ -13,17 +13,12 @@ export function loginRouter() {
   router.post("/", async (req, res) => {
     const { username, password } = req.body;
 
-    if (!username || !password) {
-      return res.redirect("/login?error=Vul+alle+velden+in");
-    }
-
     const user = await userCollection.findOne({ username });
     if (!user) return res.redirect("/login?error=true");
 
     const isCorrect = await bcrypt.compare(password, user.password);
     if (!isCorrect) return res.redirect("/login?error=true");
 
-    // Sessie aanmaken
     (req.session as any).user = {
       id: user._id,
       username: user.username,
