@@ -2,6 +2,29 @@ import { Router, Request, Response } from "express";
 import { client } from "../database";
 import { game } from "../types";
 
+const TAGS = [
+  "action", "adventure", "puzzle", "horror", "strategy",
+  "survival", "simulation", "racing", "casual", "singleplayer",
+  "multiplayer", "co-op", "indie", "fps"
+];
+
+const TAG_TRANSLATIONS: Record<string, string> = {
+  "action":       "Actie",
+  "adventure":    "Avontuur",
+  "puzzle":       "Puzzel",
+  "horror":       "Horror",
+  "strategy":     "Strategie",
+  "survival":     "Survival",
+  "simulation":   "Simulatie",
+  "racing":       "Racen",
+  "casual":       "Casual",
+  "singleplayer": "Singleplayer",
+  "multiplayer":  "Multiplayer",
+  "co-op":        "Co-op",
+  "indie":        "Indie",
+  "fps":          "Fps"
+};
+
 export function searchPageRouter() {
   const router = Router();
 
@@ -26,12 +49,21 @@ export function searchPageRouter() {
   router.get("/", async (req: Request, res: Response) => {
     const page = parseInt(req.query.page as string) || 1;
     const search = req.query.search as string || '';
+    const selectedTags = req.query.tags ? (req.query.tags as string).split(',') : [];
     const limit = 9;
     const skip = (page - 1) * limit;
 
-    const filter = search
-      ? { name: { $regex: search, $options: 'i' } }
-      : {};
+    const filter: any = {};
+
+    if (search) {
+      filter.name = { $regex: search, $options: 'i' };
+    }
+if (selectedTags.length > 0) {
+  filter['$or'] = [
+    { 'tags': { $elemMatch: { slug: { $in: selectedTags } } } },
+    { 'genres': { $elemMatch: { slug: { $in: selectedTags } } } }
+  ];
+}
 
     const total = await client.db("HighscoreHaven").collection("games").countDocuments(filter);
     const totalPages = Math.ceil(total / limit);
@@ -50,8 +82,10 @@ export function searchPageRouter() {
       currentPage: page,
       totalPages,
       search,
+      selectedTags,
+      tags: TAGS,
+      tagTranslations: TAG_TRANSLATIONS,
     });
   });
 
-  return router;
-}
+  return router;}
