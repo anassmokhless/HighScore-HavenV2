@@ -23,7 +23,7 @@
                             <p class="gameSituation"><%= entry.status %></p>
                             <p>Speeltijd: <span class="gamePlaytime"><%= games[i].playtime %></span>u</p>
                             <div>
-                                <a href="/detailpage/<%= games[i].id %>">
+                                <a href="/detail/<%= games[i].id %>">
                                     <button class="bekijkenBtn">Bekijken</button>
                                 </a>
                                 <form method="POST" action="/library/delete/<%= entry.gameId %>">

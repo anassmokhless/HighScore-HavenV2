@@ -57,7 +57,7 @@
           <p class="card_icon">🔍</p>
           <h3>Zoeken</h3>
           <p class="card_stat">Zoek je favoriete spel op</p>
-          <a href="/search"><button>Zoeken</button></a>
+          <a href="/searchpage"><button>Zoeken</button></a>
         </article>
         <section class="recent_section">
           <h2>Recente games</h2>
@@ -66,7 +66,7 @@
               <p style="color: var(--txt-grey)">Je library is nog leeg.</p>
             <% } else { %>
               <% for (let game of games) { %>
-                <li class="recent_item" onclick="window.location.href='/details/<%= game.id %>'">
+                <li class="recent_item" onclick="window.location.href='/detail/<%= game.id %>'">
                   <img src="<%= game.background_image %>" alt="<%= game.name %>">
                   <div>
                     <h4><%= game.name %></h4>
