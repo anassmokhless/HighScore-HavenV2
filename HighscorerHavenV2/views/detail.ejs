@@ -22,9 +22,15 @@
                     </p>
                 </div>
                 <div class="action-buttons">
-                    <button aria-label="Menu">☰</button>
-                    <button aria-label="Spelen">▶</button>
-                    <button aria-label="Favoriet">☆</button>
+                    
+                  <form method="POST" action="/detail/<%= game.id %>/status">
+    <button type="submit" name="status" value="backlog" aria-label="Menu"
+        class="<%= libraryEntry?.status === 'backlog' ? 'active' : '' %>">☰</button>
+    <button type="submit" name="status" value="playing" aria-label="Spelen"
+        class="<%= libraryEntry?.status === 'playing' ? 'active' : '' %>">▶</button>
+    <button type="submit" name="status" value="favorite" aria-label="Favoriet"
+        class="<%= libraryEntry?.status === 'favorite' ? 'active' : '' %>">☆</button>
+</form>
                 </div>
             </div>
 

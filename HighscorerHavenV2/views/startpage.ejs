@@ -73,7 +73,7 @@
               <p style="color: var(--txt-grey)">Je library is nog leeg.</p>
             <% } else { %>
               <% for (let game of games) { %>
-                <li class="recent_item" onclick="window.location.href='/details/<%= game.id %>'">
+                <li class="recent_item" onclick="window.location.href='/detail/<%= game.id %>'">
                   <img src="<%= game.background_image %>" alt="<%= game.name %>">
                   <div>
                     <h4><%= game.name %></h4>
