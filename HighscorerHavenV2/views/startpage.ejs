@@ -13,13 +13,20 @@
       <section class="welcome">
         <hgroup class="welcome_text">
           <h1>
-            Welkom terug, <span class="username"><%= user.username %></span>!
+            Welkom terug, <span class="username"><%= user.username %></span>! 
           </h1>
           <p class="subtext">Wat ga je vandaag spelen?</p>
         </hgroup>
+        <div>
+          <a href="/help">
+          <button class="help" title="handleiding">📖</button>
+          </a>
         <a href="/account">
           <img class="welcome_avatar" src="<%= user.avatar %>" alt="Avatar" />
         </a>
+        </div>
+
+        
       </section>
 
       <section class="startpage_grid">
@@ -57,7 +64,7 @@
           <p class="card_icon">🔍</p>
           <h3>Zoeken</h3>
           <p class="card_stat">Zoek je favoriete spel op</p>
-          <a href="/search"><button>Zoeken</button></a>
+          <a href="/searchpage"><button>Zoeken</button></a>
         </article>
         <section class="recent_section">
           <h2>Recente games</h2>

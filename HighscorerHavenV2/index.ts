@@ -13,7 +13,7 @@ import { battleRouter } from "./routers/battle";
 import { searchPageRouter } from "./routers/searchpage";
 import { detailPageRouter } from "./routers/detail";
 import { libraryRouter } from "./routers/library";
-
+import { helpRouter } from "./routers/help";
 import { accountrouter } from "./routers/account";
 import { changePwRouter } from "./routers/changePw";
 import { startpageRouter } from "./routers/startpage";
@@ -57,7 +57,7 @@ app.use("/battle", battleRouter());
 app.use("/searchpage", searchPageRouter());
 app.use("/detail", detailPageRouter());
 app.use("/library", libraryRouter());
-
+app.use("/help", helpRouter());
 app.use("/account", accountrouter());
 app.use("/changePw", changePwRouter());
 app.use("/startpage", startpageRouter());

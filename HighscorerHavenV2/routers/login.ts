@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import { userCollection } from "../database";
+import { createUserSession } from "../authentication/sessionHelper";
 
 export function loginRouter() {
   const router = express.Router();
@@ -9,7 +10,6 @@ export function loginRouter() {
     res.render("login");
   });
 
-  // Login form verwerken
   router.post("/", async (req, res) => {
     const { username, password } = req.body;
 
@@ -19,11 +19,11 @@ export function loginRouter() {
     const isCorrect = await bcrypt.compare(password, user.password);
     if (!isCorrect) return res.redirect("/login?error=true");
 
-    (req.session as any).user = {
+    createUserSession(req, {
       id: user._id,
       username: user.username,
       avatar: user.avatar,
-    };
+    });
 
     res.redirect("/startpage");
   });

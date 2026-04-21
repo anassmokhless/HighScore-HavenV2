@@ -141,3 +141,13 @@
   grid-column: 1 / -1;
   margin: 0;
 }
+
+.help {
+  border-radius: 50%;
+  background-color: transparent;
+  padding: 0.4rem;
+  border: 3px solid var(--warning);
+  display: flex;
+  float: left;
+  background-color: black;
+}

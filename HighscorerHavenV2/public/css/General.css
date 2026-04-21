@@ -1,164 +1,166 @@
-:root{
-    --primair-purple: #8B7FFF;
-    --dark-purple: #6B5FEF;
-    --dark-bg : #1a1a2e;
-    --text : #333;
-    --txt-grey :#a0a0a0 ;
-    --light-grey: #f8f9fa;
-    --medium-grey: #f0f0f0;
-    --white : white;
-    --btn-good: #4CAF50;
-    --btn-bad: #f44336;
-    --warning: #FF6B35;
-    
+:root {
+  --primair-purple: #8b7fff;
+  --dark-purple: #6b5fef;
+  --dark-bg: #1a1a2e;
+  --text: #333;
+  --txt-grey: #a0a0a0;
+  --light-grey: #f8f9fa;
+  --medium-grey: #f0f0f0;
+  --white: white;
+  --btn-good: #4caf50;
+  --btn-bad: #f44336;
+  --warning: #ff6b35;
 }
-*{
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    overflow-x: hidden;
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  overflow-x: hidden;
 }
 
-body{
-    background-color: var(--medium-grey);
+body {
+  background-color: var(--medium-grey);
 }
-header{
-    background-color: var(--dark-bg);
-    color: var(--primair-purple);
-    font-weight: bold;
-    padding: 2%;
-    font-size: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+header {
+  background-color: var(--dark-bg);
+  color: var(--primair-purple);
+  font-weight: bold;
+  padding: 2%;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 header nav {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
-.navBtn{
-    padding: 0.6rem 1.2rem;
-    border-radius: 20%;
-    background-color: var(--dark-bg);
-    font-size: 1.2rem;
+.navBtn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 20%;
+  background-color: var(--dark-bg);
+  font-size: 1.2rem;
 }
-.active{
-    background-color: var(--dark-purple);
+.active {
+  background-color: var(--dark-purple);
 }
 header img {
-    margin-left: 0.2rem;
-    height: 5rem;
-    border-radius: 100%;
+  margin-left: 0.2rem;
+  height: 5rem;
+  border-radius: 100%;
 }
-button{
-    cursor: pointer;
+button {
+  cursor: pointer;
 }
-h1{
-    text-align: center;
-    color: var(--dark-purple);
-    margin:2% 0;
-    font-size: 48px;
-    font-weight: 900;
+h1 {
+  text-align: center;
+  color: var(--dark-purple);
+  margin: 2% 0;
+  font-size: 48px;
+  font-weight: 900;
 }
-h2{
-    font-size: 36px;
-    font-weight: 900;
+h2 {
+  font-size: 36px;
+  font-weight: 900;
 }
-h3{
-    font-size: 24px;
-    font-weight: 700;
+h3 {
+  font-size: 24px;
+  font-weight: 700;
 }
-.logo{
-    font-size: 28px;
-    font-weight: 800;
+.logo {
+  font-size: 28px;
+  font-weight: 800;
 }
-.largeTxt{
-    font-size: 18px;
-    font-weight: 700;
+.largeTxt {
+  font-size: 18px;
+  font-weight: 700;
 }
-.baseTxt{
-    font-size: 16px;
-    font-weight: 400;
+.baseTxt {
+  font-size: 16px;
+  font-weight: 400;
 }
-.smallTxt{
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--txt-grey);
+.smallTxt {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--txt-grey);
 }
-.extraSmall{
-    font-size: 13px;
-    font-weight: 400;
+.extraSmall {
+  font-size: 13px;
+  font-weight: 400;
 }
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
-.center{
-    text-align: center;
+.center {
+  text-align: center;
 }
 .rounded {
-    border-radius: 15px;
+  border-radius: 15px;
 }
 
 .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    white-space: nowrap;
-    border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .backBtn {
-    float: right;
-    border-radius: 10px;
-    padding: 0.5em 1.5em;
-    cursor: pointer;
+  float: right;
+  border-radius: 10px;
+  padding: 0.5em 1.5em;
+  cursor: pointer;
 }
 
-dl, dt, dd {
-    margin: 0;
-    padding: 0;
+dl,
+dt,
+dd {
+  margin: 0;
+  padding: 0;
 }
 
 .gameStatistics {
-    background-color: var(--light-grey);
-    margin: 4% 20%;
-    padding: 3%;
+  background-color: var(--light-grey);
+  margin: 4% 20%;
+  padding: 3%;
 }
 
 .gameStatistics > h3 {
-    color: var(--dark-purple);
-    margin-bottom: 1rem;
+  color: var(--dark-purple);
+  margin-bottom: 1rem;
 }
 
 .statsGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
 .statCard {
-    background-color: var(--medium-grey);
-    border-radius: 10px;
-    padding: 4% 5%;
+  background-color: var(--medium-grey);
+  border-radius: 10px;
+  padding: 4% 5%;
 }
 
 .statCardWide {
-    grid-column: span 2;
-    padding: 2%;
+  grid-column: span 2;
+  padding: 2%;
 }
 
 .correct {
-    color: var(--btn-good);
+  color: var(--btn-good);
 }
 
 .fout {
-    color: var(--warning);
+  color: var(--warning);
 }
 
-.accuracy, .totalXP {
-    color: var(--dark-purple);
+.accuracy,
+.totalXP {
+  color: var(--dark-purple);
 }
