@@ -1,14 +1,13 @@
 import express from "express";
+import { ObjectId } from "mongodb";
 import { gamesCollection, userCollection } from "../database";
 import { requireAuth } from "../authentication/sessionHelper";
-import { ObjectId } from "mongodb";
 import { game, LoggedInUser, User } from "../types";
 
 export function battleRouter() {
   const router = express.Router();
 
   router.get("/", requireAuth, async (req, res) => {
-    // login?
     try {
       const sessionUser: LoggedInUser = (req.session as any)
         .user as LoggedInUser;
@@ -22,7 +21,10 @@ export function battleRouter() {
       }
 
       const games: game[] = await gamesCollection
-        .aggregate<game>([{ $sample: { size: 6 } }])
+        .aggregate<game>([{ $sample: { size: 5 } }])
+        .toArray();
+      const systeemGames: game[] = await gamesCollection
+        .aggregate<game>([{ $sample: { size: 1 } }])
         .toArray();
 
       const wins: number = user.stats.battle.wins;
@@ -32,9 +34,10 @@ export function battleRouter() {
 
       res.render("battle", {
         games,
+        systeemGames,
+        result: null,
         playerGame: null,
         systemGame: null,
-        result: null,
         wins,
         losses,
         total,
@@ -46,34 +49,31 @@ export function battleRouter() {
     }
   });
 
-  router.post("/result", requireAuth, async (req, res) => {
+  router.post("/", requireAuth, async (req, res) => {
     try {
       const sessionUser: LoggedInUser = (req.session as any)
         .user as LoggedInUser;
-      const playerGameId: number = parseInt(req.body.playerGame);
+      const playerGameName: string = req.body.playerGame;
+      const systemGameName: string = req.body.systemGame;
 
-      const [user, playerGame, systemGameArr] = await Promise.all([
-        userCollection.findOne<User>({ _id: new ObjectId(sessionUser.id) }),
-        gamesCollection.findOne<game>({ id: playerGameId }),
-        gamesCollection.aggregate<game>([{ $sample: { size: 1 } }]).toArray(),
+      const [playerGame, systemGame] = await Promise.all([
+        gamesCollection.findOne<game>({ name: playerGameName }),
+        gamesCollection.findOne<game>({ name: systemGameName }),
       ]);
 
-      if (!user || !playerGame) {
-        res.redirect("/battle");
+      if (!playerGame || !systemGame) {
+        res.status(404).send("Game niet gevonden.");
         return;
       }
 
-      const systemGame: game = systemGameArr[0];
-      const won: boolean = playerGame.rating > systemGame.rating;
+      const playerWins: boolean = playerGame.rating >= systemGame.rating;
+      const result: string = playerWins ? "won" : "lost";
 
-      if (won) {
+      if (playerWins) {
         await userCollection.updateOne(
           { _id: new ObjectId(sessionUser.id) },
           {
-            $inc: {
-              "stats.battle.wins": 1,
-              "stats.battle.xp": 100,
-            },
+            $inc: { "stats.battle.wins": 1, "stats.battle.xp": 100 },
             $push: {
               xpHistory: {
                 actie: "Battle - Gewonnen",
@@ -86,36 +86,37 @@ export function battleRouter() {
       } else {
         await userCollection.updateOne(
           { _id: new ObjectId(sessionUser.id) },
-          {
-            $inc: { "stats.battle.losses": 1 },
-          },
+          { $inc: { "stats.battle.losses": 1 } },
         );
       }
 
-      const updatedUser = await userCollection.findOne<User>({
-        _id: new ObjectId(sessionUser.id),
-      });
+      const [user, games, systeemGames] = await Promise.all([
+        userCollection.findOne<User>({ _id: new ObjectId(sessionUser.id) }),
+        gamesCollection.aggregate<game>([{ $sample: { size: 5 } }]).toArray(),
+        gamesCollection.aggregate<game>([{ $sample: { size: 1 } }]).toArray(),
+      ]);
 
-      if (!updatedUser) {
+      if (!user) {
         res.redirect("/login");
         return;
       }
 
-      const wins: number = updatedUser.stats.battle.wins;
-      const losses: number = updatedUser.stats.battle.losses;
+      const wins: number = user.stats.battle.wins;
+      const losses: number = user.stats.battle.losses;
       const total: number = wins + losses;
       const winRate: number = total > 0 ? Math.round((wins / total) * 100) : 0;
 
       res.render("battle", {
-        games: [],
+        games,
+        systeemGames,
+        result,
         playerGame,
         systemGame,
-        result: won ? "won" : "lost",
         wins,
         losses,
         total,
         winRate,
-        xp: updatedUser.stats.battle.xp,
+        xp: user.stats.battle.xp,
       });
     } catch (e) {
       console.log(e);

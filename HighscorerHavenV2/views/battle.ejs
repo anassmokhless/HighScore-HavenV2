@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/General.css" />
     <link rel="stylesheet" href="css/battle.css" />
-    <script src="js/battle.js" type="module"></script>
     <title>HighScore Haven</title>
   </head>
   <body>
@@ -16,78 +15,108 @@
         <h2>GAME BATTLE</h2>
         <p class="smallTxt">Laat twee games tegen elkaar strijden op basis van hun stats!</p>
       </section>
+
       <% if (!result) { %>
-      <form action="/battle/result" method="POST" class="center chooseGameDiv rounded">
-        <p class="largeTxt">Kies je game</p>
-        <label for="playerGame">Jouw game</label>
-        <select name="playerGame" id="playerGame" class="rounded" required>
-          <option value="">-- Kies een game --</option>
-          <% for (const game of games) { %>
-          <option value="<%= game.id %>"><%= game.name %></option>
+        <form action="/battle" method="POST" class="center chooseGameDiv rounded">
+          <p class="largeTxt">Kies je game</p>
+          <label for="playerGame">Jouw game</label>
+          <select name="playerGame" id="playerGame" class="rounded" required>
+            <option value="">-- Kies een game --</option>
+            <% games.forEach(game => { %>
+              <option
+                value="<%= game.name %>"
+                data-image="<%= game.background_image %>"
+                data-name="<%= game.name %>"
+                data-rating="<%= game.rating %>"
+                data-playtime="<%= game.playtime %>"
+              >
+                <%= game.name %>
+              </option>
+            <% }) %>
+          </select>
+          <input type="hidden" name="systemGame" value="<%= systeemGames[0].name %>" />
+          <button type="submit" class="StartBattle rounded">Start Battle!</button>
+        </form>
+
+        <section class="battle">
+          <div class="playerChooseGame center rounded">
+            <img
+              src="<%= games[0].background_image %>"
+              class="playerGameImg rounded"
+              alt="playerGameImg"
+            />
+            <p class="gamename"><%= games[0].name %></p>
+            <p class="gameRating rounded hide"><span><%= games[0].rating %></span>⭐</p>
+            <p class="gameAverageTime rounded hide"><span><%= games[0].playtime %></span> hours</p>
+          </div>
+
+          <h2 class="center">VS</h2>
+
+          <div class="systeemChooseGame center rounded">
+            <img
+              src="<%= systeemGames[0].background_image %>"
+              class="systeemGameImg rounded"
+              alt="<%= systeemGames[0].name %>"
+            />
+            <p class="gamename"><%= systeemGames[0].name %></p>
+            <p class="gameRating rounded hide"><span><%= systeemGames[0].rating %></span> ⭐</p>
+            <p class="gameAverageTime rounded hide"><span><%= systeemGames[0].playtime %></span> hours</p>
+          </div>
+        </section>
+      <% } %>
+
+      <% if (result) { %>
+        <section class="battle">
+          <div class="playerChooseGame center rounded">
+            <img
+              src="<%= playerGame.background_image %>"
+              class="playerGameImg rounded"
+              alt="<%= playerGame.name %>"
+            />
+            <p class="gamename"><%= playerGame.name %></p>
+            <p class="gameRating rounded"><span><%= playerGame.rating %></span>⭐</p>
+            <p class="gameAverageTime rounded"><span><%= playerGame.playtime %></span> hours</p>
+          </div>
+
+          <h2 class="center">VS</h2>
+
+          <div class="systeemChooseGame center rounded">
+            <img
+              src="<%= systemGame.background_image %>"
+              class="systeemGameImg rounded"
+              alt="<%= systemGame.name %>"
+            />
+            <p class="gamename"><%= systemGame.name %></p>
+            <p class="gameRating rounded"><span><%= systemGame.rating %></span> ⭐</p>
+            <p class="gameAverageTime rounded"><span><%= systemGame.playtime %></span> hours</p>
+          </div>
+        </section>
+
+        <section class="battleResult center rounded">
+          <% if (result === "won") { %>
+            <h3>🏆 Je hebt gewonnen!</h3>
+            <p>
+              <strong><%= playerGame.name %></strong> wint op basis van Rating
+              (<%= playerGame.rating %>⭐ vs <%= systemGame.rating %>⭐)!
+            </p>
+            <p class="earnXP">Je hebt +100 XP verdiend!</p>
+          <% } else { %>
+            <h3>💀 Je hebt verloren!</h3>
+            <p>
+              <strong><%= systemGame.name %></strong> wint op basis van Rating
+              (<%= systemGame.rating %>⭐ vs <%= playerGame.rating %>⭐)!
+            </p>
           <% } %>
-        </select>
-        <button type="submit" class="StartBattle rounded">Start Battle!</button>
-      </form>
+          <button
+            type="button"
+            class="rounded newBattle"
+            onClick="window.location.href='/battle'"
+          >
+            Nieuwe battle
+          </button>
+        </section>
       <% } %>
-      <% if (result && playerGame && systemGame) { %>
-      <section class="battle">
-        <div class="playerChooseGame center rounded">
-          <img
-            src="<%= playerGame.background_image %>"
-            class="playerGameImg rounded"
-            alt="<%= playerGame.name %>"
-          />
-          <p class="gamename"><%= playerGame.name %></p>
-          <p class="gameRating rounded">
-            <span><%= playerGame.rating %></span> ⭐
-          </p>
-          <p class="gameAverageTime rounded">
-            <span><%= playerGame.playtime %></span> hours
-          </p>
-        </div>
 
-        <h2 class="center">VS</h2>
-
-        <div class="systeemChooseGame center rounded">
-          <img
-            src="<%= systemGame.background_image %>"
-            class="systeemGameImg rounded"
-            alt="<%= systemGame.name %>"
-          />
-          <p class="gamename"><%= systemGame.name %></p>
-          <p class="gameRating rounded">
-            <span><%= systemGame.rating %></span> ⭐
-          </p>
-          <p class="gameAverageTime rounded">
-            <span><%= systemGame.playtime %></span> hours
-          </p>
-        </div>
-      </section>
-
-      <section class="battleResult center rounded">
-        <% if (result === "won") { %>
-          <h3>🏆 Je hebt gewonnen!</h3>
-          <p>
-            <strong><%= playerGame.name %></strong> wint op basis van Rating
-            (<%= playerGame.rating %>⭐ vs <%= systemGame.rating %>⭐)!
-          </p>
-          <p class="earnXP">Je hebt +100 XP verdiend!</p>
-        <% } else { %>
-          <h3>💀 Je hebt verloren!</h3>
-          <p>
-            <strong><%= systemGame.name %></strong> wint op basis van Rating
-            (<%= systemGame.rating %>⭐ vs <%= playerGame.rating %>⭐)!
-          </p>
-        <% } %>
-        <button
-          type="button"
-          class="rounded newBattle"
-          onClick="window.location.href='/battle'"
-        >
-          Nieuwe battle
-        </button>
-      </section>
-      <% } %>
       <section class="gameStatistics rounded">
         <h3>Jouw statistieken</h3>
         <dl class="statsGrid">
@@ -115,5 +144,6 @@
       </section>
 
     </main>
+    <script type="module" src="js/battle.js"></script>
   </body>
 </html>
