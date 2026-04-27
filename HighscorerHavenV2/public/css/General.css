@@ -163,3 +163,27 @@ dd {
 .totalXP {
   color: var(--dark-purple);
 }
+
+@media (max-width: 768px) {
+
+ 
+  header {
+    padding: 3% 4%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .navBtn {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  header img {
+    height: 2.5rem;
+  }
+}
