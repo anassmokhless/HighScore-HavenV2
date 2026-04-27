@@ -9,12 +9,19 @@ h2 {
     gap: 5%;
 }
 
+.card {
+    padding: 2%;
+    margin: 0 2%;
+    border: 2px solid var(--light-grey);
+}
+
 .card > h3 {
     margin: 1%;
     padding: 2% 0;
 }
 
-.info, .stats {
+.info,
+.stats {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,12 +31,6 @@ h2 {
 
 .info label {
     min-width: 120px;
-}
-
-.card {
-    padding: 2%;
-    margin: 0 2%;
-    border: 2px solid var(--light-grey);
 }
 
 hr {
@@ -45,7 +46,8 @@ hr {
 }
 
 .btnRow > button,
-.btnRow > a {
+.btnRow > a,
+.btnRow > a > button {
     flex: 1;
 }
 
@@ -53,35 +55,22 @@ hr {
     display: flex;
 }
 
+.btnRow > button,
 .btnRow > a > button {
-    flex: 1;
-    padding: 2%;
-}
-
-.btnRow > button {
     padding: 2%;
 }
 
 .changeInfo,
-.changePassword {
-    background-color: var(--primair-purple);
-    color: var(--white);
-    border: none;
-}
-
+.changePassword,
 .saveInfo {
     background-color: var(--primair-purple);
     color: var(--white);
     border: none;
-    padding: 2%;
-    flex: 1;
 }
 
 .cancelInfo {
     background-color: var(--light-grey);
     border: none;
-    padding: 2%;
-    flex: 1;
 }
 
 .errorMsg {
@@ -157,11 +146,11 @@ progress::-webkit-progress-value {
 .logout {
     padding: 0.5% 0.8%;
     margin-bottom: 100px;
+    margin-left: 40%;
     color: var(--white);
     background-color: var(--warning);
     border: none;
     width: 20%;
-    margin-left: 40%;
 }
 
 .editInput {
@@ -213,4 +202,78 @@ progress::-webkit-progress-value {
     object-fit: cover;
     border: 3px solid var(--primair-purple);
     margin-bottom: 5px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .topSection {
+        grid-template-columns: 1fr;
+        margin: 0 4%;
+        gap: 1.5rem;
+    }
+
+    .card {
+        margin: 0;
+    }
+
+    .xpSection,
+    .xpHistoreSection {
+        margin: 5% 4%;
+    }
+
+    .info,
+    .stats {
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
+
+    .info label {
+        min-width: auto;
+    }
+
+    .btnRow {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    .xpSection label {
+        margin: 1% 5%;
+    }
+
+    progress {
+        width: 90%;
+        margin: 0 5% 5%;
+    }
+
+    .logout {
+        width: 70%;
+        margin-left: 15%;
+        padding: 0.6rem 1rem;
+    }
+
+    .earnXpDiv {
+        min-width: 70px;
+        font-size: 0.9rem;
+    }
+
+    .avatarImg {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .xpSection label {
+        flex-direction: column;
+        gap: 0.2rem;
+        text-align: center;
+    }
+
+    .xpHistoreItem {
+        flex-direction: column;
+    }
+
+    .earnXpDiv {
+        margin: 2% 2% 0;
+    }
 }

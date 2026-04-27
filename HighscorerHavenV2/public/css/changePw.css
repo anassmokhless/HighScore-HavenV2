@@ -30,16 +30,18 @@
     outline: none;
 }
 
-.errorMsg {
-    color: var(--warning);
+.errorMsg,
+.successMsg {
     margin: 2%;
     font-size: 0.9rem;
 }
 
+.errorMsg {
+    color: var(--warning);
+}
+
 .successMsg {
     color: var(--btn-good);
-    margin: 2%;
-    font-size: 0.9rem;
 }
 
 .btnRow {
@@ -49,7 +51,8 @@
 }
 
 .btnRow > button,
-.btnRow > a {
+.btnRow > a,
+.btnRow > a > button {
     flex: 1;
 }
 
@@ -57,12 +60,8 @@
     display: flex;
 }
 
+.btnRow > button,
 .btnRow > a > button {
-    flex: 1;
-    padding: 2%;
-}
-
-.btnRow > button {
     padding: 2%;
 }
 
@@ -70,11 +69,32 @@
     background-color: var(--primair-purple);
     color: var(--white);
     border: none;
-    padding: 2%;
 }
 
 .cancelInfo {
     background-color: var(--light-grey);
     border: none;
-    padding: 2%;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .changePwCard {
+        margin: 5% 4%;
+    }
+
+    .pwField {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.4rem;
+        margin: 5% 2%;
+    }
+
+    .pwField label {
+        min-width: auto;
+    }
+
+    .btnRow {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
 }
