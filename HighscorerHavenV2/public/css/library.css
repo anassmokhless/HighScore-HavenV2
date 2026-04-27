@@ -1,63 +1,125 @@
-main{
+main {
     padding: 5%;
 }
-.library{
+
+.library {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1em;
+    gap: 1.5em;
+    list-style: none;
+    padding: 0;
 }
+
+ul > h1 {
+    grid-column-start: 2;
+}
+
 .library_game {
-    border-radius:15px ;
+    border-radius: 15px;
     background-color: var(--light-grey);
-    
+    display: flex;
+    flex-direction: column;
 }
-.library_game:hover{
+
+.library_game:hover {
     border: 2px solid var(--dark-purple);
 }
-.library_game img{
-    height: 50%;
+
+.library_game img {
+    height: 180px;
     width: 100%;
     object-fit: cover;
-    border-radius:15px 15px 0 0;
+    border-radius: 15px 15px 0 0;
+    flex-shrink: 0;
 }
-.infocard{
-    padding: 5% 5%;
 
+.infocard {
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
-h3{
+
+h3 {
     margin-bottom: 3%;
 }
-.gameSituation{
+
+.gameSituation {
     border-radius: 15px;
     background-color: var(--primair-purple);
     color: var(--white);
-    width: 20%;
-    padding: 1%;
+    display: inline-block;        /* was width: 20% — te krap voor langere statussen */
+    padding: 3px 12px;
     border: none;
     margin-bottom: 3%;
     text-align: center;
     font-size: 13px;
+    align-self: flex-start;
 }
-.infocard button{
-    width: 45%;
+
+/* knoppen naast elkaar */
+.infocard > div {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;             /* duwt knoppen altijd naar de onderkant van de kaart */
+    padding-top: 12px;
+}
+
+.infocard > div a,
+.infocard > div form {
+    flex: 1;
+}
+
+.infocard button {
+    width: 100%;
     padding: 0.5em;
     border-radius: 15px;
-    margin-top: 8%;
     border: none;
     color: var(--white);
+    cursor: pointer;
 }
-.infocard button:first-child{
+
+.bekijkenBtn {
     background-color: var(--primair-purple);
 }
-.infocard button:last-child
-{
+
+.bekijkenBtn:hover {
+    opacity: 0.85;
+}
+
+.deleteBtn {
     background-color: var(--warning);
 }
 
-.library {
-    list-style: none;
-    padding: 0;
+.deleteBtn:hover {
+    opacity: 0.85;
 }
-ul>h1{
-    grid-column-start: 2;
+
+/* -- mobiel -- */
+@media (max-width: 768px) {
+    .library {
+        grid-template-columns: 1fr;
+    }
+
+    .library_game {
+        flex-direction: row;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .library_game img {
+        width: 120px;
+        height: auto;
+        border-radius: 15px 0 0 15px;
+        flex-shrink: 0;
+    }
+
+    .infocard {
+        padding: 12px;
+    }
+
+    .infocard > div {
+        flex-direction: column;
+        gap: 6px;
+    }
 }
