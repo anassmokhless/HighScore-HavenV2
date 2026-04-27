@@ -38,24 +38,24 @@
     <hr>
 
     <nav class="zoekresultaten_menu" aria-label="Paginering">
-      <h2 class="zoekresultaten_titel">Populaire Games🔥</h2>
+  <h2 class="zoekresultaten_titel">Populaire Games🔥</h2>
 
-      <% if (currentPage < totalPages) { %>
-        <a href="/searchpage?page=<%= currentPage + 1 %>&search=<%= search %>&tags=<%= selectedTags.join(',') %>">
-          <button class="zoekresultaten_btn btn">Volgende ⭢</button>
-        </a>
-      <% } %>
+  <% if (currentPage > 1) { %>
+    <a href="/searchpage?page=<%= currentPage - 1 %>&search=<%= search %>&tags=<%= selectedTags.join(',') %>">
+      <button class="zoekresultaten_btn btn">⭠ Vorige</button>
+    </a>
+  <% } %>
 
-      <p class="zoekresultaten_btn">
-        pagina <span class="pagina_current"><%= currentPage %></span>/<span class="pagina_totaal"><%= totalPages %></span>
-      </p>
+  <p class="zoekresultaten_btn">
+    pagina <span class="pagina_current"><%= currentPage %></span>/<span class="pagina_totaal"><%= totalPages %></span>
+  </p>
 
-      <% if (currentPage > 1) { %>
-        <a href="/searchpage?page=<%= currentPage - 1 %>&search=<%= search %>&tags=<%= selectedTags.join(',') %>">
-          <button class="zoekresultaten_btn btn">⭠ Vorige</button>
-        </a>
-      <% } %>
-    </nav>
+  <% if (currentPage < totalPages) { %>
+    <a href="/searchpage?page=<%= currentPage + 1 %>&search=<%= search %>&tags=<%= selectedTags.join(',') %>">
+      <button class="zoekresultaten_btn btn">Volgende ⭢</button>
+    </a>
+  <% } %>
+</nav>
 
     <section class="grid">
   <% if (games.length === 0) { %>
