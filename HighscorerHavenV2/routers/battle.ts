@@ -54,12 +54,13 @@ export function battleRouter() {
       const sessionUser: LoggedInUser = (req.session as any)
         .user as LoggedInUser;
       const playerGameName: string = req.body.playerGame;
-      const systemGameName: string = req.body.systemGame;
 
-      const [playerGame, systemGame] = await Promise.all([
+      const [playerGame, systeemGamesArr] = await Promise.all([
         gamesCollection.findOne<game>({ name: playerGameName }),
-        gamesCollection.findOne<game>({ name: systemGameName }),
+        gamesCollection.aggregate<game>([{ $sample: { size: 1 } }]).toArray(),
       ]);
+
+      const systemGame = systeemGamesArr[0];
 
       if (!playerGame || !systemGame) {
         res.status(404).send("Game niet gevonden.");

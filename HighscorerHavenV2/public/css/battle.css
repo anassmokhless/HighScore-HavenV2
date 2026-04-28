@@ -8,26 +8,14 @@
   margin: 3% auto;
   padding: 2%;
 }
-.chooseGameDiv > p {
-  margin-bottom: 10%;
-}
-.chooseGameDiv > select {
-  width: 80%;
-  margin: 2% 10% 5% 10%;
-  padding: 1%;
-}
-.chooseGameDiv > button {
-  width: 80%;
-  background-color: var(--warning);
-  color: var(--white);
-  border: none;
-  padding: 1.5%;
+#playerGame {
+  padding: 0% 5%;
+  font-size: 16px;
 }
 .battle {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5rem;
   padding: 2%;
 }
 .playerChooseGame img,
@@ -40,8 +28,7 @@
 .playerChooseGame,
 .systeemChooseGame {
   background-color: var(--light-grey);
-  padding: 3% 3% 2% 3%;
-  box-shadow: 1px 1 pxvar(--txt-grey);
+  padding: 3%;
 }
 .gameRating,
 .gameAverageTime {
@@ -53,8 +40,13 @@
 .battleResult {
   padding: 2%;
   color: var(--white);
-  background-color: var(--btn-good);
   margin: 2% 20%;
+}
+.win {
+  background-color: var(--btn-good);
+}
+.lose {
+  background-color: var(--btn-bad);
 }
 .newBattle {
   background-color: var(--white);
@@ -65,6 +57,13 @@
 }
 .hide {
   display: none;
+}
+.StartBattle {
+  margin: 3%;
+  padding: 0.5% 2%;
+  background-color: var(--warning);
+  color: var(--white);
+  border: none;
 }
 
 @media (max-width: 768px) {
