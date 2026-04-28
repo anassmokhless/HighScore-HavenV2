@@ -1,12 +1,13 @@
 <header>
   <a href="/startpage" class="logo">H!ghscore Haven</a>
-  <nav>
-    <a href="/startpage"><button class="navBtn">🏠</button></a>
-    <a href="/guesser"><button class="navBtn">🧩</button></a>
-    <a href="/battle"><button class="navBtn">⚔️</button></a>
-    <a href="/compare"><button class="navBtn">↔️</button></a>
-    <a href="/library"><button class="navBtn">📚</button></a>
-    <a href="/searchpage"><button class="navBtn">🔍</button></a>
+  <button class="hamburger" id="hamburger">☰</button>
+  <nav id="mainNav">
+    <a href="/startpage" class="navBtn">🏠</a>
+    <a href="/guesser" class="navBtn">🧩</a>
+    <a href="/battle" class="navBtn">⚔️</a>
+    <a href="/compare" class="navBtn">↔️</a>
+    <a href="/library" class="navBtn">📚</a>
+    <a href="/searchpage" class="navBtn">🔍</a>
     <a href="/account">
       <img
         src="<%= sessionUser?.avatar ?? '/img/profiel.png' %>"

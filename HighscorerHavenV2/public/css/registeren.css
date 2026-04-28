@@ -88,3 +88,31 @@ a:hover {
 .choiseAvantar button:hover {
   border: 5px solid var(--dark-purple);
 }
+@media (max-width: 768px) {
+  fieldset {
+    width: 80%;
+    margin: auto;
+    border-radius: 0;
+  }
+
+  .chosenAvantar {
+    margin: 0 auto;
+    width: 50%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .choiseAvantar button {
+    width: 18%;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    padding: 0.7rem;
+  }
+}
