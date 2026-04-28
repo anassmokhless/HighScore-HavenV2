@@ -165,8 +165,6 @@ dd {
 }
 
 @media (max-width: 768px) {
-
- 
   header {
     padding: 3% 4%;
     flex-direction: column;
@@ -185,5 +183,18 @@ dd {
 
   header img {
     height: 2.5rem;
+  }
+  .gameStatistics {
+    margin: 4% 5%;
+    padding: 5%;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statCardWide {
+    grid-column: span 1;
+    padding: 4%;
   }
 }
