@@ -75,15 +75,18 @@ a:hover {
 .chosenAvantar {
   margin-left: 25%;
   width: 200px;
+  border-radius: 50%;
   object-fit: cover;
 }
 .choiseAvantar button {
   width: 15%;
   padding: 0;
+  border-radius: 50%;
   border: 5px solid transparent;
 }
 .choiseAvantar img {
   width: 100%;
+  border-radius: 50%;
 }
 .choiseAvantar button:hover {
   border: 5px solid var(--dark-purple);

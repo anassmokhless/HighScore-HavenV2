@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/General.css" />
+    <script type="module" src="js/time.js"></script>
     <link
       rel="stylesheet"
       type="text/css"
@@ -54,28 +55,7 @@
     </main>
     <footer>
       <hr />
-      <p>© 2025 AML Inc. Alle rechten voorbehouden</p>
+      <p>© <span class="time"></span> AML Inc. Alle rechten voorbehouden</p>
     </footer>
   </body>
-  <script>
-    const buttons = document.querySelectorAll(".notActive");
-    for (let i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener("click", () => {
-        Toastify({
-          text: "Je hebt geen toegang",
-          duration: 3000,
-          destination: "https://github.com/apvarun/toastify-js",
-          newWindow: true,
-          close: true,
-          gravity: "top", // `top` or `bottom`
-          position: "center", // `left`, `center` or `right`
-          stopOnFocus: true, // Prevents dismissing of toast on hover
-          style: {
-            background: "linear-gradient(to right, #8B7FFF, #6B5FEF)",
-          },
-          onClick: function () {}, // Callback after click
-        }).showToast();
-      });
-    }
-  </script>
 </html>
