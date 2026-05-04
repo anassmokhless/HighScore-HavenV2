@@ -15,12 +15,12 @@
         <h1>VERGELIJK GAMES</h1>
         <div class="grid">
           <div class="flex_column">
-            <label for="game1Name">Select game 1</label>
+            <label for="game1Name">Select spel 1</label>
             <input type="search" name="game1Name" id="game1Name" autocomplete="off" value="<%= game1 ? game1.name : '' %>" />
             <ul class="suggestions" id="suggestions1"></ul>
           </div>
           <div class="flex_column">
-            <label for="game2Name">Select game 2</label>
+            <label for="game2Name">Select spel 2</label>
             <input type="search" name="game2Name" id="game2Name" autocomplete="off" value="<%= game2 ? game2.name : '' %>" />
             <ul class="suggestions" id="suggestions2"></ul>
           </div>
@@ -55,22 +55,22 @@
           <dl>
             <div class="row rounded">
               <dd><%= game1.released %></dd>
-              <dt>📅 Release Datum</dt>
+              <dt>📅 Releasedatum</dt>
               <dd><%= game2.released %></dd>
             </div>
             <div class="row rounded">
               <dd class="<%= game1.rating > game2.rating ? 'winner' : 'loser' %>"><%= game1.rating %> ⭐</dd>
-              <dt>RAWG Beoordeling</dt>
+              <dt>RAWG beoordeling</dt>
               <dd class="<%= game2.rating > game1.rating ? 'winner' : 'loser' %>"><%= game2.rating %> ⭐</dd>
             </div>
             <div class="row rounded">
               <dd class="<%= game1.ratings_count > game2.ratings_count ? 'winner' : 'loser' %>"><%= game1.ratings_count?.toLocaleString() %></dd>
-              <dt>Aantal Beoordelingen</dt>
+              <dt>Aantal beoordelingen</dt>
               <dd class="<%= game2.ratings_count > game1.ratings_count ? 'winner' : 'loser' %>"><%= game2.ratings_count?.toLocaleString() %></dd>
             </div>
             <div class="row rounded">
               <dd class="<%= game1.playtime > game2.playtime ? 'winner' : 'loser' %>"><%= game1.playtime %> uur</dd>
-              <dt>Gem. Speeltijd</dt>
+              <dt>Gem. speeltijd</dt>
               <dd class="<%= game2.playtime > game1.playtime ? 'winner' : 'loser' %>"><%= game2.playtime %> uur</dd>
             </div>
           </dl>

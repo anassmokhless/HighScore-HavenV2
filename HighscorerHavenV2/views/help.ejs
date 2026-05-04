@@ -1,13 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/General.css" />
+    <link rel="stylesheet" href="css/help.css" />
 
-    <title>HighScore Haven</title>
+    <title>Highscore Haven - Uitleg</title>
   </head>
   <body>
     <%- include("partials/navHeader") %>
+    <div class="section">
+      <h2>📖 Wat is Highscore Haven?</h2>
+      <p>
+        Highscore Haven is een complete game management applicatie waarmee je je
+        game collectie kunt beheren, games kunt vergelijken, en je gaming
+        statistieken kunt bijhouden. Perfect voor gamers die hun bibliotheek
+        willen organiseren en hun gaming ervaring willen optimaliseren!
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>🏠 Hoofdpagina</h2>
+      <p>
+        Het startpunt van je gaming ervaring met toegang tot alle
+        functionaliteiten.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <div class="feature-title largeTxt">Mijn Library</div>
+          <p>Bekijk je volledige game collectie met status labels</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🧩</div>
+          <div class="feature-title largeTxt">Guesser</div>
+          <p>
+            Raad de game aan de hand van een vervaagde foto - test je game
+            kennis!
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚔️</div>
+          <div class="feature-title largeTxt">Battle</div>
+          <p>Laat twee games tegen elkaar strijden op basis van ratings</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">↔️</div>
+          <div class="feature-title largeTxt">Vergelijk</div>
+          <p>
+            Vergelijk gedetailleerde statistieken van twee games naast elkaar
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <div class="feature-title largeTxt">Zoeken</div>
+          <p>Ontdek nieuwe games en voeg ze toe aan je bibliotheek</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <img
+              src="<%= sessionUser?.avatar ?? '/img/profiel.png' %>"
+              alt="Profiel"
+            />
+          </div>
+          <div class="feature-title largeTxt">Profiel</div>
+          <p>Bekijk je statistieken, behaalde levels en game voortgang</p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
