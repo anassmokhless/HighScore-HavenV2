@@ -1,126 +1,128 @@
 .chooseGameInfoDiv {
-    margin-top: 2%;
+  margin-top: 0.5%;
 }
 
 .chooseGameInfoDiv > h2 {
-    color: var(--warning);
+  color: var(--warning);
 }
 
 .guesssGameImg {
-    width: 40%;
-    margin: 2% 0;
-    transition: filter 0.6s ease;
+  width: 40%;
+  max-height: 38vh;
+  object-fit: cover;
+  margin: 1% 0;
+  transition: filter 0.6s ease;
 }
 
 .blurred {
-    filter: blur(18px);
+  filter: blur(18px);
 }
 
 .chooseGameDiv {
-    background-color: var(--light-grey);
-    width: 40%;
-    margin: 2% auto;
-    padding: 2%;
-    display: flex;
-    flex-direction: column;
+  background-color: var(--light-grey);
+  width: 40%;
+  margin: 1% auto;
+  padding: 1.2%;
+  display: flex;
+  flex-direction: column;
 }
 
 .chooseGameDiv > p {
-    margin-bottom: 10%;
+  margin-bottom: 10%;
 }
 
 .chooseGameDiv > select {
-    width: 80%;
-    margin: 2% 10% 10% 10%;
-    padding: 1%;
+  width: 80%;
+  margin: 1.5% 10% 4% 10%;
+  padding: 1%;
 }
 
 .checkBtn {
-    width: 80%;
-    margin: 0 auto;
-    background-color: var(--warning);
-    color: var(--white);
-    border: none;
-    padding: 1%;
-    font-size: 15px;
-    font-weight: 600;
+  width: 80%;
+  margin: 0 auto;
+  background-color: var(--warning);
+  color: var(--white);
+  border: none;
+  padding: 1%;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .checkBtn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .guessResult {
-    padding: 2%;
-    color: var(--white);
-    margin: 3% 30%;
+  padding: 2%;
+  color: var(--white);
+  margin: 3% 30%;
 }
 
 .guessResult strong {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .correct-result {
-    background-color: var(--btn-good);
+  background-color: var(--btn-good);
 }
 
 .wrong-result {
-    background-color: var(--warning);
+  background-color: var(--warning);
 }
 
 .earnXPGuess {
-    margin-top: 0.5rem;
-    font-size: 14px;
-    font-weight: 600;
-    opacity: 0.9;
+  margin-top: 0.5rem;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
 }
 
 .nextGame {
-    background-color: var(--white);
-    color: var(--btn-good);
-    padding: 1%;
-    margin: 2%;
-    border: none;
-    font-weight: 600;
+  background-color: var(--white);
+  color: var(--btn-good);
+  padding: 1%;
+  margin: 2%;
+  border: none;
+  font-weight: 600;
 }
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
-    .guesssGameImg {
-        width: 85%;
-    }
+  .guesssGameImg {
+    width: 85%;
+  }
 
-    .chooseGameDiv {
-        width: 85%;
-    }
+  .chooseGameDiv {
+    width: 85%;
+  }
 
-    .chooseGameDiv > select {
-        width: 100%;
-        margin: 2% 0 6%;
-    }
+  .chooseGameDiv > select {
+    width: 100%;
+    margin: 2% 0 6%;
+  }
 
-    .checkBtn {
-        width: 100%;
-        padding: 0.6rem;
-    }
+  .checkBtn {
+    width: 100%;
+    padding: 0.6rem;
+  }
 
-    .guessResult {
-        margin: 5% 4%;
-        padding: 4%;
-    }
+  .guessResult {
+    margin: 5% 4%;
+    padding: 4%;
+  }
 
-    /* override General.css cramping for the guesser page only */
-    .gameStatistics {
-        margin: 4% 4%;
-        padding: 5%;
-    }
+  /* override General.css cramping for the guesser page only */
+  .gameStatistics {
+    margin: 4% 4%;
+    padding: 5%;
+  }
 
-    .statsGrid {
-        grid-template-columns: 1fr;
-    }
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
 
-    .statCardWide {
-        grid-column: span 1;
-    }
+  .statCardWide {
+    grid-column: span 1;
+  }
 }

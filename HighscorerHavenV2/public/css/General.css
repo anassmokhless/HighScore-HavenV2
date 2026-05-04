@@ -50,6 +50,7 @@ header img {
 }
 button {
   cursor: pointer;
+  min-height: 3rem;
 }
 h1 {
   text-align: center;
@@ -162,6 +163,21 @@ dd {
 .accuracy,
 .totalXP {
   color: var(--dark-purple);
+}
+
+.card .info .smallTxt,
+.card .stats .smallTxt {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.card .info > span:not(.smallTxt),
+.card .stats dd {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text);
+  margin: 0;
 }
 
 @media (max-width: 768px) {

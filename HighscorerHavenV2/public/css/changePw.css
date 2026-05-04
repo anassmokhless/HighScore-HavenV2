@@ -1,100 +1,103 @@
 .changePwCard {
-    margin: 5% 30%;
-    padding: 2%;
-    border: 2px solid var(--light-grey);
+  margin: 5% 30%;
+  padding: 2%;
+  border: 2px solid var(--light-grey);
 }
 
 .pwField {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 3% 2%;
-    gap: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3% 2%;
+  gap: 10%;
 }
 
 .pwField label {
-    min-width: 180px;
+  min-width: 180px;
+  color: black;
+  font-size: 1rem;
 }
 
 .pwInput {
-    border: 1px solid var(--dark-purple);
-    padding: 0.4rem 0.6rem;
-    font-size: 1rem;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: var(--white);
+  border: 1px solid;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--white);
 }
 
 .pwInput:focus {
-    border: 2px solid var(--primair-purple);
-    outline: none;
+  border: 2px solid var(--primair-purple);
+  outline: none;
 }
 
 .errorMsg,
 .successMsg {
-    margin: 2%;
-    font-size: 0.9rem;
+  margin: 2%;
+  font-size: 0.9rem;
 }
 
 .errorMsg {
-    color: var(--warning);
+  color: var(--warning);
 }
 
 .successMsg {
-    color: var(--btn-good);
+  color: var(--btn-good);
 }
 
 .btnRow {
-    display: flex;
-    gap: 5%;
-    margin-top: 5%;
+  display: flex;
+  gap: 5%;
+  margin-top: 5%;
 }
 
 .btnRow > button,
 .btnRow > a,
 .btnRow > a > button {
-    flex: 1;
+  flex: 1;
 }
 
 .btnRow > a {
-    display: flex;
+  display: flex;
 }
 
 .btnRow > button,
 .btnRow > a > button {
-    padding: 2%;
+  padding: 2%;
 }
 
 .saveInfo {
-    background-color: var(--primair-purple);
-    color: var(--white);
-    border: none;
+  background-color: var(--primair-purple);
+  color: var(--white);
+  border: none;
 }
 
 .cancelInfo {
-    background-color: var(--light-grey);
-    border: none;
+  background-color: var(--light-grey);
+  border: none;
 }
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
-    .changePwCard {
-        margin: 5% 4%;
-    }
+  .changePwCard {
+    margin: 5% 4%;
+  }
 
-    .pwField {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.4rem;
-        margin: 5% 2%;
-    }
+  .pwField {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+    margin: 5% 2%;
+  }
 
-    .pwField label {
-        min-width: auto;
-    }
+  .pwField label {
+    min-width: auto;
+  }
 
-    .btnRow {
-        flex-direction: column;
-        gap: 0.6rem;
-    }
+  .btnRow {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
 }
