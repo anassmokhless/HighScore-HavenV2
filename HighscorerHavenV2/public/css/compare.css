@@ -4,13 +4,13 @@ label {
 }
 
 .container {
-  margin: 0 10%;
+  margin: 0 5%;
 }
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 1.5%;
-  margin: 2%;
+  margin: 2% 0;
   background-color: var(--light-grey);
 }
 .container h3 {
@@ -22,7 +22,7 @@ label {
 .game_info {
   background-color: var(--light-grey);
   padding: 5% 0.5%;
-  margin: 3%;
+  margin: 3% 0;
 }
 .grid {
   display: grid;
