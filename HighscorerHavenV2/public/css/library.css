@@ -19,18 +19,59 @@ ul > h1 {
     background-color: var(--light-grey);
     display: flex;
     flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
 }
 
 .library_game:hover {
-    border: 2px solid var(--dark-purple);
+    border-color: var(--dark-purple);
+}
+
+.card-link {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
 }
 
 .library_game img {
     height: 180px;
     width: 100%;
     object-fit: cover;
-    border-radius: 15px 15px 0 0;
+    object-position: center top;
     flex-shrink: 0;
+}
+
+.deleteBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primair-purple);
+    color: var(--white);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 2;
+}
+
+.library_game:hover .deleteBtn {
+    opacity: 1;
+}
+
+.deleteBtn:hover {
+    background-color: var(--dark-purple);
 }
 
 .infocard {
@@ -48,7 +89,7 @@ h3 {
     border-radius: 15px;
     background-color: var(--primair-purple);
     color: var(--white);
-    display: inline-block;        /* was width: 20% — te krap voor langere statussen */
+    display: inline-block;
     padding: 3px 12px;
     border: none;
     margin-bottom: 3%;
@@ -57,41 +98,23 @@ h3 {
     align-self: flex-start;
 }
 
-/* knoppen naast elkaar */
-.infocard > div {
-    display: flex;
-    gap: 8px;
-    margin-top: auto;             /* duwt knoppen altijd naar de onderkant van de kaart */
+.btn-wrapper {
+    margin-top: auto;
     padding-top: 12px;
 }
 
-.infocard > div a,
-.infocard > div form {
-    flex: 1;
-}
-
-.infocard button {
+.bekijkenBtn {
     width: 100%;
     padding: 0.5em;
     border-radius: 15px;
     border: none;
+    background-color: var(--primair-purple);
     color: var(--white);
     cursor: pointer;
-}
-
-.bekijkenBtn {
-    background-color: var(--primair-purple);
+    transition: opacity 0.2s;
 }
 
 .bekijkenBtn:hover {
-    opacity: 0.85;
-}
-
-.deleteBtn {
-    background-color: var(--warning);
-}
-
-.deleteBtn:hover {
     opacity: 0.85;
 }
 
@@ -107,10 +130,15 @@ h3 {
         overflow: hidden;
     }
 
+    .card-link {
+        flex-direction: row;
+        flex: 1;
+    }
+
     .library_game img {
         width: 120px;
         height: auto;
-        border-radius: 15px 0 0 15px;
+        border-radius: 0;
         flex-shrink: 0;
     }
 
@@ -118,8 +146,13 @@ h3 {
         padding: 12px;
     }
 
-    .infocard > div {
+    .btn-wrapper {
         flex-direction: column;
         gap: 6px;
+    }
+}
+@media (max-width: 768px) {
+    .deleteBtn {
+        opacity: 1;
     }
 }

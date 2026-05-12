@@ -11,26 +11,27 @@
    <%- include("./partials/navHeader.ejs") %>
     <main>
         <% if (games.length === 0) { %>
-            <h1>Je library is leeg...</h1>
+            <h1>je library is leeg...</h1>
         <% } else { %>
             <ul class="library">
-                <% for (let i = 0; i < games.length; i++) { %>
-                    <% const entry = libraryEntries[i] %>
+                <% for (let game of games) { %>
+                    <% const entry = libraryEntries.find(e => e.gameId === game.id) %>
                     <li class="library_game">
-                        <img src="<%= games[i].background_image %>" alt="<%= games[i].name %>">
-                        <div class="infocard">
-                            <h3 class="gameName"><%= games[i].name %></h3>
-                            <p class="gameSituation"><%= entry.status %></p>
-                            <p>Speeltijd: <span class="gamePlaytime"><%= games[i].playtime %></span>u</p>
-                            <div>
-                                <a href="/detail/<%= games[i].id %>">
-                                    <button class="bekijkenBtn">Bekijken</button>
-                                </a>
-                                <form method="POST" action="/library/delete/<%= entry.gameId %>">
-                                    <button class="deleteBtn" type="submit">🗑️</button>
-                                </form>
+                        <form method="POST" action="/library/delete/<%= entry.gameId %>" class="delete-form">
+                            <button class="deleteBtn" type="submit">🗑️</button>
+                        </form>
+
+                        <a href="/detail/<%= game.id %>" class="card-link">
+                            <img src="<%= game.background_image %>" alt="<%= game.name %>">
+                            <div class="infocard">
+                                <h3 class="gameName"><%= game.name %></h3>
+                                <p class="gameSituation"><%= entry.status %></p>
+                                <p>speeltijd: <span class="gamePlaytime"><%= game.playtime %></span>u</p>
+                                <div class="btn-wrapper">
+                                    <button class="bekijkenBtn">bekijken</button>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </li>
                 <% } %>
             </ul>

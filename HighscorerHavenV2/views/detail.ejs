@@ -16,7 +16,7 @@
                 <div class="title-group">
                     <h2 class="game-name"><%= game.name %></h2>
                     <p class="game-meta">
-                        <span class="release-date"><%= game.released %></span>
+                        
                         <br>
                         <span class="game-rating"><%= game.rating %></span>⭐
                     </p>
@@ -40,11 +40,11 @@
                 </div>
 
                 <section class="info-section">
-                    <h3>Game Informatie</h3>
+                    <h3>game informatie</h3>
                     <table>
                         <tbody>
                             <tr>
-                                <td>Genres</td>
+                                <td>genres</td>
                                 <td class="table-value">
                                     <% game.genres.forEach(g => { %>
                                         <span><%= g.name %></span>
@@ -52,7 +52,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Platform</td>
+                                <td>platform</td>
                                 <td class="table-value">
                                     <% game.platforms.forEach(p => { %>
                                         <span><%= p.platform.name %></span>
@@ -60,15 +60,19 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Speeltijd</td>
+                                <td>speeltijd</td>
                                 <td class="table-value"><%= game.playtime %> uur</td>
                             </tr>
                             <tr>
-                                <td>Beoordelingen</td>
+                                <td>beoordelingen</td>
                                 <td class="table-value"><%= game.ratings_count %></td>
                             </tr>
                             <tr>
-                                <td>Beschikbaar op</td>
+                                <td>uitgebracht op</td>
+                                <td class="table-value"><%= game.released %></td>
+                            </tr>
+                            <tr>
+                                <td>beschikbaar op</td>
                                 <td class="table-value">
                                     <% game.stores.forEach(s => { %>
                                         <span><%= s.store.name %></span>
@@ -76,7 +80,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Ontwikkelaar</td>
+                                <td>ontwikkelaar</td>
                                 <td class="table-value">
                                     <% game.developers.forEach(d => { %>
                                         <span><%= d.name %></span>
@@ -84,7 +88,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Website</td>
+                                <td>website</td>
                                 <td class="table-value">
                                     <% if (game.website) { %>
                                         <a href="<%= game.website %>" target="_blank"><%= game.website %></a>
@@ -97,20 +101,23 @@
                     </table>
                 </section>
             </div>
+<div class="info-combined">
+  <section class="info-section tags-section">
+    <h3>tags</h3>
+    <div class="tags-list">
+      <% game.tags.forEach(tag => { %>
+        <span class="tag"><%= tag.name %></span>
+      <% }) %>
+    </div>
+  </section>
 
-            <section class="info-section description-section">
-                <h3>Beschrijving</h3>
-                <p class="description"><%- game.description %></p>
-            </section>
+  <div class="vertical-divider"></div>
 
-            <section class="info-section tags-section">
-                <h3>Tags</h3>
-                <div class="tags-list">
-                    <% game.tags.forEach(tag => { %>
-                        <span class="tag"><%= tag.name %></span>
-                    <% }) %>
-                </div>
-            </section>
+  <section class="info-section description-section">
+    <h3>beschrijving</h3>
+    <p class="description"><%- game.description %></p>
+  </section>
+</div>
         </article>
     </main>
 </body>

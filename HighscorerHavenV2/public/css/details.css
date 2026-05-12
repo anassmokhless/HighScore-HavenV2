@@ -15,7 +15,6 @@ main {
 }
 
 .game-meta {
-  color: var(--txt-grey);
   margin-top: 5px;
 }
 
@@ -42,6 +41,10 @@ main {
   background-color: var(--dark-purple);
   border-color: var(--dark-purple);
   color: white;
+}
+
+.action-buttons button.active {
+  background-color: var(--dark-purple);
 }
 
 .game-body {
@@ -73,13 +76,13 @@ main {
 }
 
 .info-section table {
-  width: 80%;
+  width: 100%;
 }
 
 .info-section td {
-  padding: 5% 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--medium-grey);
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 .info-section tr:last-child td {
@@ -87,13 +90,41 @@ main {
 }
 
 .table-value {
-  float: right;
+  float: none;
   text-align: right;
-  max-width: 60%;
+  max-width: none;
+}
+
+.info-combined {
+  display: flex;
+  gap: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.info-combined .info-section {
+  box-shadow: none;
+  background: transparent;
+  margin-top: 0;
+  padding: 24px;
 }
 
 .tags-section {
-  margin-top: 20px;
+  flex: none;
+  width: 40%;
+}
+
+.description-section {
+  flex: 1;
+}
+
+.vertical-divider {
+  width: 1px;
+  background-color: var(--medium-grey);
+  align-self: stretch;
 }
 
 .tags-list {
@@ -118,9 +149,6 @@ main {
   border-color: var(--primair-purple);
   color: var(--dark-purple);
 }
-.description-section {
-  margin-top: 20px;
-}
 
 .description {
   line-height: 1.7;
@@ -136,18 +164,13 @@ main {
 .website a:hover {
   color: var(--primair-purple);
 }
-.action-buttons button.active {
-  background-color: var(--dark-purple);
-}
 
 @media (max-width: 768px) {
-
   main {
     margin: 0;
     padding: 5% 5%;
   }
 
-  /* -- header -- */
   .detail-header {
     flex-direction: column;
     align-items: flex-start;
@@ -159,7 +182,6 @@ main {
     font-size: 24px;
   }
 
-  /* -- cover + info naast elkaar → onder elkaar -- */
   .game-body {
     flex-direction: column;
     gap: 20px;
@@ -174,29 +196,16 @@ main {
     object-fit: cover;
   }
 
-  /* -- tabel -- */
-  .info-section table {
-    width: 100%;
+  .info-combined {
+    flex-direction: column;
   }
 
-  .info-section td {
-    padding: 10px 0;
-    display: block;
-    width: 100%;
-  }
-
-  .table-value {
-    float: none;
-    text-align: left;
-    max-width: 100%;
-    color: var(--txt-grey);
-    font-size: 14px;
-    padding-top: 2px;
-  }
-
-  /* -- description & tags -- */
-  .description-section,
   .tags-section {
-    margin-top: 16px;
+    width: 100%;
+  }
+
+  .vertical-divider {
+    width: auto;
+    height: 1px;
   }
 }
